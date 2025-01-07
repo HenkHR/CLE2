@@ -5,6 +5,15 @@
     --colors-link: #F1C232;
     --colors-text-footer: #c8c8c8;
 
+    --font-size-tiny: 0.25rem;
+    --font-size-very-small: 0.5rem;
+    --font-size-small: 0.75rem;
+    --font-size-medium: 1rem;
+    --font-size-big: 1.5rem;
+    --font-size-bigger: 2rem;
+    --font-size-large: 3rem;
+    --font-size-very-large: 4rem;
+    --font-size-huge: 5rem;
 }
 
 * {
@@ -25,12 +34,19 @@ html {
     background-color: var(--colors-background);
 }
 
+header {
+    top: 0;
+    position: sticky;
+    z-index: 99999999999;
+}
+
 .navbar {
-    padding: 2.5vh 5vw 2.5vh 5vw;
+    padding: 1vh 5vw;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     gap: 5vw;
+    background-color: rgba(0,0,0,0.9);
     border-bottom: 0.25vh solid var(--colors-link);
 }
 
@@ -41,18 +57,35 @@ html {
 .navbar a {
     text-decoration: none;
     color: var(--colors-nav-link);
+    font-size: var(--font-size-big);
 }
 
 .navbar a:hover {
     color: var(--colors-link);
 }
 
-.main-section {
-    height: 70vh;
+.title-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+    min-height: 100px;
     background-color: var(--colors-background);
 }
 
-section h1 {
+.title {
+    padding: 1vh 2vw;
+    color: var(--colors-text);
+    background-color: rgba(0,0,0,0.7);
+    font-size: var(--font-size-very-large);
+    font-weight: bolder;
+}
+
+.main-section {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 70vh;
     color: var(--colors-text);
 }
 
@@ -76,8 +109,26 @@ footer p {
     margin-bottom: 2.5vh;
 }
 
+.footer-social-links a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--colors-text);
+    background-color: var(--colors-background);
+    height: 40px;
+    width: 40px;
+}
+
+.footer-social-links a:hover {
+    color: var(--colors-background);
+    background-color: var(--colors-link);
+    border: 0 hidden var(--colors-background);
+    border-radius: 5vw;
+}
+
 .footer-copyright {
     color: var(--colors-text-footer);
+    font-size: var(--font-size-small);
 }
 
 .footer-copyright a {
