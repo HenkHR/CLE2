@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['submit'])) {
     /** @var mysqli $db */
-    require_once "Includes/padel_systeem.sql";
+    require_once "Includes/connection.php";
 
     $errors = [];
 
@@ -75,7 +75,7 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Padel - Focus Health & Fitness</title>
+    <title>Registreren - Focus Health & Fitness</title>
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
@@ -92,11 +92,54 @@ if (isset($_POST['submit'])) {
 </header>
 <section>
     <form action="" method="post">
-        <div>
-            <label class="label" for="firstName">Voornaam</label>
-        </div>
-        <div>
-
+        <div class="column" style="width: 500px">
+            <p class="title">Registreer</p>
+            <div class="form-column"> <!-- Voornaam -->
+                <div>
+                    <label class="label" for="firstName">Voornaam</label>
+                </div>
+                <div>
+                    <input class="input" id="firstName" type="text" name="firstName" value="<?= htmlspecialchars($firstName ?? '', ENT_QUOTES, 'UTF-8') ?>"/>
+                </div>
+                <p class="Danger">
+                    <?= $errors['firstName'] ?? '' ?>
+                </p>
+            </div>
+            <div class="form-column"> <!-- Achternaam -->
+                <div>
+                    <label class="label" for="lastName">Achternaam</label>
+                </div>
+                <div>
+                    <input class="input" id="lastName" type="text" name="lastName" value="<?= htmlspecialchars($lastName ?? '', ENT_QUOTES, 'UTF-8') ?>"/>
+                </div>
+                <p class="Danger">
+                    <?= $errors['lastName'] ?? '' ?>
+                </p>
+            </div>
+            <div class="form-column"> <!-- Email -->
+                <div>
+                    <label class="label" for="email">E-mailadres</label>
+                </div>
+                <div>
+                    <input class="input" id="email" type="email" name="email" value="<?= htmlspecialchars($email ?? '', ENT_QUOTES, 'UTF-8') ?>"/>
+                </div>
+                <p class="Danger">
+                    <?= $errors['email'] ?? '' ?>
+                </p>
+            </div>
+            <div class="form-column"> <!-- Wachtwoord -->
+                <div>
+                    <label class="label" for="password">Wachtwoord</label>
+                </div>
+                <div>
+                    <input class="input" id="password" type="password" name="password"/>
+                </div>
+                <p class="Danger">
+                    <?= $errors['password'] ?? '' ?>
+                </p>
+            </div>
+            <!-- Submit -->
+            <button class="link-button" type="submit" name="submit">Registreer</button>
         </div>
     </form>
 </section>

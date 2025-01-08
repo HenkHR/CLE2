@@ -4,6 +4,7 @@
     --colors-nav-link: #FFF;
     --colors-link: #F1C232;
     --colors-text-footer: #c8c8c8;
+    --colors-danger: #aa0000;
 
     --font-size-tiny: 0.25rem;
     --font-size-very-small: 0.5rem;
@@ -18,6 +19,8 @@
 
 * {
     margin: 0;
+    padding: 0;
+    border: 0;
 }
 
 .row {
@@ -28,6 +31,10 @@
 .column {
     display: flex;
     flex-direction: column;
+}
+
+.between {
+    justify-content: space-between;
 }
 
 html {
@@ -74,12 +81,23 @@ header {
 }
 
 .title {
+    font-size: var(--font-size-very-large);
+}
+
+.subtitle {
+    font-size: var(--font-size-large);
+}
+
+.title,
+.subtitle{
     padding: 1vh 2vw;
     color: var(--colors-text);
     background-color: rgba(0,0,0,0.7);
-    font-size: var(--font-size-very-large);
     font-weight: bolder;
+    text-align: center;
 }
+
+
 
 .main-section {
     display: flex;
@@ -87,6 +105,101 @@ header {
     align-items: center;
     height: 70vh;
     color: var(--colors-text);
+}
+
+.register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.register-button {
+    padding: 10px;
+    color: var(--colors-background);
+    background-color: var(--colors-link);
+    text-decoration: none;
+    border-radius: 1.5vh;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 75px 0;
+}
+
+form .title {
+    margin-bottom: 25px;
+}
+
+form .form-column {
+    margin: 10px 0;
+}
+
+form label {
+    color: var(--colors-text);
+    font-size: var(--font-size-big);
+}
+
+form input {
+    padding: 5px;
+    width: 490px;
+}
+
+form button {
+    margin-top: 25px;
+    color: var(--colors-background);
+    background-color: var(--colors-link);
+    padding: 10px;
+    font-size: var(--font-size-medium);
+    border: 0.5vh solid var(--colors-background);
+    border-radius: 1.5vh;
+}
+
+.cookie-text {
+    color: var(--colors-text);
+    font-size: var(--font-size-big);
+    font-weight: bolder;
+    text-align: center;
+}
+
+.logout {
+    display: flex;
+    justify-content: right;
+    margin: 15px 15px 0 0;
+    gap: 5px;
+}
+
+.logout-button {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--colors-text);
+}
+
+.logout-button:hover {
+    color: var(--colors-link);
+}
+
+.delete-account {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    color: var(--colors-danger);
+    text-decoration: none;
+}
+
+.checkbox-small {
+    width: auto;
+}
+
+.danger-button {
+    background-color: var(--colors-danger);
+}
+
+.Danger {
+    color: var(--colors-danger);
 }
 
 footer {
@@ -123,7 +236,7 @@ footer p {
     color: var(--colors-background);
     background-color: var(--colors-link);
     border: 0 hidden var(--colors-background);
-    border-radius: 5vw;
+    border-radius: 1.5vh;
 }
 
 .footer-copyright {
