@@ -65,6 +65,7 @@ header {
     text-decoration: none;
     color: var(--colors-nav-link);
     font-size: var(--font-size-big);
+    text-align: center;
 }
 
 .navbar a:hover {
