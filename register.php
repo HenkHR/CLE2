@@ -2,10 +2,7 @@
 if (isset($_POST['submit'])) {
     /** @var mysqli $db */
     require_once "Includes/connection.php";
-
     $errors = [];
-
-    // Server-side validatie.
     if (isset($_POST['submit'])) {
         $firstName = $_POST['firstName'];
         if ($firstName === '') {
@@ -23,47 +20,30 @@ if (isset($_POST['submit'])) {
         if ($password === '') {
             $errors['password'] = "Maak a.u.b. een wachtwoord aan.";
         }
-
-        // Controleer of het e-mailadres al bestaat in de database
         if (empty($errors)) {
             $query = "SELECT user_id FROM users WHERE email = ?";
             $stmt = mysqli_prepare($db, $query);
             mysqli_stmt_bind_param($stmt, 's', $email);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_store_result($stmt);
-
             if (mysqli_stmt_num_rows($stmt) > 0) {
                 $errors['email'] = "Dit e-mailadres is al in gebruik.";
             }
-
             mysqli_stmt_close($stmt);
         }
-
-        // Als er geen fouten zijn, sla de gebruiker op
         if (empty($errors)) {
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-            // Gebruik een prepared statement voor veilige data-invoer
             $query = "INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)";
             $stmt = mysqli_prepare($db, $query);
-
-            // Bind de parameters aan de statement (string voor alle vier)
             mysqli_stmt_bind_param($stmt, 'ssss', $firstName, $lastName, $email, $hashedPassword);
-
-            // Voer de query uit
             $result = mysqli_stmt_execute($stmt);
-
-            // Als de query is gelukt
             if ($result) {
-                // Redirect naar de loginpagina
-                header('Location: login.php');
+                header('Location: login.php?email=' . urlencode($email));
                 exit;
             } else {
                 // Foutmelding als de query mislukt
                 $errors['query'] = "Er is iets mis gegaan bij het registreren.";
             }
-
-            // Sluit de statement
             mysqli_stmt_close($stmt);
         }
     }

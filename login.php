@@ -6,6 +6,7 @@ session_start();
 require_once('Includes/connection.php');
 $login = false;
 $errors = [];
+$email = $_GET['email'] ?? '';
 
 if (isset($_POST['submit'])) {
     $email = trim($_POST['email']);
