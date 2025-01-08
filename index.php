@@ -22,7 +22,7 @@ if (isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-    <?php include('header.php')?>
+    <?php include('Includes/header.php') ?>
     <section class="title-section" style="background-image: url('/Images/FOCUS-MH-min.png'); background-size: cover; overflow: hidden">
         <p class="title">
             Padel
@@ -37,6 +37,6 @@ if (isset($_SESSION['user_id'])) {
             <p>artikel 2</p>
         </article>
     </section>
-    <?php include('footer.php')?>
+    <?php include('Includes/footer.php') ?>
 </body>
 </html>
