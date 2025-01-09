@@ -1,7 +1,7 @@
 <?php
 /** @var mysqli $db */
-require_once('auth.php');
-require_once('includes/connection.php');
+require_once('Includes/auth.php');
+require_once('Includes/connection.php');
 $id = $_SESSION['user_id'];
 $query = "SELECT * FROM users WHERE user_id = ?";
 $stmt = mysqli_prepare($db, $query);

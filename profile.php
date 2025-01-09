@@ -1,6 +1,6 @@
 <?php
 /** @var $db */
-require_once('auth.php');
+require_once('Includes/auth.php');
 require_once('Includes/connection.php');
 $updateSucces = $updateError = "";
 $id = $_SESSION['user_id'];
@@ -11,9 +11,12 @@ if (isset($_POST['submit'])) {
     $firstName = mysqli_real_escape_string($db, $_POST['first_name']);
     $lastName = mysqli_real_escape_string($db, $_POST['last_name']);
     $email = mysqli_real_escape_string($db, $_POST['email']);
-    $phoneNumber = !empty($_POST['phone_number']) ? "'" . mysqli_real_escape_string($db, $_POST['phone_number']) . "'" : "NULL";
+    $phoneNumber = !empty($_POST['phone_number']) ? mysqli_real_escape_string($db, $_POST['phone_number']) : "NULL";
     if (empty($firstName) || empty($lastName) || empty($email)) {
         $updateError = 'Voornaam, Achternaam en E-mailadres moeten ingevuld zijn.';
+    }
+    if (!empty($_POST['phone_number']) && !preg_match('/^\+?[0-9]{9,15}$/', $_POST['phone_number'])) {
+        $updateError = 'Het telefoonnummer is ongeldig. Vul een geldig telefoonnummer in of laat het invulveld leeg.';
     }
     if (empty($updateError)) {
         $update_query = "UPDATE users
@@ -66,9 +69,6 @@ mysqli_close($db);
                     <div>
                         <input class="input" id="firstName" type="text" name="first_name" value="<?= htmlspecialchars($user['first_name']) ?>"/>
                     </div>
-                    <p class="Danger">
-                        <?= $errors['firstName'] ?? '' ?>
-                    </p>
                 </div>
                 <div class="form-column"> <!-- Achternaam -->
                     <div>
@@ -77,9 +77,6 @@ mysqli_close($db);
                     <div>
                         <input class="input" id="lastName" type="text" name="last_name" value="<?= htmlspecialchars($user['last_name']) ?>"/>
                     </div>
-                    <p class="Danger">
-                        <?= $errors['lastName'] ?? '' ?>
-                    </p>
                 </div>
                 <div class="form-column"> <!-- Email -->
                     <div>
@@ -88,9 +85,6 @@ mysqli_close($db);
                     <div>
                         <input class="input" id="email" type="email" name="email" value="<?= htmlspecialchars($user['email']) ?>"/>
                     </div>
-                    <p class="Danger">
-                        <?= $errors['email'] ?? '' ?>
-                    </p>
                 </div>
                 <div class="form-column"> <!-- Telefoonnummer -->
                     <div>
@@ -99,8 +93,8 @@ mysqli_close($db);
                     <div>
                         <input class="input" id="phoneNumber" type="text" name="phone_number" value="<?= htmlspecialchars($user['phone_number'] ?? '') ?>"/>
                     </div>
-                    <p class="Danger">
-                        <?= $errors['password'] ?? '' ?>
+                    <p class="Danger" style="margin-top: 25px">
+                        <?= htmlspecialchars($updateError) ?>
                     </p>
                 </div>
                 <!-- Submit -->
