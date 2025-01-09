@@ -12,7 +12,7 @@
         <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1): ?>
             <a href="managere-servations.php">Reserveringen beheren</a>
         <?php else: ?>
-            <a href="../reservation.php">Reserveren</a>
+            <a href="calendar.php">Reserveren</a>
         <?php endif; ?>
         <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1): ?>
             <a href="manage-accounts.php">Accounts beheren</a>
