@@ -1,5 +1,6 @@
 <?php
 require_once "includes/functions.php";
+require_once "includes/connection.php";
 
 $timeslots = ['9:00', '10:30', '12:00', '13:30', '15:00', '16:30', '18:00', '19:30', '21:00'];
 $days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
@@ -10,10 +11,8 @@ $selectedWeek = $_GET['week'] ?? 0;
 
 $timestampWeek = strtotime("+$selectedWeek weeks");
 
-echo date("W", $timestampWeek) . " - " . date("Y", $timestampWeek);
 
 $weekDays = getWeekDays($timestampWeek);
-
 $monthOfWeek = date('F', $weekDays[0]['timestamp']);
 
 $yearOfWeek = date('Y', $weekDays[0]['timestamp']);
@@ -53,11 +52,10 @@ $yearOfWeek = date('Y', $weekDays[0]['timestamp']);
             <div class="column">
             <?php for($i=0; $i < count($timeslots)-1; $i++){
                 ?>
-                <a class="calendar-button" href="reservation.php?rowID=<?=$rowID?>&columnID=<?=$columnID?>&year=<?=date("Y", $timestampWeek)?>">
+                <a class="calendar-button" href="reservation.php?timeslot=<?=$rowID?>&day=<?=date("d", $weekDays[$columnID]['timestamp'])?>&year=<?=date("Y", $weekDays[$columnID]['timestamp'])?>&month=<?= date('m', $weekDays[$columnID]['timestamp'])?>">
                     <?= $days[$columnID] ?>
                     <?= $timeslots[$rowID]?>
-                    <?= $yearOfWeek ?>
-                    <?= $weekDays['month']?>
+                    <?= date('Y',$weekDays[$columnID]['timestamp'])?>
                 </a>
             <?php
             $rowID++;
