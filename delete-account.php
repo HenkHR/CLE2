@@ -31,7 +31,8 @@ if (isset($_POST['submit'])) {
             session_unset();
             session_destroy();
             if (mysqli_stmt_affected_rows($deleteStmt) > 0) {
-                header("Location: index.php");
+                setcookie('update_message', 'Account verwijderd', time() + 1, "/");
+                header("Location: account-deleted-succes.php");
                 exit();
             } else {
                 echo '<p class="help is-danger">Fout bij het verwijderen van je account.</p>';

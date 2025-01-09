@@ -12,6 +12,11 @@ if (isset($_SESSION['user_id'])) {
         exit();
     }
 }
+if (isset($_COOKIE['update_message'])) {
+    $updateSucces = $_COOKIE['update_message'];
+} else {
+    $updateSucces = '';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
