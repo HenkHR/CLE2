@@ -28,7 +28,6 @@ $courseIDs=0;
 foreach ($reservations as $reservation){
     $courseIDs++;
 }
-print_r($courseIDs);
 $courseID = $courseIDs + 1;
 
 //reserveren
@@ -55,9 +54,15 @@ if (isset($_POST['submit'])) {
         $errors['email'] = "Voer hier uw email-adres in";
     }
     if ($errors['firstName'] == '' && $errors['lastName'] == '' && $errors['email'] == '' && $errors['phoneNumber'] == '') {
-
-        $query = "INSERT INTO reservations (date_time, first_name, last_name, email, phone_number, course)
-                    VALUES('$date', '$firstName', '$lastName', '$email', '$phoneNumber', '$courseID')";
+        if($phoneNumber == '' || $phoneNumber == null)
+        {
+            $query = "INSERT INTO reservations (date_time, first_name, last_name, email, course)
+                    VALUES('$date', '$firstName', '$lastName', '$email', '$courseID')";
+        }
+        else{
+            $query = "INSERT INTO reservations (date_time, first_name, last_name, email, phone_number, course)
+                        VALUES('$date', '$firstName', '$lastName', '$email', '$phoneNumber', '$courseID')";
+        }
 
         mysqli_query($db, $query);
 
@@ -83,13 +88,13 @@ if (isset($_POST['submit'])) {
 
 </header>
 <main>
-    <div class="reservation-overzicht"> U reserveert voor <?= date('d F Y', strtotime($date)) ?> om <?= date('H:i', strtotime($date)) ?></div>
+    <div class="reservation-overzicht"> U reserveert voor <?= date('d F Y', strtotime($date)) ?> om <?= date('H:i', strtotime($date)) ?> voor baan <?= $courseID?></div>
     <section class="reservation-form">
         <form action="" method="post">
 
             <div class="formInput">
                 <label for="firstName">Voornaam</label>
-                <input class="input" id="firstName" type="text" maxlength="30" name="firstName" required
+                <input class="input" id="firstName" type="text" maxlength="30" name="firstName"
                        value=""/>
             </div>
             <p>
@@ -97,7 +102,7 @@ if (isset($_POST['submit'])) {
             </p>
             <div class="formInput">
                 <label for="lastName">Achternaam</label>
-                <input class="input" id="lastName" type="text" maxlength="30" name="lastName" required
+                <input class="input" id="lastName" type="text" maxlength="30" name="lastName"
                        value=""/>
             </div>
             <p>
@@ -105,7 +110,7 @@ if (isset($_POST['submit'])) {
             </p>
             <div class="formInput">
                 <label for="email">Email-adres</label>
-                <input class="input" id="email" type="email" maxlength="30" name="email" required
+                <input class="input" id="email" type="email" maxlength="30" name="email"
                        value=""/>
             </div>
             <p>
