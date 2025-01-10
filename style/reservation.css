@@ -1,3 +1,9 @@
+* {
+    font-family: "Segoe UI";
+    background-color: black;
+    color:white;
+}
+
 .column{
     display: flex;
     flex-direction: column;
@@ -7,10 +13,18 @@
     flex-direction: row;
     justify-content: center;
     padding: 0px 0px 20px 70px;
+    color: white;
 }
 .title span{
     padding: 0px 60px 0px 60px;
     text-align: center;
+}
+.title a{
+    color: white;
+    text-decoration: none;
+}
+.title a:hover{
+    color: #F1C232;
 }
 .calendar{
     display: flex;
@@ -25,24 +39,27 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    padding-left: 56px;
-    gap: 0px;
+    padding-left: 60px;
 }
 .days div {
-    width: 146px;
+    width: 145px;
     height: 40px;
+    color: black;
 }
 
 .time-column{
     display: flex;
     flex-direction: column;
     text-align: center;
+    color: white;
 }
 .time-column span{
-    padding-bottom: 55px;
-    padding-right: 20px;
+    height: 75px;
+    width: 60px;
+    border-top: solid 1px white;
+    box-sizing: border-box;
 }
-.calendar .calendar-button{
+.calendar-button-unavailable, .calendar-button, .past-calender-button{
     width: 145px;
     height: 75px;
     border-color: black;
@@ -59,12 +76,49 @@
     color:black;
     text-decoration:none;
     background-color: white;
+    font-size: 13px;
+    box-sizing: border-box;
+}
+.calendar .calendar-button{
+
 }
 .calendar-button:hover{
     background-color: darkgray;
+}
+.calendar .calendar-button-unavailable{
+    background-color: indianred;
+    pointer-events: none;
+    cursor: default;
+}
+.calendar .past-calender-button{
+    color:darkgray;
+    background-color: whitesmoke;
+    text-decoration:none;
+    pointer-events: none;
+    cursor: default;
 }
 div .dayOfWeek{
     text-align: center;
     border: solid black 1px;
     background-color: #F1C232;
+    box-sizing: border-box;
+}
+div .currentDayOfWeek{
+    text-align: center;
+    border: solid black 1px;
+    background-color: #F1C232;
+    font-weight: bolder;
+    color:white;
+    box-sizing: border-box;
+}
+
+
+
+input{
+    background-color: white;
+    color:black;
+}
+.submitButton{
+    background-color: white;
+    color:black;
 }

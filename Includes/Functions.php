@@ -21,4 +21,34 @@ function getWeekDays(int $timestamp): array
     }
     return $dates;
 }
+
+function getReservationCount(int $timestamp, array $reservations): int
+{
+    $result = 0;
+    foreach($reservations as $reservation){
+        if(strtotime($reservation['date_time']) == $timestamp){
+            $result++;
+        }
+    }
+    return $result;
+}
+
+function getAvailableSpots(int $timestamp, array $reservations): int
+{
+    $availableSpots = 0;
+    $reservationAmount = getReservationCount($timestamp, $reservations);
+    if($reservationAmount == 0){
+        $availableSpots = 3;
+    }
+    elseif($reservationAmount == 1){
+        $availableSpots = 2;
+    }
+    elseif ($reservationAmount == 2){
+        $availableSpots = 1;
+    }
+    elseif ($reservationAmount == 3){
+        $availableSpots = 0;
+    }
+    return $availableSpots;
+}
 ?>
