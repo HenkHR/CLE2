@@ -12,7 +12,7 @@ $date = "$year-$month-$day $timeslots[$timeslot]";
 //redirect als er al 3 reserveringen zijn, voorkomt deeplinken
 /**  @var $db */
 require_once('Includes/connection.php');
-require_once ('Includes/Functions.php');
+require_once('Includes/Functions.php');
 $query = "SELECT * FROM reservations
             WHERE date_time = '$date'
             ";
@@ -21,11 +21,11 @@ $reservations = [];
 while ($row = mysqli_fetch_assoc($result)) {
     $reservations[] = $row;
 }
-if(getReservationCount(strtotime($date),$reservations) > 2){
+if (getReservationCount(strtotime($date), $reservations) > 2) {
     header('Location: calendar.php');
 }
-$courseIDs=0;
-foreach ($reservations as $reservation){
+$courseIDs = 0;
+foreach ($reservations as $reservation) {
     $courseIDs++;
 }
 $courseID = $courseIDs + 1;
@@ -54,21 +54,24 @@ if (isset($_POST['submit'])) {
         $errors['email'] = "Voer hier uw email-adres in";
     }
     if ($errors['firstName'] == '' && $errors['lastName'] == '' && $errors['email'] == '' && $errors['phoneNumber'] == '') {
-        if($phoneNumber == '' || $phoneNumber == null)
-        {
+        if ($phoneNumber == '' || $phoneNumber == null) {
             $query = "INSERT INTO reservations (date_time, first_name, last_name, email, course)
                     VALUES('$date', '$firstName', '$lastName', '$email', '$courseID')";
-        }
-        else{
+        } else {
             $query = "INSERT INTO reservations (date_time, first_name, last_name, email, phone_number, course)
                         VALUES('$date', '$firstName', '$lastName', '$email', '$phoneNumber', '$courseID')";
         }
 
         mysqli_query($db, $query);
 
-
-
         mysqli_close($db);
+
+        //De confirmation mail verzenden
+        $to = $email;
+        $subject = 'bevestiging padelbaan reservering';
+        $fullMessage = 'Beste' . $firstName . $lastName . "\n" . 'Bedankt voor uw reservering:' . "\n" . date('d F Y', strtotime($date)) . "\n" . date('H:i', strtotime($date)) . "\n" . 'Baan' . $courseID;
+        mail($to, $subject, $fullMessage);
+
         header('Location: confirmation.php');
     }
 
@@ -85,15 +88,16 @@ if (isset($_POST['submit'])) {
 </head>
 <body>
 <header>
-
+    <!--?php include('Includes/header.php') ?-->
 </header>
 <main>
-    <div class="reservation-overzicht"> U reserveert voor <?= date('d F Y', strtotime($date)) ?> om <?= date('H:i', strtotime($date)) ?> voor baan <?= $courseID?></div>
+    <div class="reservation-overzicht"> U reserveert voor <?= date('d F Y', strtotime($date)) ?>
+        om <?= date('H:i', strtotime($date)) ?> voor baan <?= $courseID ?></div>
     <section class="reservation-form">
         <form action="" method="post">
 
             <div class="formInput">
-                <label for="firstName">Voornaam</label>
+                <label class="label" for="firstName">Voornaam</label>
                 <input class="input" id="firstName" type="text" maxlength="30" name="firstName"
                        value=""/>
             </div>
@@ -101,7 +105,7 @@ if (isset($_POST['submit'])) {
                 <?= $errors['firstName'] ?? '' ?>
             </p>
             <div class="formInput">
-                <label for="lastName">Achternaam</label>
+                <label class="label" for="lastName">Achternaam</label>
                 <input class="input" id="lastName" type="text" maxlength="30" name="lastName"
                        value=""/>
             </div>
@@ -109,7 +113,7 @@ if (isset($_POST['submit'])) {
                 <?= $errors['lastName'] ?? '' ?>
             </p>
             <div class="formInput">
-                <label for="email">Email-adres</label>
+                <label class="label" for="email">Email-adres</label>
                 <input class="input" id="email" type="email" maxlength="30" name="email"
                        value=""/>
             </div>
@@ -117,7 +121,7 @@ if (isset($_POST['submit'])) {
                 <?= $errors['email'] ?? '' ?>
             </p>
             <div class="formInput">
-                <label for="phoneNumber">Telefoonnummer</label>
+                <label class="label" for="phoneNumber">Telefoonnummer</label>
                 <input class="input" id="phoneNumber" type="tel" maxlength="10" name="phoneNumber"
                        value=""/>
             </div>
@@ -129,7 +133,7 @@ if (isset($_POST['submit'])) {
     </section>
 </main>
 <footer>
-
+    <!--?php include('Includes/footer.php') ?-->
 </footer>
 </body>
 </html>
