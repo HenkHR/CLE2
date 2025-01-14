@@ -1,4 +1,6 @@
 <?php
+//session starten voor autofill
+session_start();
 //datums kloppend maken en ophalen
 $timezoneId = 'Europe/Amsterdam';
 date_default_timezone_set($timezoneId);
@@ -52,7 +54,10 @@ if (isset($_POST['submit'])) {
     }
     if ($_POST['email'] == '') {
         $errors['email'] = "Voer hier uw email-adres in";
+    } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error['email'] = "Voer een geldig email-adres in";
     }
+    //geen errors-> query bepalen, uitvoeren en db sluiten
     if ($errors['firstName'] == '' && $errors['lastName'] == '' && $errors['email'] == '' && $errors['phoneNumber'] == '') {
         if ($phoneNumber == '' || $phoneNumber == null) {
             $query = "INSERT INTO reservations (date_time, first_name, last_name, email, course)
@@ -63,7 +68,6 @@ if (isset($_POST['submit'])) {
         }
 
         mysqli_query($db, $query);
-
         mysqli_close($db);
 
         //De confirmation mail verzenden
@@ -99,7 +103,7 @@ if (isset($_POST['submit'])) {
             <div class="formInput">
                 <label class="label" for="firstName">Voornaam</label>
                 <input class="input" id="firstName" type="text" maxlength="30" name="firstName"
-                       value=""/>
+                       value="<?= $_SESSION['first_name'] ?? $firstName ?? '' ?>"/>
             </div>
             <p>
                 <?= $errors['firstName'] ?? '' ?>
@@ -107,7 +111,7 @@ if (isset($_POST['submit'])) {
             <div class="formInput">
                 <label class="label" for="lastName">Achternaam</label>
                 <input class="input" id="lastName" type="text" maxlength="30" name="lastName"
-                       value=""/>
+                       value="<?= $_SESSION['last_name'] ?? $lastName ?? '' ?>"/>
             </div>
             <p>
                 <?= $errors['lastName'] ?? '' ?>
@@ -115,7 +119,7 @@ if (isset($_POST['submit'])) {
             <div class="formInput">
                 <label class="label" for="email">Email-adres</label>
                 <input class="input" id="email" type="email" maxlength="30" name="email"
-                       value=""/>
+                       value="<?= $_SESSION['email'] ?? $email ?? '' ?>"/>
             </div>
             <p>
                 <?= $errors['email'] ?? '' ?>
@@ -123,7 +127,7 @@ if (isset($_POST['submit'])) {
             <div class="formInput">
                 <label class="label" for="phoneNumber">Telefoonnummer</label>
                 <input class="input" id="phoneNumber" type="tel" maxlength="10" name="phoneNumber"
-                       value=""/>
+                       value=" <?= $_SESSION['phone_number'] ?? $phoneNumber ?? '' ?>"/>
             </div>
             <p>
                 <?= $errors['phoneNumber'] ?? '' ?>
