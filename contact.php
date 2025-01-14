@@ -2,9 +2,9 @@
 //algemeen: autofill session-stuff
 //check of de mail klopt
 //check of het voor geen problemen zorgt met groepsgenoten
-
+session_start();
 //check submit en of het de juiste is
-if (isset($_POST['submit']) && isset($message)) {
+if (isset($_POST['submit'])) {
     // sinds ze required zijn zijn ze niet leeg
     $email = $_POST['email'];
     $firstName = $_POST['firstName'];
@@ -18,7 +18,7 @@ if (isset($_POST['submit']) && isset($message)) {
     //als er geen errors zijn kan je de mail verzenden
     if (empty($error)) {
         $to = '1101595@hr.nl';
-        $fullMessage = 'Van:' . $_POST['firstname'] . $_POST['lastname'] . "\n" . 'Email:' . $_POST['email'] . "\n" . $_POST['message'];
+        $fullMessage = 'Van:' . $_POST['firstName'] . $_POST['lastName'] . "\n" . 'Email:' . $_POST['email'] . "\n" . $_POST['message'];
 
         mail($to, $subject, $fullMessage);
     }
@@ -49,10 +49,10 @@ if (isset($_POST['submit']) && isset($message)) {
                 <?= $error['email'] ?? '' ?>
             </p>
             <!-- namen-->
-            <label class="label" for="firstname">Voornaam</label>
+            <label class="label" for="firstName">Voornaam</label>
             <input class="input" type="text" id="firstName" name="firstName" required
                    value="<?= $_SESSION['first_name'] ?? $firstName ?? '' ?>">
-            <label class="label" for="lastname">Achternaam</label>
+            <label class="label" for="lastName">Achternaam</label>
             <input class="input" type="text" id="lastName" name="lastName" required
                    value="<?= $_SESSION['last_name'] ?? $lastName ?? '' ?>">
             <!-- mail input-->
