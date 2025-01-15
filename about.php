@@ -8,30 +8,45 @@
 </head>
 <body>
 <header>
-    <?php include('Includes/header.php ') ?>
+    <?php include('Includes/header.php') ?>
 </header>
-    <section class="map-section">
-        <div class="text-content">
-            <h2>Over Onze Locatie</h2>
-            <p>Onze sportschool biedt moderne faciliteiten en een gastvrije omgeving.</p>
+<main>
+    <h1>Welkom bij Focus!</h1>
+    <div class="info">
+        <div class="leftItem">
+            <div>
+                <h2>Fitness</h2>
+                <p>
+                    Focus is vooral een sportschool, met drie vestigingen zijn we de grootste keten op Goeree-Overflakkee.
+                    Wij vinden gastvrijheid en connectie met de klanten erg belangrijk, we hebben hierom ook op elke locatie een bar en een lounge om gezellig een bakje koffie of een eiwitsmoothie te drinken.
+                    Ook bieden wij gratis persoonlijke begeleiding aan binnen ons fitnessabonnement.
+                    Verder hebben wij ook een groot assortiment aan groepslessen. <br> Meer weten? <br> Kijk dan op onze website!
+                </p>
+            </div>
+            <a class="webButton" href="https://www.focushealthfitness.nl/" target="_blank">Focus Health & Fitness</a>
         </div>
-        <iframe
-            id="map"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2473.0654266162887!2d4.2162758!3d51.6952478!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c4440bd4e718b3%3A0xc1cda3e0e689459a!2sFOCUS%20Health%20%26%20Fitness!5e0!3m2!1snl!2snl!4v1736725332090!5m2!1snl!2snl"
-            allowfullscreen
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-        <div class="text-content">
-            <h2>Contact Informatie</h2>
-            <p>Adres: Middelharnis, Oude-Tonge en Ouddorp.</p>
+        <div class="center-item">
+            <img src="Images/Ouddorp_fitness.jpg" alt="Fitnessruimte">
+            <img src="Images/Lounge.jpg" alt="Lounge">
         </div>
-    </section>
-</body>
- </main>
-    <footer>
-        <?php include('Includes/footer.php ') ?>
-    </footer>
+        <div class="rightItem">
+            <div>
+                <h2>Nutrition</h2>
+                <p>
+                    Wij houden ons ook bezig met voeding en supplementen, daarom hebben wij ook een eigen nutrition lijn.
+                    Hier verkopen wij alles wat je nodig hebt om je doelen te behalen.
+                    Mocht je vragen hebben over wat de producten voor jou kunnen betekenen dan kun je dit altijd vragen aan een van onze coaches.
+                    <br>Tip: Houd onze socials in de gaten voor speciale aanbiedingen!
+                    <br> Meer weten? <br>Kijk dan op onze website!
+                </p>
+            </div>
+            <a  class="webButton" href="https://focushealthnutrition.com/" target="_blank">Focus Health & Nutrition</a>
+        </div>
+    </div>
+</main>
+<footer>
+    <?php include('Includes/footer.php') ?>
+</footer>
 </body>
 </html>
 
