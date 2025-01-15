@@ -91,42 +91,65 @@ header {
     color: var(--colors-link);
 }
 
+/*End Header*/
 .title-section {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 20vh;
+    flex-direction: column;
+    gap: 50px;
+    text-align: center;
+    height: 50vh;
     min-height: 100px;
     background-color: var(--colors-background);
-}
-
-.title {
-    font-size: var(--font-size-very-large);
-}
-
-.subtitle {
-    font-size: var(--font-size-large);
+    background-image: url('/Images/FOCUS-MH-min.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover, contain;
+    border-bottom: 1px solid white;
 }
 
 .title,
 .subtitle{
     padding: 1vh 2vw;
     color: var(--colors-text);
-    background-color: rgba(0,0,0,0.7);
     font-weight: bolder;
     text-align: center;
 }
 
+.title {
+    font-size: var(--font-size-very-large);
+    text-shadow: 1px 1px 2px black;
+    padding-top: 3vh;
+}
 
+.subtitle {
+    font-size: var(--font-size-large);
+}
 
+.titleInfo{
+    color: white;
+    text-shadow: 1px 1px 3px black;
+    font-size: 25px;
+}
 .main-section {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    height: 70vh;
+    height: 35vh;
     color: var(--colors-text);
 }
-
+.indexButton{
+    color:white;
+    border: white 2px solid;
+    text-decoration: none;
+    padding: 20px;
+    font-size: 20px;
+    width: 150px;
+    text-align: center;
+}
+.indexButton:hover{
+    color: var(--colors-link);
+    border-color: #F1C232;
+}
 .register {
     display: flex;
     justify-content: center;
@@ -222,6 +245,9 @@ form button {
     color: var(--colors-danger);
 }
 
+
+
+/*Footer*/
 footer {
     border-top: 0.25vh solid var(--colors-link);
     padding: 2.5vh 5vh;
