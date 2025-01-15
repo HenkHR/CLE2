@@ -20,7 +20,11 @@ $occupiedCourses = [];
 while ($row = mysqli_fetch_assoc($result)) {
     $occupiedCourses[] = $row['course'];
 }
+$today = time()+3600;
 
+if(strtotime($date) < $today){
+    header('Location: calendar.php');
+}
 // Zoek de eerste beschikbare baan
 $totalCourses = 3; // Aantal banen, pas aan als er meer of minder banen zijn
 $courseID = null;
