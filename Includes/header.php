@@ -3,7 +3,7 @@
         <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1): ?>
             <a href="index.php">Homepage</a>
             <a href="admin-overview.php">Overzicht</a>
-            <a href="admin-reservation-manager.php">Reserveringoverzicht</a>
+            <a href="admin-calendar.php">Reserveringoverzicht</a>
             <a href="admin-account-manager.php">Gebruikers beheren</a>
             <a href="logout.php">Uitloggen</a>
         <?php else: ?>

@@ -17,10 +17,9 @@
     --font-size-huge: 5rem;
 }
 
+
+
 * {
-    font-family: "Segoe UI";
-    background-color: black;
-    color:white;
     margin: 0;
     padding: 0;
     border: 0;
@@ -36,6 +35,10 @@
     flex-direction: column;
 }
 
+.flex {
+    display: flex;
+}
+
 .justify-center {
     justify-content: center;
 }
@@ -48,6 +51,10 @@
     justify-content: space-between;
 }
 
+.text-left {
+    text-align: left;
+}
+
 .text-center {
     text-align: center;
 }
@@ -57,6 +64,12 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+html {
+    background-color: var(--colors-background);
+}
+
+
 
 header {
     top: 0;
@@ -89,138 +102,94 @@ header {
     color: var(--colors-link);
 }
 
-.column{
+
+
+.title-section {
     display: flex;
-    flex-direction: column;
-}
-.title{
-    display: flex;
-    flex-direction: row;
     justify-content: center;
-    padding: 0px 0px 20px 70px;
-    color: white;
-}
-.title span{
-    padding: 0px 60px 0px 60px;
-    text-align: center;
-}
-.title a{
-    color: white;
-    text-decoration: none;
-}
-.title a:hover{
-    color: #F1C232;
-}
-.calendar{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-.calendar-item{
-    width: 150px;
-    height: 75px;
-}
-.days{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding-left: 60px;
-}
-.days div {
-    width: 145px;
-    height: 40px;
-    color: black;
+    align-items: center;
+    height: 20vh;
+    min-height: 100px;
+    background-color: var(--colors-background);
 }
 
-.time-column{
-    display: flex;
-    flex-direction: column;
+.title {
+    font-size: var(--font-size-very-large);
+}
+
+.subtitle {
+    font-size: var(--font-size-large);
+}
+
+.title,
+.subtitle{
+    padding: 1vh 2vw;
+    color: var(--colors-text);
+    background-color: rgba(0,0,0,0.7);
+    font-weight: bolder;
     text-align: center;
-    color: white;
 }
-.time-column span{
-    height: 75px;
-    width: 60px;
-    border-top: solid 1px white;
-    box-sizing: border-box;
+
+.main-section {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 70vh;
+    color: var(--colors-text);
 }
-.calendar-button-unavailable, .calendar-button-full, .calendar-button, .past-calender-button, .past-calender-button-admin{
-    width: 145px;
-    height: 75px;
-    border-color: black;
-    border-style: solid;
-    border-radius: 0;
-    border-width: 0;
-    border-top-width: 1px;
-    border-top-color: lightgray;
-    border-bottom-color: lightgray;
-    border-bottom-width: 1px;
-    border-right-width: 2px;
-    border-left-width: 2px;
-    align-items: normal;
-    color:black;
-    text-decoration:none;
-    background-color: white;
-    font-size: 13px;
-    box-sizing: border-box;
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 75px 0;
 }
-.calendar-button-full {
+
+form .title {
+    margin-bottom: 25px;
+}
+
+form .form-column {
+    margin: 10px 0;
+}
+
+form label {
+    color: var(--colors-text);
+    font-size: var(--font-size-big);
+}
+
+form input {
+    padding: 5px;
+    width: 490px;
+}
+
+form button {
+    margin-top: 25px;
+    color: var(--colors-background);
+    background-color: var(--colors-link);
+    padding: 10px;
+    font-size: var(--font-size-medium);
+    border: 0.5vh solid var(--colors-background);
+    border-radius: 1.5vh;
+}
+
+.cookie-text {
+    color: var(--colors-text);
+    font-size: var(--font-size-big);
+    font-weight: bolder;
+    text-align: center;
+}
+
+.danger-button {
     background-color: var(--colors-danger);
 }
 
-.calendar-button:hover,
-.calendar-button-full:hover,
-.past-calender-button-admin:hover{
-    background-color: darkgray;
-}
-.calendar .calendar-button-unavailable{
-    background-color: indianred;
-    pointer-events: none;
-    cursor: default;
-}
-.calendar .past-calender-button{
-    color:darkgray;
-    background-color: whitesmoke;
-    text-decoration:none;
-    pointer-events: none;
-    cursor: default;
+.checkbox-small {
+    width: auto;
 }
 
-.past-calender-button-admin {
-    color:darkgray;
-    background-color: whitesmoke;
-    text-decoration:none;
-}
-
-.past-calender-button-admin:hover {
-    color: black;
-}
-
-div .dayOfWeek{
-    text-align: center;
-    border: solid black 1px;
-    background-color: #F1C232;
-    box-sizing: border-box;
-    height: 40px;
-}
-div .currentDayOfWeek{
-    text-align: center;
-    border: solid black 1px;
-    background-color: #F1C232;
-    font-weight: bolder;
-    color:white;
-    box-sizing: border-box;
-}
-
-
-
-input{
-    background-color: white;
-    color:black;
-}
-.submitButton{
-    background-color: white;
-    color:black;
+.Danger {
+    color: var(--colors-danger);
 }
 
 footer {
@@ -285,4 +254,63 @@ footer p {
 footer.row {
     justify-content: space-between;
     align-items: center;
+}
+
+
+.timeslot {
+    display: flex;
+    justify-content: center;
+    color: var(--colors-text);
+    margin-top: 10vh;
+
+}
+
+.baanoverzicht {
+    display: flex;
+    justify-content: space-evenly;
+    color: var(--colors-text);
+    margin: 5vh 5vw 0 5vw;
+    width: 90vw;
+
+}
+
+.baanoverzicht article {
+    display: flex;
+    justify-content: center;
+
+    width: 100%;
+}
+
+.baannummer {
+    display: flex;
+    justify-content: center;
+    font-size: var(--font-size-big);
+}
+
+.klantinfo,
+.afspraak-wijzigen{
+    padding: 2vh 5vw;
+    text-align: left;
+}
+
+.afspraak-wijzigen{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.afspraak-details {
+    color: var(--colors-link);
+    padding: 0.5vh 0;
+}
+
+.niet-verhuurd {
+    padding: 2vh 5vw;
+    color: gray;
+}
+
+.side-bordered {
+    display: flex;
+    border-right: 0.5vh solid var(--colors-link);
+    border-left: 0.5vh solid var(--colors-link);
 }
