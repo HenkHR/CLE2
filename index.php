@@ -28,19 +28,18 @@ if (isset($_COOKIE['update_message'])) {
 </head>
 <body>
 <?php include('Includes/header.php') ?>
-<section class="title-section" style="background-image: url('/Images/FOCUS-MH-min.png'); background-size: cover; overflow: hidden">
+<section class="title-section">
     <p class="title">
-        Padel
+        Welkom bij Focus Padel!
+    </p>
+    <p class="titleInfo">
+        Op deze website vind je alles over padellen bij Focus
     </p>
 </section>
 <section class="main-section">
-    <article>
-        <p>artikel 1</p>
-    </article>
-    <img src="" alt="Padelbaan foto">
-    <article>
-        <p>artikel 2</p>
-    </article>
+    <a href="info.php" class="indexButton">Meer over padel</a>
+    <a href="about.php" class="indexButton">Meer over Focus</a>
+    <a href="calendar.php" class="indexButton">Reserveren</a>
 </section>
 <?php include('Includes/footer.php') ?>
 </body>
