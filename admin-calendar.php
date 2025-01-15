@@ -1,6 +1,7 @@
 <?php
-require_once "includes/functions.php";
 /** @var mysqli $db */
+require_once "includes/functions.php";
+require_once "Includes/admin-auth.php";
 require_once "includes/connection.php";
 $today = time() + 3600;
 //echo date('d/m/y H:i', $today);
@@ -27,7 +28,7 @@ $reservations = [];
 while ($row = mysqli_fetch_assoc($result)) {
     $reservations[] = $row;
 }
-session_start()
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -35,7 +36,7 @@ session_start()
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style/reservation.css">
-    <title>Weekoverzicht</title>
+    <title>Reserveringen beheren</title>
 </head>
 <body>
 <?php include('Includes/header.php') ?>
@@ -66,29 +67,21 @@ session_start()
         </div>
         <?php for($x=0; $x<7; $x++){ ?>
             <div class="column">
-            <?php for($i=0; $i < count($timeslots)-1; $i++){
-                ?>
-                <a <?php if(strtotime(date('Y-m-d',$weekDays[$columnID]['timestamp']) .  ' ' . $timeslots[$rowID]) < $today
-                   ) {?>class="past-calender-button"
-                    <?php } elseif(getReservationCount(strtotime(date('Y-m-d',$weekDays[$columnID]['timestamp']) .  ' ' . $timeslots[$rowID]), $reservations) < 3
-                    ){?> class="calendar-button"
-                    <?php } else {?> class="calendar-button-unavailable" <?php } ?>
-                   href="reservation.php?timeslot=<?=$rowID?>&day=<?=date("d", $weekDays[$columnID]['timestamp'])?>&year=<?=date("Y", $weekDays[$columnID]['timestamp'])?>&month=<?= date('m', $weekDays[$columnID]['timestamp'])?>
-                    ">
-                     Plekken beschikbaar: <?= getAvailableSpots(strtotime(date('Y-m-d',$weekDays[$columnID]['timestamp']) .  ' ' . $timeslots[$rowID]), $reservations) ?>
-                </a>
-            <?php
-            $rowID++;
-            if ($rowID > 7)
-            {
-                $rowID = 0;
-            }
-            }?>
+                <?php for($i=0; $i < count($timeslots)-1; $i++) { ?>
+                    <a <?php if (strtotime(date('Y-m-d',$weekDays[$columnID]['timestamp']) .  ' ' . $timeslots[$rowID]) < $today) {?> class="past-calender-button-admin"
+                       <?php } elseif (getReservationCount(strtotime(date('Y-m-d',$weekDays[$columnID]['timestamp']) .  ' ' . $timeslots[$rowID]), $reservations) < 3 ){?> class="calendar-button"
+                       <?php } else {?> class="calendar-button-full" <?php } ?>
+                       href="admin-reservation-manager.php?timeslot=<?=$rowID?>&day=<?=date("d", $weekDays[$columnID]['timestamp'])?>&year=<?=date("Y", $weekDays[$columnID]['timestamp'])?>&month=<?= date('m', $weekDays[$columnID]['timestamp'])?>
+                    ">Plekken beschikbaar: <?= getAvailableSpots(strtotime(date('Y-m-d',$weekDays[$columnID]['timestamp']) .  ' ' . $timeslots[$rowID]), $reservations) ?></a>
+                    <?php $rowID++;
+                    if ($rowID > 7) {$rowID = 0;}
+                } ?>
             </div>
-        <?php
+            <?php
             $columnID++;
         } ?>
     </section>
+
 </main>
 <?php include('Includes/footer.php') ?>
 </body>
