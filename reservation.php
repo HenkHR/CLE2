@@ -119,19 +119,19 @@ if (isset($_POST['submit'])) {
                 <div class="formInput">
                     <label for="firstName">Voornaam</label>
                     <input class="input" id="firstName" type="text" maxlength="30" name="firstName"
-                           value="<?= htmlspecialchars($user['first_name'] ?? '') ?>"/>
+                           value="<?= htmlspecialchars($firstName ?? '') ?>"/>
                 </div>
                 <p><?= $errors['firstName'] ?? '' ?></p>
                 <div class="formInput">
                     <label for="lastName">Achternaam</label>
                     <input class="input" id="lastName" type="text" maxlength="30" name="lastName"
-                           value="<?= htmlspecialchars($user['last_name'] ?? '') ?>"/>
+                           value="<?= htmlspecialchars($lastName ?? '') ?>"/>
                 </div>
                 <p><?= $errors['lastName'] ?? '' ?></p>
                 <div class="formInput">
                     <label for="email">Email-adres</label>
                     <input class="input" id="email" type="email" maxlength="30" name="email"
-                           value="<?= htmlspecialchars($user['email'] ?? '') ?>"/>
+                           value="<?= htmlspecialchars($email ?? '') ?>"/>
                 </div>
                 <p><?= $errors['email'] ?? '' ?></p>
             <?php } else { ?>
@@ -139,17 +139,20 @@ if (isset($_POST['submit'])) {
                 <input type="hidden" id="lastName" name="lastName" value="<?= $_SESSION['last_name'] ?>">
                 <input type="hidden" id="email" name="email" value="<?= $_SESSION['email'] ?>">
             <?php } ?>
-            <?php if (!isset($_SESSION['phone_number'])) { ?>
+            <?php if (!isset($user['phone_number'])) { ?>
                 <div class="formInput">
                     <label for="phoneNumber">Telefoonnummer</label>
                     <input class="input" id="phoneNumber" type="tel" maxlength="10" name="phoneNumber"
                            value="<?= htmlspecialchars($user['phone_number'] ?? '') ?>"/>
                 </div>
                 <p><?= $errors['phoneNumber'] ?? '' ?></p>
-                <button class="submitButton" type="submit" name="submit">Reserveer</button>
             <?php } else { ?>
-                <input type="hidden" id="phoneNumber" name="phoneNumber" value="<?= $_SESSION['phone_number'] ?>">
+                <input type="hidden" id="phoneNumber" name="phoneNumber"
+                       value="<?= $user['phone_number'] ?>"
+                >
             <?php } ?>
+            <button class="submitButton" type="submit" name="submit">Reserveer</button>
+
         </form>
     </section>
 </main>
