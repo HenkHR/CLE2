@@ -2,6 +2,7 @@
 /** @var $db */
 require_once('Includes/auth.php');
 require_once('Includes/connection.php');
+$today = time() + 3600;
 $updateSucces = $updateError = "";
 $id = $_SESSION['user_id'];
 $query = "SELECT user_id, first_name, last_name, email, phone_number, is_admin FROM users WHERE user_id = $id";
@@ -35,6 +36,13 @@ if (isset($_COOKIE['update_message'])) {
     $updateSucces = $_COOKIE['update_message'];
 } else {
     $updateSucces = '';
+}
+
+$userReservations = [];
+$userReservations_query = "SELECT * FROM reservations WHERE user_id = $id ORDER BY date_time DESC";
+$userReservationsResult = mysqli_query($db, $userReservations_query);
+while ($row = mysqli_fetch_assoc($userReservationsResult)) {
+    $userReservations[] = $row;
 }
 mysqli_close($db);
 ?>
@@ -91,7 +99,7 @@ mysqli_close($db);
                         <label class="label" for="phoneNumber">Telefoonnummer <span style="color: var(--colors-text-footer); font-size: var(--font-size-small)">(optioneel)</span></label>
                     </div>
                     <div>
-                        <input class="input" id="phoneNumber" type="text" name="phone_number" value="<?= htmlspecialchars($user['phone_number'] ?? '') ?>"/>
+                        <input class="input" id="phoneNumber" type="text" maxlength="10" name="phone_number" value="<?= htmlspecialchars($user['phone_number'] ?? '') ?>"/>
                     </div>
                     <p class="Danger" style="margin-top: 25px">
                         <?= htmlspecialchars($updateError) ?>
@@ -103,6 +111,47 @@ mysqli_close($db);
             </div>
         </form>
     </section>
+    <section class="userReservations">
+        <h2>Uw reserveringen</h2>
+        <?php if(count($userReservations) > 0){?>
+        <div class="reservationsTable">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Datum</th>
+                        <th>Tijd</th>
+                        <th>Voornaam</th>
+                        <th>Achternaam</th>
+                        <th>Email</th>
+                        <th>Tel. nummer</th>
+                        <th>Baan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php  foreach($userReservations as $index => $reservation){ ?>
+                        <tr>
+                            <td><?= $index + 1 ?></td>
+                            <td><?= date('d-m-Y',strtotime($reservation['date_time']))?></td>
+                            <td><?= date('H:i',strtotime($reservation['date_time'])) ?></td>
+                            <td><?= $reservation['first_name']?></td>
+                            <td><?= $reservation['last_name']?></td>
+                            <td><?= $reservation['email']?></td>
+                            <td><?= $reservation['phone_number']?></td>
+                            <td><?= $reservation['course']?></td>
+                            <?php if($today < strtotime($reservation['date_time'])){?>
+                                <td class="dltButton"><a href="">Annuleer</a></td>
+                            <?php }?>
+                        </tr>
+                    <?php }?>
+                </tbody>
+            </table>
+        </div>
+        <?php } else{ ?>
+            <p> U heeft nog geen reserveringen</p>
+        <?php } ?>
+    </section>
     <?php include('Includes/footer.php') ?>
 </body>
 </html>
+

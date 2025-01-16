@@ -245,7 +245,38 @@ form button {
     color: var(--colors-danger);
 }
 
-
+.userReservations{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-size: 20px;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 50px;
+}
+.userReservations h2{
+    padding-bottom: 40px;
+}
+table{
+    border-collapse: collapse;
+}
+table tr{
+    border-bottom: solid white 2px;
+}
+table th,td{
+    padding: 10px;
+    border-right: lightgray solid 1px;
+}
+.dltButton{
+    border: none;
+}
+.dltButton a {
+    color: var(--colors-link);
+    text-decoration: none;
+}
+.dltButton a:hover {
+    color: indianred;
+}
 
 /*Footer*/
 footer {
