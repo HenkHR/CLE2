@@ -1,6 +1,6 @@
 <?php
 /** @var $db */
-require_once('Includes/connection.php');
+require_once('includes/connection.php');
 
 $user = null;
 $error_message = null;
@@ -39,7 +39,7 @@ if (isset($_GET['user_id']) && is_numeric($_GET['user_id'])) {
 <body>
 
 <!-- Standaard header inladen -->
-<?php include('Includes/header.php') ?>
+<?php include('includes/header.php') ?>
 
 <section class="profile-section">
     <?php if ($error_message): ?>
@@ -55,7 +55,7 @@ if (isset($_GET['user_id']) && is_numeric($_GET['user_id'])) {
 </section>
 
 <!-- Standaard footer inladen -->
-<?php include('Includes/footer.php') ?>
+<?php include('includes/footer.php') ?>
 
 </body>
 </html>
