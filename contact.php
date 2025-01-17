@@ -40,30 +40,36 @@ if (isset($_POST['submit'])) {
 </header>
 <main>
     <section> <!-- kan ook als een div in de footer -->
-        <form class="column" action="" method="post"> <!-- post naar de pagina -->
-            <!-- gebruiker's email-->
-            <label class="label" for="email">email</label>
-            <input class="input" type="email" id="email" name="email" required
-                   value="<?= $_SESSION['email'] ?? $email ?? '' ?>">
-            <p class="danger">
-                <?= $error['email'] ?? '' ?>
+        <?php if (!isset($_POST['submit'])) { ?>
+            <form class="column" action="" method="post"> <!-- post naar de pagina -->
+                <!-- gebruiker's email-->
+                <label class="label" for="email">email</label>
+                <input class="input" type="email" id="email" name="email" required
+                       value="<?= $_SESSION['email'] ?? $email ?? '' ?>">
+                <p class="danger">
+                    <?= $error['email'] ?? '' ?>
+                </p>
+                <!-- namen-->
+                <label class="label" for="firstName">Voornaam</label>
+                <input class="input" type="text" id="firstName" name="firstName" required
+                       value="<?= $_SESSION['first_name'] ?? $firstName ?? '' ?>">
+                <label class="label" for="lastName">Achternaam</label>
+                <input class="input" type="text" id="lastName" name="lastName" required
+                       value="<?= $_SESSION['last_name'] ?? $lastName ?? '' ?>">
+                <!-- mail input-->
+                <label class="label" for="subject">onderwerp</label>
+                <input class="input" type="text" id="subject" name="subject" required
+                       value="<?= $subject ?? '' ?>">
+                <label class="label" for="message">bericht</label>
+                <input class="input" type="text" id="message" name="message" required
+                       value="<?= $message ?? '' ?>">
+                <button type="submit" name="submit">Verstuur</button>
+            </form>
+        <?php } else { ?>
+            <p>
+                De mail is verzonden
             </p>
-            <!-- namen-->
-            <label class="label" for="firstName">Voornaam</label>
-            <input class="input" type="text" id="firstName" name="firstName" required
-                   value="<?= $_SESSION['first_name'] ?? $firstName ?? '' ?>">
-            <label class="label" for="lastName">Achternaam</label>
-            <input class="input" type="text" id="lastName" name="lastName" required
-                   value="<?= $_SESSION['last_name'] ?? $lastName ?? '' ?>">
-            <!-- mail input-->
-            <label class="label" for="subject">onderwerp</label>
-            <input class="input" type="text" id="subject" name="subject" required
-                   value="<?= $subject ?? '' ?>">
-            <label class="label" for="message">bericht</label>
-            <input class="input" type="text" id="message" name="message" required
-                   value="<?= $message ?? '' ?>">
-            <button type="submit" name="submit">Verstuur</button>
-        </form>
+        <?php } ?>
     </section>
 </main>
 <?php include('includes/footer.php') ?>
