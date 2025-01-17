@@ -15,13 +15,10 @@ $timestampWeek = strtotime("+$selectedWeek weeks");
 
 $weekDays = getWeekDays($timestampWeek);
 $monthOfWeek = date('F', $weekDays[0]['timestamp']);
-
 $yearOfWeek = date('Y', $weekDays[0]['timestamp']);
 $startDate = $weekDays[0]['fullDate'];
 $endDate = date('Y-m-d',strtotime($weekDays[6]['fullDate'] . "+1 days"));
-$query = "SELECT * FROM reservations
-            WHERE date_time >= '$startDate' AND date_time <= '$endDate'
-            ";
+$query = "SELECT * FROM reservations WHERE date_time >= '$startDate' AND date_time <= '$endDate'";
 $result = mysqli_query($db, $query);
 $reservations = [];
 while ($row = mysqli_fetch_assoc($result)) {

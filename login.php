@@ -26,7 +26,9 @@ if (isset($_POST['submit'])) {
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
 
-        if ($result && mysqli_num_rows($result) === 1) {
+        if ($result && mysqli_num_rows($result) !== 1) {
+            $errors['email'] = 'E-mailadres niet gevonden.';
+        } elseif ($result && mysqli_num_rows($result) === 1) {
             $user = mysqli_fetch_assoc($result);
 
             if (password_verify($password, $user['password'])) {
@@ -46,8 +48,6 @@ if (isset($_POST['submit'])) {
             } else {
                 $errors['loginFailed'] = 'Wachtwoord is onjuist.';
             }
-        } else {
-            $errors['loginFailed'] = 'E-mailadres niet gevonden.';
         }
     }
 }

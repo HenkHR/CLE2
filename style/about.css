@@ -57,6 +57,14 @@
     margin-right: auto;
 }
 
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.overflow-scroll {
+    overflow: scroll;
+}
+
 html {
     background-color: var(--colors-background);
 }
@@ -101,35 +109,30 @@ main h1{
 .info{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    padding: 0 5vw 10vh 5vw;
+    justify-content: space-evenly;
     gap: 20px
 }
 .leftItem, .center-item, .rightItem{
-    width: 30vw;
-    height: 55vh;
     display: flex;
+    margin-bottom: 5vh;
+    width: 30vw;
+    gap: 3vh;
 }
 .leftItem, .rightItem{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    gap: 20px;
     text-align: center;
 }
 h2{
     text-align: center;
-    padding-bottom: 20px;
 }
 .center-item{
     display: flex;
     flex-direction: column;
     gap: 20px;
-    height: 60vh;
 }
-.center-item img{
-    height: 30vh;
-    width: 40vh;
+.center-item img {
+    max-width: 30vw;
     object-fit: cover;
     align-self: center;
     border-radius: 10px;
@@ -138,6 +141,7 @@ h2{
 .webButton{
     background-color: var(--colors-link);
     color: black;
+    margin-bottom: 5vh;
     padding: 10px;
     border-radius: 10px;
     text-decoration: none;

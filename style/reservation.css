@@ -4,7 +4,7 @@
     --colors-nav-link: #FFF;
     --colors-link: #F1C232;
     --colors-text-footer: #c8c8c8;
-    --colors-danger: #aa0000;
+    --colors-danger: #f00;
 
     --font-size-tiny: 0.25rem;
     --font-size-very-small: 0.5rem;
@@ -26,6 +26,14 @@
     border: 0;
 }
 
+.margin-0 {
+    margin: 0 !important;
+    margin-top: 0 !important;
+    margin-right: 0 !important;
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+}
+
 .row {
     display: flex;
     flex-direction: row;
@@ -34,6 +42,10 @@
 .column {
     display: flex;
     flex-direction: column;
+}
+
+.flex {
+    display: flex;
 }
 
 .justify-center {
@@ -111,6 +123,42 @@ header {
 .title a:hover{
     color: #F1C232;
 }
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 75px 0;
+}
+
+form .title {
+    margin-bottom: 25px;
+}
+
+form .form-column {
+    margin: 10px 0;
+}
+
+form label {
+    color: var(--colors-text);
+    font-size: var(--font-size-big);
+}
+
+form input {
+    padding: 5px;
+    width: 490px;
+}
+
+form button {
+    margin-top: 25px;
+    color: var(--colors-background);
+    background-color: var(--colors-link);
+    padding: 10px;
+    font-size: var(--font-size-medium);
+    border: 0.5vh solid var(--colors-background);
+    border-radius: 1.5vh;
+}
+
 .calendar{
     display: flex;
     flex-direction: row;
@@ -212,6 +260,27 @@ div .currentDayOfWeek{
     box-sizing: border-box;
 }
 
+
+
+.previous-page {
+    display: flex;
+}
+
+.previous-page-button {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--colors-text);
+    padding: 5px;
+}
+
+.previous-page-button:hover {
+    color: var(--colors-link);
+}
+
+.previous-page-button:hover svg {
+    fill: var(--colors-link); /* Zorgt ervoor dat de SVG de kleur aanneemt, Gedaan via ChatGPT omdat dit zwaar zat te kloten */
+}
 
 
 input{

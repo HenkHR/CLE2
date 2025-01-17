@@ -8,6 +8,10 @@ require_once "includes/connection.php";
 $reservation_id = $_GET['reservation_id'] ?? null;
 $error = '';
 $success = '';
+$year = $_GET['year'];
+$month = $_GET['month'];
+$day = $_GET['day'];
+$timeslot = $_GET['timeslot'];
 
 // Haal gegevens van de afspraak op voor bevestiging, alleen als er geen POST-verzoek is geweest
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -64,8 +68,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Afspraak Verwijderen</title>
 </head>
 <body>
-<?php include('Includes/header.php') ?>
-<main>
+    <?php include('Includes/header.php') ?>
+    <div class="previous-page">
+        <a class="previous-page-button" href="admin-reservation-manager.php?timeslot=<?= htmlspecialchars($timeslot) ?>&day=<?= htmlspecialchars($day) ?>&month=<?= htmlspecialchars($month) ?>&year=<?= htmlspecialchars($year) ?>">
+            <span style="display:block; width: 25px; height: 25px; margin-left: 5px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-caret-left" viewBox="0 0 16 16">
+                    <path d="M10 12.796V3.204L4.519 8zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753"/>
+                </svg>
+            </span>
+            Terug
+        </a>
+    </div>
     <p class="flex justify-center Danger" style="margin:5vh 5vw; font-size: var(--font-size-large)">Afspraak verwijderen</p>
 
     <?php if ($error): ?>
@@ -87,6 +100,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button class="danger-button" type="submit">Afspraak Verwijderen</button>
         </form>
     <?php endif; ?>
-</main>
 </body>
 </html>

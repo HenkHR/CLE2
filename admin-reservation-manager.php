@@ -39,6 +39,16 @@ if ($result) {
 <body>
 <?php include('Includes/header.php') ?>
 <main>
+    <div class="previous-page">
+        <a class="previous-page-button" href="admin-calendar.php">
+            <span style="display:block; width: 25px; height: 25px; margin-left: 5px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-caret-left" viewBox="0 0 16 16">
+                    <path d="M10 12.796V3.204L4.519 8zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753"/>
+                </svg>
+            </span>
+            Terug
+        </a>
+    </div>
     <div class="timeslot" style="font-size: var(--font-size-bigger)"><?= date('d F Y', strtotime($date)) ?> om <?= date('H:i', strtotime($date)) ?></div>
     <section class="baanoverzicht">
         <?php
@@ -62,7 +72,7 @@ if ($result) {
                         </div>
                         <div class='afspraak-wijzigen'>
                             <a class='afspraak-details' href='reservering-wijzigen.php?timeslot=$timeslot&day=$day&month=$month&year=$year&course=$baanNummer'>Afspraak wijzigen</a>
-                            <a class='Danger' href='reservering-verwijderen.php?reservation_id=$reservation_id'>Afspraak verwijderen</a>
+                            <a class='Danger' href='reservering-verwijderen.php?reservation_id=$reservation_id&timeslot=$timeslot&day=$day&month=$month&year=$year'>Afspraak verwijderen</a>
                         </div>            
                     </article>";
             }

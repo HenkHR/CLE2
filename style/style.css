@@ -4,7 +4,7 @@
     --colors-nav-link: #FFF;
     --colors-link: #F1C232;
     --colors-text-footer: #c8c8c8;
-    --colors-danger: #aa0000;
+    --colors-danger: #f00;
 
     --font-size-tiny: 0.25rem;
     --font-size-very-small: 0.5rem;
@@ -91,40 +91,67 @@ header {
     color: var(--colors-link);
 }
 
+/*End Header*/
 .title-section {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 20vh;
+    flex-direction: column;
+    gap: 50px;
+    text-align: center;
+    height: 50vh;
     min-height: 100px;
     background-color: var(--colors-background);
-}
-
-.title {
-    font-size: var(--font-size-very-large);
-}
-
-.subtitle {
-    font-size: var(--font-size-large);
+    background-image: url('/Images/FOCUS-MH-min.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover, contain;
+    border-bottom: 1px solid white;
 }
 
 .title,
 .subtitle{
     padding: 1vh 2vw;
     color: var(--colors-text);
-    background-color: rgba(0,0,0,0.7);
     font-weight: bolder;
     text-align: center;
 }
 
+.title {
+    font-size: var(--font-size-very-large);
+    text-shadow: 1px 1px 2px black;
+    padding-top: 3vh;
+}
 
+.subtitle {
+    font-size: var(--font-size-large);
+}
 
+.titleInfo{
+    color: white;
+    text-shadow: 1px 1px 3px black;
+    font-size: 25px;
+}
 .main-section {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    height: 70vh;
+    margin: 5vh 5vw;
     color: var(--colors-text);
+}
+
+.main-section a {
+    color: var(--colors-text);
+    text-decoration: none;
+    padding: 10px;
+    font-size: var(--font-size-medium);
+    width: 20vw;
+    text-align: center;
+    border: 0.5vh solid var(--colors-text);
+    border-radius: 1.5vh;
+}
+
+.main-section a:hover {
+    color: var(--colors-link);
+    border-color: var(--colors-link);
 }
 
 .register {
@@ -146,7 +173,6 @@ form {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 75px 0;
 }
 
 form .title {
@@ -175,6 +201,10 @@ form button {
     font-size: var(--font-size-medium);
     border: 0.5vh solid var(--colors-background);
     border-radius: 1.5vh;
+}
+
+form button:hover {
+    background-color: #bd9a2a;
 }
 
 .cookie-text {
@@ -222,7 +252,44 @@ form button {
     color: var(--colors-danger);
 }
 
+.userReservations{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-size: 20px;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 50px;
+}
+.userReservations h2{
+    padding-bottom: 40px;
+}
+table{
+    border-collapse: collapse;
+}
+table tr{
+    border-bottom: solid white 2px;
+}
+table th,td{
+    padding: 10px;
+    border-right: lightgray solid 1px;
+    color:white;
+    text-align: center;
+}
+.dltButton{
+    border: none;
+}
+.dltButton a {
+    color: var(--colors-link);
+    text-decoration: none;
+}
+.dltButton a:hover {
+    color: indianred;
+}
+
+/*Footer*/
 footer {
+    display: block;
     border-top: 0.25vh solid var(--colors-link);
     padding: 2.5vh 5vh;
 }

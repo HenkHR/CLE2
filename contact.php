@@ -66,8 +66,6 @@ if (isset($_POST['submit'])) {
         </form>
     </section>
 </main>
-<footer>
-    <?php include('Includes/footer.php') ?>
-</footer>
+<?php include('Includes/footer.php') ?>
 </body>
 </html>
