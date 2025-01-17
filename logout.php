@@ -1,11 +1,11 @@
 <?php
-// Start the session.
+// Start die sessie
 session_start();
-// destroy the session.
+// Vernietig vernietig die sessie
 session_unset();
 session_destroy();
-// Redirect to login page
+// Terug naar de landingspagina
 header("Location: index.php");
-// Exit the code.
+// Stop met die code.
 exit();
 ?>

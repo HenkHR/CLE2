@@ -55,103 +55,102 @@ mysqli_close($db);
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-    <?php include('Includes/header.php') ?>
-    <section class="logout">
-        <a class="logout-button" href="logout.php">Uitloggen<span style="display:block; width: 25px; height: 25px; margin-left: 5px;">
+<?php include('Includes/header.php') ?>
+<section class="logout">
+    <a class="logout-button" href="logout.php">Uitloggen<span style="display:block; width: 25px; height: 25px; margin-left: 5px;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
                     <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/></svg></span>
-        </a>
-    </section>
-    <div class="update-cookie">
-        <p class="cookie-text"><?= htmlspecialchars($updateSucces) ?></p>
-    </div>
-    <section>
-        <form action="" method="post">
-            <div class="column" style="width: 500px">
-                <p class="title">Account</p>
-                <div class="form-column"> <!-- Voornaam -->
-                    <div>
-                        <label class="label" for="firstName">Voornaam</label>
-                    </div>
-                    <div>
-                        <input class="input" id="firstName" type="text" name="first_name" value="<?= htmlspecialchars($user['first_name']) ?>"/>
-                    </div>
+    </a>
+</section>
+<div class="update-cookie">
+    <p class="cookie-text"><?= htmlspecialchars($updateSucces) ?></p>
+</div>
+<section>
+    <form action="" method="post">
+        <div class="column" style="width: 500px">
+            <p class="title">Account</p>
+            <div class="form-column"> <!-- Voornaam -->
+                <div>
+                    <label class="label" for="firstName">Voornaam</label>
                 </div>
-                <div class="form-column"> <!-- Achternaam -->
-                    <div>
-                        <label class="label" for="lastName">Achternaam</label>
-                    </div>
-                    <div>
-                        <input class="input" id="lastName" type="text" name="last_name" value="<?= htmlspecialchars($user['last_name']) ?>"/>
-                    </div>
+                <div>
+                    <input class="input" id="firstName" type="text" name="first_name" value="<?= htmlspecialchars($user['first_name']) ?>"/>
                 </div>
-                <div class="form-column"> <!-- Email -->
-                    <div>
-                        <label class="label" for="email">E-mailadres</label>
-                    </div>
-                    <div>
-                        <input class="input" id="email" type="email" name="email" value="<?= htmlspecialchars($user['email']) ?>"/>
-                    </div>
-                </div>
-                <div class="form-column"> <!-- Telefoonnummer -->
-                    <div>
-                        <label class="label" for="phoneNumber">Telefoonnummer <span style="color: var(--colors-text-footer); font-size: var(--font-size-small)">(optioneel)</span></label>
-                    </div>
-                    <div>
-                        <input class="input" id="phoneNumber" type="text" maxlength="10" name="phone_number" value="<?= htmlspecialchars($user['phone_number'] ?? '') ?>"/>
-                    </div>
-                    <p class="Danger" style="margin-top: 25px">
-                        <?= htmlspecialchars($updateError) ?>
-                    </p>
-                </div>
-                <!-- Submit -->
-                <button class="link-button" type="submit" name="submit">Wijzigen</button>
-                <a class="delete-account" href="delete-account.php">account verwijderen</a>
             </div>
-        </form>
-    </section>
-    <section class="userReservations">
-        <h2>Uw reserveringen</h2>
-        <?php if(count($userReservations) > 0){?>
+            <div class="form-column"> <!-- Achternaam -->
+                <div>
+                    <label class="label" for="lastName">Achternaam</label>
+                </div>
+                <div>
+                    <input class="input" id="lastName" type="text" name="last_name" value="<?= htmlspecialchars($user['last_name']) ?>"/>
+                </div>
+            </div>
+            <div class="form-column"> <!-- Email -->
+                <div>
+                    <label class="label" for="email">E-mailadres</label>
+                </div>
+                <div>
+                    <input class="input" id="email" type="email" name="email" value="<?= htmlspecialchars($user['email']) ?>"/>
+                </div>
+            </div>
+            <div class="form-column"> <!-- Telefoonnummer -->
+                <div>
+                    <label class="label" for="phoneNumber">Telefoonnummer <span style="color: var(--colors-text-footer); font-size: var(--font-size-small)">(optioneel)</span></label>
+                </div>
+                <div>
+                    <input class="input" id="phoneNumber" type="text" maxlength="10" name="phone_number" value="<?= htmlspecialchars($user['phone_number'] ?? '') ?>"/>
+                </div>
+                <p class="Danger" style="margin-top: 25px">
+                    <?= htmlspecialchars($updateError) ?>
+                </p>
+            </div>
+            <!-- Submit -->
+            <button class="link-button" type="submit" name="submit">Wijzigen</button>
+            <a class="delete-account" href="delete-account.php">account verwijderen</a>
+        </div>
+    </form>
+</section>
+<section class="userReservations">
+    <h2>Uw reserveringen</h2>
+    <?php if(count($userReservations) > 0){?>
         <div class="reservationsTable">
             <table>
                 <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Datum</th>
-                        <th>Tijd</th>
-                        <th>Voornaam</th>
-                        <th>Achternaam</th>
-                        <th>Email</th>
-                        <th>Tel. nummer</th>
-                        <th>Baan</th>
-                    </tr>
+                <tr>
+                    <th>#</th>
+                    <th>Datum</th>
+                    <th>Tijd</th>
+                    <th>Voornaam</th>
+                    <th>Achternaam</th>
+                    <th>Email</th>
+                    <th>Tel. nummer</th>
+                    <th>Baan</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <?php  foreach($userReservations as $index => $reservation){ ?>
-                        <tr>
-                            <td><?= $index + 1 ?></td>
-                            <td><?= date('d-m-Y',strtotime($reservation['date_time']))?></td>
-                            <td><?= date('H:i',strtotime($reservation['date_time'])) ?></td>
-                            <td><?= $reservation['first_name']?></td>
-                            <td><?= $reservation['last_name']?></td>
-                            <td><?= $reservation['email']?></td>
-                            <td><?= $reservation['phone_number']?></td>
-                            <td><?= $reservation['course']?></td>
-                            <?php if($today < strtotime($reservation['date_time'])){?>
-                                <td class="dltButton"><a href="">Annuleer</a></td>
-                            <?php }?>
-                        </tr>
-                    <?php }?>
+                <?php  foreach($userReservations as $index => $reservation){ ?>
+                    <tr>
+                        <td><?= $index + 1 ?></td>
+                        <td><?= date('d-m-Y',strtotime($reservation['date_time']))?></td>
+                        <td><?= date('H:i',strtotime($reservation['date_time'])) ?></td>
+                        <td><?= $reservation['first_name']?></td>
+                        <td><?= $reservation['last_name']?></td>
+                        <td><?= $reservation['email']?></td>
+                        <td><?= $reservation['phone_number']?></td>
+                        <td><?= $reservation['course']?></td>
+                        <?php if($today < strtotime($reservation['date_time'])){?>
+                            <td class="dltButton"><a href="">Annuleer</a></td>
+                        <?php }?>
+                    </tr>
+                <?php }?>
                 </tbody>
             </table>
         </div>
-        <?php } else{ ?>
-            <p> U heeft nog geen reserveringen</p>
-        <?php } ?>
-    </section>
-    <?php include('Includes/footer.php') ?>
+    <?php } else{ ?>
+        <p> U heeft nog geen reserveringen</p>
+    <?php } ?>
+</section>
+<?php include('Includes/footer.php') ?>
 </body>
 </html>
-

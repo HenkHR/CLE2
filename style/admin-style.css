@@ -4,7 +4,7 @@
     --colors-nav-link: #FFF;
     --colors-link: #F1C232;
     --colors-text-footer: #c8c8c8;
-    --colors-danger: #aa0000;
+    --colors-danger: #f00;
 
     --font-size-tiny: 0.25rem;
     --font-size-very-small: 0.5rem;
@@ -20,9 +20,18 @@
 
 
 * {
+    font-family: "Segoe UI";
     margin: 0;
     padding: 0;
     border: 0;
+}
+
+.margin-0 {
+    margin: 0 !important;
+    margin-top: 0 !important;
+    margin-right: 0 !important;
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
 }
 
 .row {
@@ -95,7 +104,7 @@ header {
     text-decoration: none;
     color: var(--colors-nav-link);
     font-size: var(--font-size-big);
-    text-align: center;
+    text-align: center
 }
 
 .navbar a:hover {
@@ -256,13 +265,27 @@ footer.row {
     align-items: center;
 }
 
+.previous-page {
+    display: flex;
+}
+
+.previous-page-button {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--colors-text);
+    padding: 5px;
+}
+
+.previous-page-button:hover {
+    color: var(--colors-link);
+}
+
 
 .timeslot {
     display: flex;
     justify-content: center;
     color: var(--colors-text);
-    margin-top: 10vh;
-
 }
 
 .baanoverzicht {
