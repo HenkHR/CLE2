@@ -123,12 +123,15 @@ if (isset($_POST['cancel'])) {
             <ul>
                 <?php foreach ($users as $res): ?>
                     <li>
-                        <strong>Naam:</strong> <?= htmlspecialchars($res['first_name'] . ' ' . $res['last_name']) ?>
+                        <a href="admin_user_profile.php?user_id=<?= htmlspecialchars($res['user_id']) ?>">
+                            <strong>Naam: </strong> <?= htmlspecialchars($res['first_name'] . ' ' . $res['last_name']) ?>
+                        </a>
                     </li>
                 <?php endforeach; ?>
+
             </ul>
 
-            <!-- Load More-knop -->
+            <!-- Load More knop -->
             <form action="" method="post">
                 <input type="hidden" name="offset" value="<?= htmlspecialchars($offset + $limit) ?>">
                 <button type="submit" name="load_more">Meer laden</button>
