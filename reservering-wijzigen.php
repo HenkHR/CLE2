@@ -1,7 +1,7 @@
 <?php
 /** @var $db */
-require_once "Includes/admin-auth.php";
-require_once('Includes/Functions.php');
+require_once "includes/admin-auth.php";
+require_once('includes/functions.php');
 require_once "includes/connection.php";
 
 $timezoneId = 'Europe/Amsterdam';
@@ -63,63 +63,67 @@ $klant = mysqli_fetch_assoc($result);
     <title>Reserveringen beheren</title>
 </head>
 <body>
-<?php include('Includes/header.php') ?>
-    <div class="previous-page">
-        <a class="previous-page-button" href="admin-reservation-manager.php?timeslot=<?= htmlspecialchars($timeslot) ?>&day=<?= htmlspecialchars($day) ?>&month=<?= htmlspecialchars($month) ?>&year=<?= htmlspecialchars($year) ?>">
+<?php include('includes/header.php') ?>
+<div class="previous-page">
+    <a class="previous-page-button"
+       href="admin-reservation-manager.php?timeslot=<?= htmlspecialchars($timeslot) ?>&day=<?= htmlspecialchars($day) ?>&month=<?= htmlspecialchars($month) ?>&year=<?= htmlspecialchars($year) ?>">
             <span style="display:block; width: 25px; height: 25px; margin-left: 5px;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-caret-left" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                     class="bi bi-caret-left" viewBox="0 0 16 16">
                     <path d="M10 12.796V3.204L4.519 8zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753"/>
                 </svg>
             </span>
-            Terug
-        </a>
-    </div>
-    <div class="timeslot" style="font-size: var(--font-size-bigger)">
-        <?= htmlspecialchars($klant['first_name']) ?> <?= htmlspecialchars($klant['last_name']) ?> <br>
-        <?= htmlspecialchars($klant['email']) ?> <br>
-        <?= htmlspecialchars($klant['phone_number']) ?>
-    </div>
-    <div class="timeslot column margin-0" style="font-size: var(--font-size-big)">
-        <?php if ($error): ?>
-            <p class="flex justify-center"><?= htmlspecialchars($error) ?></p>
-        <?php endif; ?>
-        <form class="margin-0" action="" method="post">
-            <div class="column" style="width: 500px">
-                <div class="form-column">
-                    <div>
-                        <label class="label" for="course">Baan</label>
-                    </div>
-                    <div>
-                        <input class="input" id="course" type="text" name="course" value="<?= htmlspecialchars($klant['course']) ?>"/>
-                    </div>
+        Terug
+    </a>
+</div>
+<div class="timeslot" style="font-size: var(--font-size-bigger)">
+    <?= htmlspecialchars($klant['first_name']) ?> <?= htmlspecialchars($klant['last_name']) ?> <br>
+    <?= htmlspecialchars($klant['email']) ?> <br>
+    <?= htmlspecialchars($klant['phone_number']) ?>
+</div>
+<div class="timeslot column margin-0" style="font-size: var(--font-size-big)">
+    <?php if ($error): ?>
+        <p class="flex justify-center"><?= htmlspecialchars($error) ?></p>
+    <?php endif; ?>
+    <form class="margin-0" action="" method="post">
+        <div class="column" style="width: 500px">
+            <div class="form-column">
+                <div>
+                    <label class="label" for="course">Baan</label>
                 </div>
-                <div class="form-column">
-                    <div>
-                        <label class="label" for="date">Datum</label>
-                    </div>
-                    <div>
-                        <input class="input" id="date" type="date" name="date" value="<?= htmlspecialchars(date('Y-m-d', strtotime($klant['date_time']))) ?>"/>
-                    </div>
+                <div>
+                    <input class="input" id="course" type="text" name="course"
+                           value="<?= htmlspecialchars($klant['course']) ?>"/>
                 </div>
-                <div class="form-column">
-                    <div>
-                        <label class="label" for="timeslot">Tijdslot</label>
-                    </div>
-                    <div class="flex justify-center">
-                        <select class="input" style="width: 500px; padding: 5px" id="timeslot" name="timeslot">
-                            <?php foreach ($timeslots as $slot): ?>
-                                <?php if ($slot !== '21:00'):?>
-                                    <option value="<?= $slot ?>" <?= $slot == date('H:i', strtotime($klant['date_time'])) ? 'selected' : '' ?>>
-                                        <?= $slot ?>
-                                    </option>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                </div>
-                <button class="link-button" type="submit" name="submit">Wijzigen</button>
             </div>
-        </form>
-    </div>
+            <div class="form-column">
+                <div>
+                    <label class="label" for="date">Datum</label>
+                </div>
+                <div>
+                    <input class="input" id="date" type="date" name="date"
+                           value="<?= htmlspecialchars(date('Y-m-d', strtotime($klant['date_time']))) ?>"/>
+                </div>
+            </div>
+            <div class="form-column">
+                <div>
+                    <label class="label" for="timeslot">Tijdslot</label>
+                </div>
+                <div class="flex justify-center">
+                    <select class="input" style="width: 500px; padding: 5px" id="timeslot" name="timeslot">
+                        <?php foreach ($timeslots as $slot): ?>
+                            <?php if ($slot !== '21:00'): ?>
+                                <option value="<?= $slot ?>" <?= $slot == date('H:i', strtotime($klant['date_time'])) ? 'selected' : '' ?>>
+                                    <?= $slot ?>
+                                </option>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+            </div>
+            <button class="link-button" type="submit" name="submit">Wijzigen</button>
+        </div>
+    </form>
+</div>
 </body>
 </html>

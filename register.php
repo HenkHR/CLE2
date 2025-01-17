@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['submit'])) {
     /** @var mysqli $db */
-    require_once "Includes/connection.php";
+    require_once "includes/connection.php";
     $errors = [];
     if (isset($_POST['submit'])) {
         $firstName = $_POST['firstName'];
@@ -59,7 +59,7 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-<?php include('Includes/header.php') ?>
+<?php include('includes/header.php') ?>
 <section>
     <form action="" method="post">
         <div class="column" style="width: 500px">
@@ -69,7 +69,8 @@ if (isset($_POST['submit'])) {
                     <label class="label" for="firstName">Voornaam</label>
                 </div>
                 <div>
-                    <input class="input" id="firstName" type="text" name="firstName" value="<?= htmlspecialchars($firstName ?? '', ENT_QUOTES, 'UTF-8') ?>"/>
+                    <input class="input" id="firstName" type="text" name="firstName"
+                           value="<?= htmlspecialchars($firstName ?? '', ENT_QUOTES, 'UTF-8') ?>"/>
                 </div>
                 <p class="Danger">
                     <?= $errors['firstName'] ?? '' ?>
@@ -80,7 +81,8 @@ if (isset($_POST['submit'])) {
                     <label class="label" for="lastName">Achternaam</label>
                 </div>
                 <div>
-                    <input class="input" id="lastName" type="text" name="lastName" value="<?= htmlspecialchars($lastName ?? '', ENT_QUOTES, 'UTF-8') ?>"/>
+                    <input class="input" id="lastName" type="text" name="lastName"
+                           value="<?= htmlspecialchars($lastName ?? '', ENT_QUOTES, 'UTF-8') ?>"/>
                 </div>
                 <p class="Danger">
                     <?= $errors['lastName'] ?? '' ?>
@@ -91,7 +93,8 @@ if (isset($_POST['submit'])) {
                     <label class="label" for="email">E-mailadres</label>
                 </div>
                 <div>
-                    <input class="input" id="email" type="email" name="email" value="<?= htmlspecialchars($email ?? '', ENT_QUOTES, 'UTF-8') ?>"/>
+                    <input class="input" id="email" type="email" name="email"
+                           value="<?= htmlspecialchars($email ?? '', ENT_QUOTES, 'UTF-8') ?>"/>
                 </div>
                 <p class="Danger">
                     <?= $errors['email'] ?? '' ?>
@@ -113,6 +116,6 @@ if (isset($_POST['submit'])) {
         </div>
     </form>
 </section>
-<?php include('Includes/footer.php') ?>
+<?php include('includes/footer.php') ?>
 </body>
 </html>

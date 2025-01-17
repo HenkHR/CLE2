@@ -1,8 +1,8 @@
 <?php
 session_start();
 /** @var $db */
-require_once('Includes/connection.php');
-require_once('Includes/Functions.php');
+require_once('includes/connection.php');
+require_once('includes/functions.php');
 
 
 $timezoneId = 'Europe/Amsterdam';
@@ -97,43 +97,49 @@ if (isset($_POST['submit'])) {
     <title>Reserveren</title>
 </head>
 <body>
-<?php include('Includes/header.php') ?>
+<?php include('includes/header.php') ?>
 <div class="previous-page">
     <a class="previous-page-button" href="calendar.php">
             <span style="display:block; width: 25px; height: 25px;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-caret-left" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                     class="bi bi-caret-left" viewBox="0 0 16 16">
                     <path d="M10 12.796V3.204L4.519 8zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753"/>
                 </svg>
             </span>
         Terug
     </a>
 </div>
-<div class="flex justify-center" style="font-size: var(--font-size-big); margin: 5vh 0"> U reserveert voor <?= date('d F Y', strtotime($date)) ?> om <?= date('H:i', strtotime($date)) ?> voor baan <?= $courseID?></div>
+<div class="flex justify-center" style="font-size: var(--font-size-big); margin: 5vh 0"> U reserveert
+    voor <?= date('d F Y', strtotime($date)) ?> om <?= date('H:i', strtotime($date)) ?> voor baan <?= $courseID ?></div>
 <section class="flex justify-center margin-0">
     <form class="column margin-0" style="gap: 2vh" action="" method="post">
         <div class="column">
             <label for="firstName">Voornaam</label>
-            <input class="input" id="firstName" type="text" maxlength="30" name="firstName" value="<?= htmlspecialchars($user['first_name'] ?? '') ?>"/>
+            <input class="input" id="firstName" type="text" maxlength="30" name="firstName"
+                   value="<?= htmlspecialchars($user['first_name'] ?? '') ?>"/>
         </div>
         <p><?= $errors['firstName'] ?? '' ?></p>
         <div class="column">
             <label for="lastName">Achternaam</label>
-            <input class="input" id="lastName" type="text" maxlength="30" name="lastName" value="<?= htmlspecialchars($user['last_name'] ?? '') ?>"/>
+            <input class="input" id="lastName" type="text" maxlength="30" name="lastName"
+                   value="<?= htmlspecialchars($user['last_name'] ?? '') ?>"/>
         </div>
         <p><?= $errors['lastName'] ?? '' ?></p>
         <div class="column">
             <label for="email">Email-adres</label>
-            <input class="input" id="email" type="email" maxlength="30" name="email" value="<?= htmlspecialchars($user['email'] ?? '') ?>"/>
+            <input class="input" id="email" type="email" maxlength="30" name="email"
+                   value="<?= htmlspecialchars($user['email'] ?? '') ?>"/>
         </div>
         <p><?= $errors['email'] ?? '' ?></p>
         <div class="column">
             <label for="phoneNumber">Telefoonnummer</label>
-            <input class="input" id="phoneNumber" type="tel" maxlength="10" name="phoneNumber" placeholder="(vereist)" value="<?= htmlspecialchars($user['phone_number'] ?? '') ?>"/>
+            <input class="input" id="phoneNumber" type="tel" maxlength="10" name="phoneNumber" placeholder="(vereist)"
+                   value="<?= htmlspecialchars($user['phone_number'] ?? '') ?>"/>
         </div>
         <p><?= $errors['phoneNumber'] ?? '' ?></p>
         <button class="Button" style="margin-bottom: 5vh" type="submit" name="submit">Reserveer</button>
     </form>
 </section>
-<?php include('Includes/footer.php') ?>
+<?php include('includes/footer.php') ?>
 </body>
 </html>

@@ -3,7 +3,7 @@
 /**  @var $db */
 
 session_start();
-require_once('Includes/connection.php');
+require_once('includes/connection.php');
 $login = false;
 $errors = [];
 $email = $_GET['email'] ?? '';
@@ -64,42 +64,42 @@ mysqli_close($db);
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-    <?php include('Includes/header.php') ?>
-    <section>
-        <div class="register">
-            <a class="register-button" href="register.php">Nog geen account? Registreer hier!</a>
-        </div>
-        <form class="column" style="margin: 25px 0 75px 0" action="" method="post">
-            <div class="column" style="width: 500px">
-                <p class="title">Log in</p>
-                <div class="form-column">
-                    <label class="label" for="email">E-mail</label>
-                    <div>
-                        <input class="input" id="email" type="text" name="email" value="<?= $email ?? '' ?>" />
-                    </div>
-                    <p class="Danger">
-                        <?= $errors['email'] ?? '' ?>
-                    </p>
+<?php include('includes/header.php') ?>
+<section>
+    <div class="register">
+        <a class="register-button" href="register.php">Nog geen account? Registreer hier!</a>
+    </div>
+    <form class="column" style="margin: 25px 0 75px 0" action="" method="post">
+        <div class="column" style="width: 500px">
+            <p class="title">Log in</p>
+            <div class="form-column">
+                <label class="label" for="email">E-mail</label>
+                <div>
+                    <input class="input" id="email" type="text" name="email" value="<?= $email ?? '' ?>"/>
                 </div>
-
-                <div class="form-column">
-                    <label class="label" for="password">Wachtwoord</label>
-                    <div class="column">
-                        <input class="input" id="password" type="password" name="password"/>
-                        <?php if(isset($errors['loginFailed'])) { ?>
-                            <div class="Danger">
-                                <?=$errors['loginFailed']?>
-                            </div>
-                        <?php } ?>
-                    </div>
-                    <p class="Danger">
-                        <?= $errors['password'] ?? '' ?>
-                    </p>
-                </div>
-                <button type="submit" name="submit">Inloggen</button>
+                <p class="Danger">
+                    <?= $errors['email'] ?? '' ?>
+                </p>
             </div>
-        </form>
-    </section>
-    <?php include('Includes/footer.php') ?>
+
+            <div class="form-column">
+                <label class="label" for="password">Wachtwoord</label>
+                <div class="column">
+                    <input class="input" id="password" type="password" name="password"/>
+                    <?php if (isset($errors['loginFailed'])) { ?>
+                        <div class="Danger">
+                            <?= $errors['loginFailed'] ?>
+                        </div>
+                    <?php } ?>
+                </div>
+                <p class="Danger">
+                    <?= $errors['password'] ?? '' ?>
+                </p>
+            </div>
+            <button type="submit" name="submit">Inloggen</button>
+        </div>
+    </form>
+</section>
+<?php include('includes/footer.php') ?>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
 /** @var mysqli $db */
-require_once('Includes/auth.php');
-require_once('Includes/connection.php');
+require_once('includes/auth.php');
+require_once('includes/connection.php');
 $id = $_SESSION['user_id'];
 $query = "SELECT * FROM users WHERE user_id = ?";
 $stmt = mysqli_prepare($db, $query);
@@ -51,32 +51,33 @@ mysqli_close($db);
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-    <?php include('Includes/header.php') ?>
-    <section>
-        <form action="" method="post">
-            <div class="column" style="width: 500px">
-                <p class="subtitle Danger">Account verwijderen</p>
-                <p class="Danger" style="margin: 10px 0 40px 0">Vul je wachtwoord opnieuw in om je account te kunnen verwijderen.</p>
-                <div class="form-column"> <!-- Wachtwoord invullen voordat je kan verwijderen -->
-                    <div>
-                        <label class="label" for="password">Wachtwoord</label>
-                    </div>
-                    <div>
-                        <input class="input" id="password" type="password" name="password"/>
-                    </div>
-                    <p class="Danger">
-                        <?= $errors['password'] ?? '' ?>
-                    </p>
+<?php include('includes/header.php') ?>
+<section>
+    <form action="" method="post">
+        <div class="column" style="width: 500px">
+            <p class="subtitle Danger">Account verwijderen</p>
+            <p class="Danger" style="margin: 10px 0 40px 0">Vul je wachtwoord opnieuw in om je account te kunnen
+                verwijderen.</p>
+            <div class="form-column"> <!-- Wachtwoord invullen voordat je kan verwijderen -->
+                <div>
+                    <label class="label" for="password">Wachtwoord</label>
                 </div>
-                <div class="row between">
-                    <label class="checkbox" for="checkbox">Weet je zeker dat je je account wilt verwijderen?</label>
-                    <input required class="checkbox-small" type="checkbox" id="checkbox" name="checkbox"/>
+                <div>
+                    <input class="input" id="password" type="password" name="password"/>
                 </div>
-                <!-- Verwijderen -->
-                <button class="danger-button" type="submit" name="submit">Account verwijderen</button>
+                <p class="Danger">
+                    <?= $errors['password'] ?? '' ?>
+                </p>
             </div>
-        </form>
-    </section>
-    <?php include('Includes/footer.php') ?>
+            <div class="row between">
+                <label class="checkbox" for="checkbox">Weet je zeker dat je je account wilt verwijderen?</label>
+                <input required class="checkbox-small" type="checkbox" id="checkbox" name="checkbox"/>
+            </div>
+            <!-- Verwijderen -->
+            <button class="danger-button" type="submit" name="submit">Account verwijderen</button>
+        </div>
+    </form>
+</section>
+<?php include('includes/footer.php') ?>
 </body>
 </html>

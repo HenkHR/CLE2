@@ -27,7 +27,7 @@ if (isset($_COOKIE['update_message'])) {
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-<?php include('Includes/header.php') ?>
+<?php include('includes/header.php') ?>
 <section class="title-section">
     <p class="title">
         Welkom bij Focus Padel!
@@ -41,6 +41,6 @@ if (isset($_COOKIE['update_message'])) {
     <a href="about.php" class="indexButton">Meer over Focus</a>
     <a href="calendar.php" class="indexButton">Reserveren</a>
 </section>
-<?php include('Includes/footer.php') ?>
+<?php include('includes/footer.php') ?>
 </body>
 </html>

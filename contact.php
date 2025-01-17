@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
 </head>
 <body>
 <header>
-    <?php include('Includes/header.php') ?>
+    <?php include('includes/header.php') ?>
 </header>
 <main>
     <section> <!-- kan ook als een div in de footer -->
@@ -66,6 +66,6 @@ if (isset($_POST['submit'])) {
         </form>
     </section>
 </main>
-<?php include('Includes/footer.php') ?>
+<?php include('includes/footer.php') ?>
 </body>
 </html>

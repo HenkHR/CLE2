@@ -1,6 +1,6 @@
 <?php
 /** @var $db */
-require_once('Includes/connection.php');
+require_once('includes/connection.php');
 
 $users = null;
 $error_message = null;
@@ -98,7 +98,7 @@ if (isset($_POST['cancel'])) {
 <body>
 
 <!-- Standaard header inladen -->
-<?php include('Includes/header.php') ?>
+<?php include('includes/header.php') ?>
 
 <section class="search-bar">
     <form action="" method="post">
@@ -138,7 +138,7 @@ if (isset($_POST['cancel'])) {
 </section>
 
 <!-- Standaard footer inladen -->
-<?php include('Includes/footer.php') ?>
+<?php include('includes/footer.php') ?>
 
 </body>
 </html>

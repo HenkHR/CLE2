@@ -1,7 +1,7 @@
 <?php
 /** @var $db */
-require_once "Includes/admin-auth.php";
-require_once('Includes/Functions.php');
+require_once "includes/admin-auth.php";
+require_once('includes/functions.php');
 require_once "includes/connection.php";
 
 // Haal reservation_id uit de GET-parameter
@@ -68,37 +68,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Afspraak Verwijderen</title>
 </head>
 <body>
-    <?php include('Includes/header.php') ?>
-    <div class="previous-page">
-        <a class="previous-page-button" href="admin-reservation-manager.php?timeslot=<?= htmlspecialchars($timeslot) ?>&day=<?= htmlspecialchars($day) ?>&month=<?= htmlspecialchars($month) ?>&year=<?= htmlspecialchars($year) ?>">
+<?php include('includes/header.php') ?>
+<div class="previous-page">
+    <a class="previous-page-button"
+       href="admin-reservation-manager.php?timeslot=<?= htmlspecialchars($timeslot) ?>&day=<?= htmlspecialchars($day) ?>&month=<?= htmlspecialchars($month) ?>&year=<?= htmlspecialchars($year) ?>">
             <span style="display:block; width: 25px; height: 25px; margin-left: 5px;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-caret-left" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                     class="bi bi-caret-left" viewBox="0 0 16 16">
                     <path d="M10 12.796V3.204L4.519 8zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753"/>
                 </svg>
             </span>
-            Terug
-        </a>
-    </div>
-    <p class="flex justify-center Danger" style="margin:5vh 5vw; font-size: var(--font-size-large)">Afspraak verwijderen</p>
+        Terug
+    </a>
+</div>
+<p class="flex justify-center Danger" style="margin:5vh 5vw; font-size: var(--font-size-large)">Afspraak verwijderen</p>
 
-    <?php if ($error): ?>
-        <p class="flex justify-center" style="color: var(--colors-text)"><?= htmlspecialchars($error) ?></p>
-    <?php elseif ($success): ?>
-        <p class="flex justify-center" style="color: var(--colors-text)"><?= htmlspecialchars($success) ?></p>
-    <?php elseif ($appointment): ?>
-        <p class="flex justify-center"  style="color: var(--colors-text); font-size: var(--font-size-big)">Bent u zeker dat u de volgende afspraak wilt verwijderen?</p>
-        <ul>
-            <li style="color: var(--colors-text); font-size: var(--font-size-big); margin: 0 10vw">Naam: <?= htmlspecialchars($appointment['first_name']) ?> <?= htmlspecialchars($appointment['last_name']) ?></li>
-            <li style="color: var(--colors-text); font-size: var(--font-size-big); margin: 0 10vw">Datum en tijd: <?= htmlspecialchars(date('d-m-Y H:i', strtotime($appointment['date_time']))) ?></li>
-            <li style="color: var(--colors-text); font-size: var(--font-size-big); margin: 0 10vw">Baan: <?= htmlspecialchars($appointment['course']) ?></li>
-        </ul>
-        <form class="column" method="post">
-            <div class="row between" style="gap: 5px">
-                <input required class="checkbox-small" type="checkbox" id="confirm_delete" name="confirm_delete">
-                <label for="confirm_delete">Ja, ik wil deze afspraak verwijderen</label>
-            </div>
-            <button class="danger-button" type="submit">Afspraak Verwijderen</button>
-        </form>
-    <?php endif; ?>
+<?php if ($error): ?>
+    <p class="flex justify-center" style="color: var(--colors-text)"><?= htmlspecialchars($error) ?></p>
+<?php elseif ($success): ?>
+    <p class="flex justify-center" style="color: var(--colors-text)"><?= htmlspecialchars($success) ?></p>
+<?php elseif ($appointment): ?>
+    <p class="flex justify-center" style="color: var(--colors-text); font-size: var(--font-size-big)">Bent u zeker dat u
+        de volgende afspraak wilt verwijderen?</p>
+    <ul>
+        <li style="color: var(--colors-text); font-size: var(--font-size-big); margin: 0 10vw">
+            Naam: <?= htmlspecialchars($appointment['first_name']) ?> <?= htmlspecialchars($appointment['last_name']) ?></li>
+        <li style="color: var(--colors-text); font-size: var(--font-size-big); margin: 0 10vw">Datum en
+            tijd: <?= htmlspecialchars(date('d-m-Y H:i', strtotime($appointment['date_time']))) ?></li>
+        <li style="color: var(--colors-text); font-size: var(--font-size-big); margin: 0 10vw">
+            Baan: <?= htmlspecialchars($appointment['course']) ?></li>
+    </ul>
+    <form class="column" method="post">
+        <div class="row between" style="gap: 5px">
+            <input required class="checkbox-small" type="checkbox" id="confirm_delete" name="confirm_delete">
+            <label for="confirm_delete">Ja, ik wil deze afspraak verwijderen</label>
+        </div>
+        <button class="danger-button" type="submit">Afspraak Verwijderen</button>
+    </form>
+<?php endif; ?>
 </body>
 </html>

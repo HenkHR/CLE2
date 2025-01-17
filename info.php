@@ -8,22 +8,27 @@
     <link rel="stylesheet" href="style/info.css">
 </head>
 <body>
-<?php include('Includes/header.php') ?>
+<?php include('includes/header.php') ?>
 <main>
     <p class="title" style="margin-bottom: 5vh">Focus Padel</p>
     <div class="info" style="color: var(--colors-text)">
         <div class="leftItem">
             <h2>Wat is padel</h2>
-            <p>Padel is een racket- en balsport die gespeeld wordt in een afgesloten veld of kooi. Het wordt voornamelijk met vier spelers gespeeld, waarbij een bal die lijkt op een tennisbal, met een racket over een net gespeeld wordt. Het lijkt een mix van tennis en squash, maar het speelveld is ongeveer 25% kleiner dan een tennisveld.</p>
+            <p>Padel is een racket- en balsport die gespeeld wordt in een afgesloten veld of kooi. Het wordt
+                voornamelijk met vier spelers gespeeld, waarbij een bal die lijkt op een tennisbal, met een racket over
+                een net gespeeld wordt. Het lijkt een mix van tennis en squash, maar het speelveld is ongeveer 25%
+                kleiner dan een tennisveld.</p>
             <a class="webButton" href="https://www.nlpadel.nl/" target="_blank">Lees meer</a>
         </div>
         <div class="center-item">
-            <img src="Images/Bouw_padel.jpg" alt="">
+            <img src="images/Bouw_padel.jpg" alt="">
         </div>
         <div class="rightItem">
             <h2>Padel bij Focus</h2>
-            <p>Daar is het dan eindelijk, je had misschien al het een en ander gehoord over het bouwen van een padelbaan maar we hebben nu eindeijk de vergunningen binnen!
-                    Sinds December is de bouw in volle gang, de planning is dat in eind februari/begin maart de eerste balletjes geslagen kunnen worden.
+            <p>Daar is het dan eindelijk, je had misschien al het een en ander gehoord over het bouwen van een padelbaan
+                maar we hebben nu eindeijk de vergunningen binnen!
+                Sinds December is de bouw in volle gang, de planning is dat in eind februari/begin maart de eerste
+                balletjes geslagen kunnen worden.
             </p>
             <a class="webButton" href="calendar.php">Reserveer nu</a>
         </div>
@@ -33,6 +38,6 @@
     </section>
 </main>
 </body>
-<?php include('Includes/footer.php') ?>
+<?php include('includes/footer.php') ?>
 </html>
 

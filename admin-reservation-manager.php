@@ -1,6 +1,6 @@
 <?php
-require_once "Includes/admin-auth.php";
-require_once('Includes/Functions.php');
+require_once "includes/admin-auth.php";
+require_once('includes/functions.php');
 /** @var $db */
 require_once "includes/connection.php";
 
@@ -37,19 +37,21 @@ if ($result) {
     <title>Reserveringen beheren</title>
 </head>
 <body>
-<?php include('Includes/header.php') ?>
+<?php include('includes/header.php') ?>
 <main>
     <div class="previous-page">
         <a class="previous-page-button" href="admin-calendar.php">
             <span style="display:block; width: 25px; height: 25px; margin-left: 5px;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-caret-left" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                     class="bi bi-caret-left" viewBox="0 0 16 16">
                     <path d="M10 12.796V3.204L4.519 8zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753"/>
                 </svg>
             </span>
             Terug
         </a>
     </div>
-    <div class="timeslot" style="font-size: var(--font-size-bigger)"><?= date('d F Y', strtotime($date)) ?> om <?= date('H:i', strtotime($date)) ?></div>
+    <div class="timeslot" style="font-size: var(--font-size-bigger)"><?= date('d F Y', strtotime($date)) ?>
+        om <?= date('H:i', strtotime($date)) ?></div>
     <section class="baanoverzicht">
         <?php
         // Vooraf ingevulde banen
