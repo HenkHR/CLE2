@@ -1,8 +1,8 @@
 <?php
 session_start();
 /** @var $db */
-require_once('Includes/connection.php');
-require_once('Includes/Functions.php');
+require_once('includes/connection.php');
+require_once('includes/functions.php');
 
 $timezoneId = 'Europe/Amsterdam';
 date_default_timezone_set($timezoneId);
@@ -111,7 +111,7 @@ if (isset($_POST['submit'])) {
     <title>Reserveren</title>
 </head>
 <body>
-<?php include('Includes/header.php') ?>
+<?php include('includes/header.php') ?>
 <main>
     <div class="reservation-overzicht"> U reserveert voor <?= date('d F Y', strtotime($date)) ?>
         om <?= date('H:i', strtotime($date)) ?> voor baan <?= $courseID ?></div>
@@ -155,6 +155,6 @@ if (isset($_POST['submit'])) {
         </form>
     </section>
 </main>
-<?php include('Includes/footer.php') ?>
+<?php include('includes/footer.php') ?>
 </body>
 </html>
