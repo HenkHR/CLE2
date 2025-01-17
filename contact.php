@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
     <?php include('includes/header.php') ?>
 </header>
 <main>
-    <section> <!-- kan ook als een div in de footer -->
+    <section class="main-section"> <!-- kan ook als een div in de footer -->
         <?php if (!isset($_POST['submit'])) { ?>
             <form class="column" action="" method="post"> <!-- post naar de pagina -->
                 <!-- gebruiker's email-->
@@ -66,9 +66,7 @@ if (isset($_POST['submit'])) {
                 <button type="submit" name="submit">Verstuur</button>
             </form>
         <?php } else { ?>
-            <p>
-                De mail is verzonden
-            </p>
+            <a href="index.php">Uw bericht is verzonden</a>
         <?php } ?>
     </section>
 </main>
