@@ -4,7 +4,6 @@ session_start();
 require_once('includes/connection.php');
 require_once('includes/functions.php');
 
-
 $timezoneId = 'Europe/Amsterdam';
 date_default_timezone_set($timezoneId);
 $year = $_GET['year'];
@@ -20,6 +19,14 @@ $result = mysqli_query($db, $query);
 $occupiedCourses = [];
 while ($row = mysqli_fetch_assoc($result)) {
     $occupiedCourses[] = $row['course'];
+}
+$today = time() + 3600;
+
+if (strtotime($date) < $today) {
+    header('Location: calendar.php');
+}
+if ($timeslot > 7) {
+    header('Location: calendar.php');
 }
 
 // Zoek de eerste beschikbare baan
@@ -39,7 +46,6 @@ if ($courseID === null) {
 }
 
 $user = null;
-$userId = null;
 if (isset($_SESSION['user_id'])) {
     $userId = $_SESSION['user_id'];
     $userQuery = "SELECT first_name, last_name, email, phone_number FROM users WHERE user_id = $userId";
@@ -69,13 +75,14 @@ if (isset($_POST['submit'])) {
     if ($email == '') {
         $errors['email'] = "Voer hier uw email-adres in";
     }
+
     if ($phoneNumber == '') {
         $errors['phoneNumber'] = "Voer hier uw telefoonnummer in";
     }
 
     if ($errors['firstName'] == '' && $errors['lastName'] == '' && $errors['email'] == '' && $errors['phoneNumber'] == '') {
-        $query = "INSERT INTO reservations (user_id, date_time, first_name, last_name, email, phone_number, course)
-                  VALUES('$userId', '$date', '$firstName', '$lastName', '$email', '$phoneNumber', '$courseID')";
+        $query = "INSERT INTO reservations (date_time, first_name, last_name, email, phone_number, course)
+                  VALUES('$date', '$firstName', '$lastName', '$email', '$phoneNumber', '$courseID')";
         mysqli_query($db, $query);
 
         if ($user && !$user['phone_number']) {
@@ -84,6 +91,13 @@ if (isset($_POST['submit'])) {
         }
 
         mysqli_close($db);
+
+        //De confirmation mail verzenden
+        $to = $email;
+        $subject = 'bevestiging padelbaan reservering';
+        $fullMessage = 'Beste' . $firstName . $lastName . "\n" . 'Bedankt voor uw reservering:' . "\n" . date('d F Y', strtotime($date)) . "\n" . date('H:i', strtotime($date)) . "\n" . 'Baan' . $courseID;
+        mail($to, $subject, $fullMessage);
+
         header('Location: confirmation.php');
     }
 }
@@ -97,49 +111,50 @@ if (isset($_POST['submit'])) {
     <title>Reserveren</title>
 </head>
 <body>
-<?php include('includes/header.php') ?>
-<div class="previous-page">
-    <a class="previous-page-button" href="calendar.php">
-            <span style="display:block; width: 25px; height: 25px;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                     class="bi bi-caret-left" viewBox="0 0 16 16">
-                    <path d="M10 12.796V3.204L4.519 8zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753"/>
-                </svg>
-            </span>
-        Terug
-    </a>
-</div>
-<div class="flex justify-center" style="font-size: var(--font-size-big); margin: 5vh 0"> U reserveert
-    voor <?= date('d F Y', strtotime($date)) ?> om <?= date('H:i', strtotime($date)) ?> voor baan <?= $courseID ?></div>
-<section class="flex justify-center margin-0">
-    <form class="column margin-0" style="gap: 2vh" action="" method="post">
-        <div class="column">
-            <label for="firstName">Voornaam</label>
-            <input class="input" id="firstName" type="text" maxlength="30" name="firstName"
-                   value="<?= htmlspecialchars($user['first_name'] ?? '') ?>"/>
-        </div>
-        <p><?= $errors['firstName'] ?? '' ?></p>
-        <div class="column">
-            <label for="lastName">Achternaam</label>
-            <input class="input" id="lastName" type="text" maxlength="30" name="lastName"
-                   value="<?= htmlspecialchars($user['last_name'] ?? '') ?>"/>
-        </div>
-        <p><?= $errors['lastName'] ?? '' ?></p>
-        <div class="column">
-            <label for="email">Email-adres</label>
-            <input class="input" id="email" type="email" maxlength="30" name="email"
-                   value="<?= htmlspecialchars($user['email'] ?? '') ?>"/>
-        </div>
-        <p><?= $errors['email'] ?? '' ?></p>
-        <div class="column">
-            <label for="phoneNumber">Telefoonnummer</label>
-            <input class="input" id="phoneNumber" type="tel" maxlength="10" name="phoneNumber" placeholder="(vereist)"
-                   value="<?= htmlspecialchars($user['phone_number'] ?? '') ?>"/>
-        </div>
-        <p><?= $errors['phoneNumber'] ?? '' ?></p>
-        <button class="Button" style="margin-bottom: 5vh" type="submit" name="submit">Reserveer</button>
-    </form>
-</section>
+<?php include('Includes/header.php') ?>
+<main>
+    <div class="reservation-overzicht"> U reserveert voor <?= date('d F Y', strtotime($date)) ?>
+        om <?= date('H:i', strtotime($date)) ?> voor baan <?= $courseID ?></div>
+    <section class="reservation-form">
+        <form action="" method="post">
+            <?php if (!isset($_SESSION['user_id'])) { ?>
+                <div class="formInput">
+                    <label for="firstName">Voornaam</label>
+                    <input class="input" id="firstName" type="text" maxlength="30" name="firstName"
+                           value="<?= htmlspecialchars($user['first_name'] ?? '') ?>"/>
+                </div>
+                <p><?= $errors['firstName'] ?? '' ?></p>
+                <div class="formInput">
+                    <label for="lastName">Achternaam</label>
+                    <input class="input" id="lastName" type="text" maxlength="30" name="lastName"
+                           value="<?= htmlspecialchars($user['last_name'] ?? '') ?>"/>
+                </div>
+                <p><?= $errors['lastName'] ?? '' ?></p>
+                <div class="formInput">
+                    <label for="email">Email-adres</label>
+                    <input class="input" id="email" type="email" maxlength="30" name="email"
+                           value="<?= htmlspecialchars($user['email'] ?? '') ?>"/>
+                </div>
+                <p><?= $errors['email'] ?? '' ?></p>
+            <?php } else { ?>
+                <input type="hidden" id="firstName" name="firstName" value="<?= $_SESSION['first_name'] ?>">
+                <input type="hidden" id="lastName" name="lastName" value="<?= $_SESSION['last_name'] ?>">
+                <input type="hidden" id="email" name="email" value="<?= $_SESSION['email'] ?>">
+            <?php } ?>
+            <?php if (!isset($_SESSION['phone_number'])) { ?>
+                <div class="formInput">
+                    <label for="phoneNumber">Telefoonnummer</label>
+                    <input class="input" id="phoneNumber" type="tel" maxlength="10" name="phoneNumber"
+                           value="<?= htmlspecialchars($user['phone_number'] ?? '') ?>"/>
+                </div>
+                <p><?= $errors['phoneNumber'] ?? '' ?></p>
+                <button class="submitButton" type="submit" name="submit">Reserveer</button>
+            <?php } else { ?>
+                <input type="hidden" id="phoneNumber" name="phoneNumber" value="<?= $_SESSION['phone_number'] ?>">
+            <?php } ?>
+        </form>
+    </section>
+</main>
 <?php include('includes/footer.php') ?>
 </body>
 </html>
