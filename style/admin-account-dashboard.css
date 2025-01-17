@@ -291,12 +291,14 @@ footer.row {
     text-align: center;
     margin: 20px 0;
 }
+
 .search-bar input {
     padding: 10px;
     width: 200px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+
 .search-bar button {
     padding: 10px 15px;
     background-color: var(--colors-link);
@@ -305,8 +307,31 @@ footer.row {
     border-radius: 4px;
     cursor: pointer;
     margin-bottom: 2.5vh;
-
 }
+
 .search-bar button:hover {
-    background-color: #0056b3;
+    background-color: #dba500;
+}
+
+.dashboard-section {
+    padding: 20px;
+    background-color: #1a1a1a;
+    color: white;
+}
+
+.dashboard-section h3 {
+    margin-bottom: 15px;
+}
+
+.dashboard-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.dashboard-section li {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #333;
 }
