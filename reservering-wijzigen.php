@@ -108,9 +108,11 @@ $klant = mysqli_fetch_assoc($result);
                     <div class="flex justify-center">
                         <select class="input" style="width: 500px; padding: 5px" id="timeslot" name="timeslot">
                             <?php foreach ($timeslots as $slot): ?>
-                                <option value="<?= $slot ?>" <?= $slot == date('H:i', strtotime($klant['date_time'])) ? 'selected' : '' ?>>
-                                    <?= $slot ?>
-                                </option>
+                                <?php if ($slot !== '21:00'):?>
+                                    <option value="<?= $slot ?>" <?= $slot == date('H:i', strtotime($klant['date_time'])) ? 'selected' : '' ?>>
+                                        <?= $slot ?>
+                                    </option>
+                                <?php endif; ?>
                             <?php endforeach; ?>
                         </select>
                     </div>

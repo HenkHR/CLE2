@@ -1,5 +1,7 @@
 :root {
     --colors-background: #0F0F0F;
+    --colors-background-light: #191919;
+    --colors-background-lighter: #1E1E1E;
     --colors-text: #FFF;
     --colors-nav-link: #FFF;
     --colors-link: #F1C232;
@@ -19,8 +21,6 @@
 
 * {
     font-family: "Segoe UI";
-    background-color: black;
-    color:white;
     margin: 0;
     padding: 0;
     border: 0;

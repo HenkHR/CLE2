@@ -1,5 +1,7 @@
 :root {
     --colors-background: #0F0F0F;
+    --colors-background-light: #191919;
+    --colors-background-lighter: #1E1E1E;
     --colors-text: #FFF;
     --colors-nav-link: #FFF;
     --colors-link: #F1C232;
@@ -175,10 +177,6 @@ form {
     align-items: center;
 }
 
-form .title {
-    margin-bottom: 25px;
-}
-
 form .form-column {
     margin: 10px 0;
 }
@@ -255,15 +253,15 @@ form button:hover {
 .userReservations{
     display: flex;
     flex-direction: column;
-    color: white;
-    font-size: 20px;
     align-items: center;
     text-align: center;
     padding-bottom: 50px;
 }
-.userReservations h2{
-    padding-bottom: 40px;
+
+.userReservations p {
+    color: var(--colors-text);
 }
+
 table{
     border-collapse: collapse;
 }
@@ -272,7 +270,6 @@ table tr{
 }
 table th,td{
     padding: 10px;
-    border-right: lightgray solid 1px;
     color:white;
     text-align: center;
 }

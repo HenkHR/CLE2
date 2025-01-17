@@ -10,8 +10,8 @@
 <body>
 <?php include('Includes/header.php') ?>
 <main>
-    <h1>Focus Padel</h1>
-    <div class="info">
+    <p class="title" style="margin-bottom: 5vh">Focus Padel</p>
+    <div class="info" style="color: var(--colors-text)">
         <div class="leftItem">
             <h2>Wat is padel</h2>
             <p>Padel is een racket- en balsport die gespeeld wordt in een afgesloten veld of kooi. Het wordt voornamelijk met vier spelers gespeeld, waarbij een bal die lijkt op een tennisbal, met een racket over een net gespeeld wordt. Het lijkt een mix van tennis en squash, maar het speelveld is ongeveer 25% kleiner dan een tennisveld.</p>

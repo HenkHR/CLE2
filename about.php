@@ -12,8 +12,8 @@
     <?php include('Includes/header.php') ?>
 </header>
 <main>
-    <h1>Welkom bij Focus!</h1>
-    <div class="info">
+    <p class="title" style="margin-bottom: 5vh">Welkom bij Focus!</p>
+    <div class="info" style="color: var(--colors-text)">
         <div class="leftItem">
                 <h2>Fitness</h2>
                 <p>

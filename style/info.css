@@ -1,10 +1,12 @@
 :root {
     --colors-background: #0F0F0F;
+    --colors-background-light: #191919;
+    --colors-background-lighter: #1E1E1E;
     --colors-text: #FFF;
     --colors-nav-link: #FFF;
     --colors-link: #F1C232;
     --colors-text-footer: #c8c8c8;
-    --colors-danger: #aa0000;
+    --colors-danger: #f00;
 
     --font-size-tiny: 0.25rem;
     --font-size-very-small: 0.5rem;
@@ -18,11 +20,10 @@
 }
 
 * {
+    font-family: "Segoe UI";
     margin: 0;
     padding: 0;
     border: 0;
-    color:white;
-    font-family: "Segoe UI";
 }
 
 .row {
@@ -106,6 +107,46 @@ main h1{
     padding-top: 30px;
     padding-bottom: 30px;
 }
+
+.title-section {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    text-align: center;
+    height: 50vh;
+    min-height: 100px;
+    background-color: var(--colors-background);
+    background-image: url('/Images/FOCUS-MH-min.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover, contain;
+    border-bottom: 1px solid white;
+}
+
+.title,
+.subtitle{
+    padding: 1vh 2vw;
+    color: var(--colors-text);
+    font-weight: bolder;
+    text-align: center;
+}
+
+.title {
+    font-size: var(--font-size-very-large);
+    text-shadow: 1px 1px 2px black;
+    padding-top: 3vh;
+}
+
+.subtitle {
+    font-size: var(--font-size-large);
+}
+
+.titleInfo{
+    color: white;
+    text-shadow: 1px 1px 3px black;
+    font-size: 25px;
+}
+
 .info{
     display: flex;
     justify-content: space-evenly;
