@@ -134,22 +134,26 @@ header {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    height: 35vh;
+    margin: 5vh 5vw;
     color: var(--colors-text);
 }
-.indexButton{
-    color:white;
-    border: white 2px solid;
+
+.main-section a {
+    color: var(--colors-text);
     text-decoration: none;
-    padding: 20px;
-    font-size: 20px;
-    width: 150px;
+    padding: 10px;
+    font-size: var(--font-size-medium);
+    width: 20vw;
     text-align: center;
+    border: 0.5vh solid var(--colors-text);
+    border-radius: 1.5vh;
 }
-.indexButton:hover{
+
+.main-section a:hover {
     color: var(--colors-link);
-    border-color: #F1C232;
+    border-color: var(--colors-link);
 }
+
 .register {
     display: flex;
     justify-content: center;
@@ -169,7 +173,6 @@ form {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 75px 0;
 }
 
 form .title {
@@ -198,6 +201,10 @@ form button {
     font-size: var(--font-size-medium);
     border: 0.5vh solid var(--colors-background);
     border-radius: 1.5vh;
+}
+
+form button:hover {
+    background-color: #bd9a2a;
 }
 
 .cookie-text {
@@ -282,6 +289,7 @@ table th,td{
 
 /*Footer*/
 footer {
+    display: block;
     border-top: 0.25vh solid var(--colors-link);
     padding: 2.5vh 5vh;
 }

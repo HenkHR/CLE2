@@ -113,7 +113,7 @@ mysqli_close($db);
                 </p>
             </div>
             <!-- Submit -->
-            <button class="link-button" type="submit" name="submit">Wijzigen</button>
+            <button type="submit" name="submit">Wijzigen</button>
             <a class="delete-account" href="delete-account.php">account verwijderen</a>
         </div>
     </form>

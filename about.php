@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +15,6 @@
     <h1>Welkom bij Focus!</h1>
     <div class="info">
         <div class="leftItem">
-            <div>
                 <h2>Fitness</h2>
                 <p>
                     Focus is vooral een sportschool, met drie vestigingen zijn we de grootste keten op Goeree-Overflakkee.
@@ -22,7 +22,6 @@
                     Ook bieden wij gratis persoonlijke begeleiding aan binnen ons fitnessabonnement.
                     Verder hebben wij ook een groot assortiment aan groepslessen. <br> Meer weten? <br> Kijk dan op onze website!
                 </p>
-            </div>
             <a class="webButton" href="https://www.focushealthfitness.nl/" target="_blank">Focus Health & Fitness</a>
         </div>
         <div class="center-item">
@@ -30,7 +29,6 @@
             <img src="Images/Lounge.jpg" alt="Lounge">
         </div>
         <div class="rightItem">
-            <div>
                 <h2>Nutrition</h2>
                 <p>
                     Wij houden ons ook bezig met voeding en supplementen, daarom hebben wij ook een eigen nutrition lijn.
@@ -39,7 +37,6 @@
                     <br>Tip: Houd onze socials in de gaten voor speciale aanbiedingen!
                     <br> Meer weten? <br>Kijk dan op onze website!
                 </p>
-            </div>
             <a  class="webButton" href="https://focushealthnutrition.com/" target="_blank">Focus Health & Nutrition</a>
         </div>
     </div>
