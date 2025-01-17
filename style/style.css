@@ -266,6 +266,8 @@ table tr{
 table th,td{
     padding: 10px;
     border-right: lightgray solid 1px;
+    color:white;
+    text-align: center;
 }
 .dltButton{
     border: none;

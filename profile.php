@@ -3,6 +3,7 @@
 require_once('Includes/auth.php');
 require_once('Includes/connection.php');
 $today = time() + 3600;
+$date = date('Y-m-d H:i', $today);
 $updateSucces = $updateError = "";
 $id = $_SESSION['user_id'];
 $query = "SELECT user_id, first_name, last_name, email, phone_number, is_admin FROM users WHERE user_id = $id";
@@ -39,10 +40,16 @@ if (isset($_COOKIE['update_message'])) {
 }
 
 $userReservations = [];
-$userReservations_query = "SELECT * FROM reservations WHERE user_id = $id ORDER BY date_time DESC";
+$userReservations_query = "SELECT * FROM reservations WHERE user_id = '$id' AND date_time >= '$date' ORDER BY date_time DESC";
 $userReservationsResult = mysqli_query($db, $userReservations_query);
 while ($row = mysqli_fetch_assoc($userReservationsResult)) {
     $userReservations[] = $row;
+}
+$pastUserReservations = [];
+$pastUserReservations_query = "SELECT * FROM reservations WHERE user_id = '$id' AND date_time < '$date' ORDER BY date_time DESC";
+$pastUserReservationsResult = mysqli_query($db, $pastUserReservations_query);
+while ($row = mysqli_fetch_assoc($pastUserReservationsResult)) {
+    $pastUserReservations[] = $row;
 }
 mysqli_close($db);
 ?>
@@ -114,33 +121,49 @@ mysqli_close($db);
 <section class="userReservations">
     <h2>Uw reserveringen</h2>
     <?php if(count($userReservations) > 0){?>
+        <h3>Komende reserveringen</h3>
         <div class="reservationsTable">
             <table>
                 <thead>
                 <tr>
-                    <th>#</th>
                     <th>Datum</th>
                     <th>Tijd</th>
-                    <th>Voornaam</th>
-                    <th>Achternaam</th>
-                    <th>Email</th>
-                    <th>Tel. nummer</th>
                     <th>Baan</th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php  foreach($userReservations as $index => $reservation){ ?>
                     <tr>
-                        <td><?= $index + 1 ?></td>
                         <td><?= date('d-m-Y',strtotime($reservation['date_time']))?></td>
                         <td><?= date('H:i',strtotime($reservation['date_time'])) ?></td>
-                        <td><?= $reservation['first_name']?></td>
-                        <td><?= $reservation['last_name']?></td>
-                        <td><?= $reservation['email']?></td>
-                        <td><?= $reservation['phone_number']?></td>
                         <td><?= $reservation['course']?></td>
                         <?php if($today < strtotime($reservation['date_time'])){?>
                             <td class="dltButton"><a href="">Annuleer</a></td>
+                        <?php }?>
+                    </tr>
+                <?php }?>
+                </tbody>
+            </table>
+        </div>
+    <?php } if(count($pastUserReservations) > 0){?>
+        <h3>Oude reserveringen</h3>
+        <div class="reservationsTable">
+            <table>
+                <thead>
+                <tr>
+                    <th>Datum</th>
+                    <th>Tijd</th>
+                    <th>Baan</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php  foreach($pastUserReservations as $index => $reservation){ ?>
+                    <tr>
+                        <td><?= date('d-m-Y',strtotime($reservation['date_time']))?></td>
+                        <td><?= date('H:i',strtotime($reservation['date_time'])) ?></td>
+                        <td><?= $reservation['course']?></td>
+                        <?php if($today < strtotime($reservation['date_time'])){?>
+                            <td class="dltButton"><a href="annuleren.php">Annuleer</a></td>
                         <?php }?>
                     </tr>
                 <?php }?>
