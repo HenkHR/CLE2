@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +13,9 @@
     <p class="justify-center text-center" style="color: var(--colors-text); font-size: var(--font-size-big); font-weight: bold">Bedankt voor uw reservering!</p>
     <div class="row justify-center" style="gap: 3vw">
         <a class="redirect-button" href="index.php">Terug naar de thuispagina</a>
+        <?php if (isset($_SESSION['user_id'])) { ?>
         <a class="redirect-button" href="profile.php">Bekijk uw afspraken</a>
+        <?php } ?>
     </div>
 </section>
 <?php include('includes/footer.php') ?>
