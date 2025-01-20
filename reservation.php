@@ -95,7 +95,7 @@ if (isset($_POST['submit'])) {
         //De confirmation mail verzenden
         $to = $email;
         $subject = 'bevestiging padelbaan reservering';
-        $fullMessage = 'Beste ' . $firstName . ' ' . $lastName . "\n" . 'Bedankt voor uw reservering:' . "\n" . date('d F Y', strtotime($date)) . "\n" . date('H:i', strtotime($date)) . "\n" . 'Baan' . $courseID;
+        $fullMessage = 'Beste' . $firstName . $lastName . "\n" . 'Bedankt voor uw reservering:' . "\n" . date('d F Y', strtotime($date)) . "\n" . date('H:i', strtotime($date)) . "\n" . 'Baan' . $courseID;
         mail($to, $subject, $fullMessage);
 
         header('Location: confirmation.php');
@@ -141,7 +141,7 @@ if (isset($_POST['submit'])) {
                 <input type="hidden" id="lastName" name="lastName" value="<?= $_SESSION['last_name'] ?>">
                 <input type="hidden" id="email" name="email" value="<?= $_SESSION['email'] ?>">
             <?php } ?>
-            <?php if (!isset($user['phone_number'])) { ?>
+            <?php if (!isset($_SESSION['phone_number'])) { ?>
                 <div class="formInput">
                     <label for="phoneNumber">Telefoonnummer</label>
                     <input class="input" id="phoneNumber" type="tel" maxlength="10" name="phoneNumber"

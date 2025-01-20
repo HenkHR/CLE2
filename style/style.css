@@ -5,6 +5,7 @@
     --colors-text: #FFF;
     --colors-nav-link: #FFF;
     --colors-link: #F1C232;
+    --colors-link-hover: #bd9a2a;
     --colors-text-footer: #c8c8c8;
     --colors-danger: #f00;
 
@@ -58,6 +59,14 @@
     margin-right: auto;
 }
 
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.overflow-scroll {
+    overflow: scroll;
+}
+
 html {
     background-color: var(--colors-background);
 }
@@ -74,7 +83,7 @@ header {
     justify-content: space-evenly;
     align-items: center;
     gap: 5vw;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0,0,0,0.9);
     border-bottom: 0.25vh solid var(--colors-link);
 }
 
@@ -102,7 +111,7 @@ header {
     height: 50vh;
     min-height: 100px;
     background-color: var(--colors-background);
-    background-image: url('../images/FOCUS-MH-min.png');
+    background-image: url('/Images/FOCUS-MH-min.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover, contain;
@@ -110,7 +119,7 @@ header {
 }
 
 .title,
-.subtitle {
+.subtitle{
     padding: 1vh 2vw;
     color: var(--colors-text);
     font-weight: bolder;
@@ -127,12 +136,11 @@ header {
     font-size: var(--font-size-large);
 }
 
-.titleInfo {
+.titleInfo{
     color: white;
     text-shadow: 1px 1px 3px black;
     font-size: 25px;
 }
-
 .main-section {
     display: flex;
     justify-content: space-evenly;
@@ -164,12 +172,18 @@ header {
     margin-top: 50px;
 }
 
-.register-button {
+.register-button,
+.redirect-button {
     padding: 10px;
     color: var(--colors-background);
     background-color: var(--colors-link);
     text-decoration: none;
     border-radius: 1.5vh;
+}
+
+.register-button:hover,
+.redirect-button:hover {
+    background-color: var(--colors-link-hover);
 }
 
 form {
@@ -178,7 +192,7 @@ form {
     align-items: center;
 }
 
-form .form-column {
+.form-column {
     margin: 10px 0;
 }
 
@@ -189,7 +203,7 @@ form label {
 
 form input {
     padding: 5px;
-    width: 490px;
+    width: calc(100% - 10px);
 }
 
 form button {
@@ -203,7 +217,7 @@ form button {
 }
 
 form button:hover {
-    background-color: #bd9a2a;
+    background-color: var(--colors-link-hover);
 }
 
 .cookie-text {
@@ -251,11 +265,16 @@ form button:hover {
     color: var(--colors-danger);
 }
 
-.userReservations {
+.userData {
+    width: 50vw;
+}
+
+.userReservations{
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    width: 50vw;
     padding-bottom: 50px;
 }
 
@@ -263,29 +282,24 @@ form button:hover {
     color: var(--colors-text);
 }
 
-table {
+table{
     border-collapse: collapse;
 }
-
-table tr {
+table tr{
     border-bottom: solid white 2px;
 }
-
-table th, td {
+table th,td{
     padding: 10px;
-    color: white;
+    color:white;
     text-align: center;
 }
-
-.dltButton {
+.dltButton{
     border: none;
 }
-
 .dltButton a {
     color: var(--colors-link);
     text-decoration: none;
 }
-
 .dltButton a:hover {
     color: indianred;
 }

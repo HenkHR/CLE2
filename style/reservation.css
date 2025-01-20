@@ -128,7 +128,6 @@ form {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 75px 0;
 }
 
 form .title {
@@ -137,6 +136,10 @@ form .title {
 
 form .form-column {
     margin: 10px 0;
+}
+
+form div.column {
+    margin: 2vh 0;
 }
 
 form label {
@@ -153,10 +156,15 @@ form button {
     margin-top: 25px;
     color: var(--colors-background);
     background-color: var(--colors-link);
+    margin-bottom: 5vh;
     padding: 10px;
     font-size: var(--font-size-medium);
     border: 0.5vh solid var(--colors-background);
     border-radius: 1.5vh;
+}
+
+form button:hover {
+    background-color: #bd9a2a;
 }
 
 .calendar{
@@ -287,9 +295,14 @@ input{
     background-color: white;
     color:black;
 }
-.submitButton{
-    background-color: white;
-    color:black;
+
+.reservation-overzicht {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 10vh;
+    color: var(--colors-text);
+    font-size: var(--font-size-bigger);
 }
 
 footer {
