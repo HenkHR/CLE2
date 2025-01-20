@@ -24,7 +24,6 @@
     margin: 0;
     padding: 0;
     border: 0;
-    background-color: var(--colors-background);
 }
 
 .margin-0 {
@@ -83,7 +82,7 @@ header {
     justify-content: space-evenly;
     align-items: center;
     gap: 5vw;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0,0,0,0.9);
     border-bottom: 0.25vh solid var(--colors-link);
 }
 
@@ -102,30 +101,26 @@ header {
     color: var(--colors-link);
 }
 
-.column {
+.column{
     display: flex;
     flex-direction: column;
 }
-
-.title {
+.title{
     display: flex;
     flex-direction: row;
     justify-content: center;
     padding: 0px 0px 20px 70px;
     color: white;
 }
-
-.title span {
+.title span{
     padding: 0px 60px 0px 60px;
     text-align: center;
 }
-
-.title a {
+.title a{
     color: white;
     text-decoration: none;
 }
-
-.title a:hover {
+.title a:hover{
     color: #F1C232;
 }
 
@@ -133,7 +128,6 @@ form {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 75px 0;
 }
 
 form .title {
@@ -142,6 +136,10 @@ form .title {
 
 form .form-column {
     margin: 10px 0;
+}
+
+form div.column {
+    margin: 2vh 0;
 }
 
 form label {
@@ -158,51 +156,51 @@ form button {
     margin-top: 25px;
     color: var(--colors-background);
     background-color: var(--colors-link);
+    margin-bottom: 5vh;
     padding: 10px;
     font-size: var(--font-size-medium);
     border: 0.5vh solid var(--colors-background);
     border-radius: 1.5vh;
 }
 
-.calendar {
+form button:hover {
+    background-color: #bd9a2a;
+}
+
+.calendar{
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
-
-.calendar-item {
+.calendar-item{
     width: 150px;
     height: 75px;
 }
-
-.days {
+.days{
     display: flex;
     flex-direction: row;
     justify-content: center;
     padding-left: 60px;
 }
-
 .days div {
     width: 145px;
     height: 40px;
     color: black;
 }
 
-.time-column {
+.time-column{
     display: flex;
     flex-direction: column;
     text-align: center;
     color: white;
 }
-
-.time-column span {
+.time-column span{
     height: 75px;
     width: 60px;
     border-top: solid 1px white;
     box-sizing: border-box;
 }
-
-.calendar-button-unavailable, .calendar-button-full, .calendar-button, .past-calender-button, .past-calender-button-admin {
+.calendar-button-unavailable, .calendar-button-full, .calendar-button, .past-calender-button, .past-calender-button-admin{
     width: 145px;
     height: 75px;
     border-color: black;
@@ -216,63 +214,60 @@ form button {
     border-right-width: 2px;
     border-left-width: 2px;
     align-items: normal;
-    color: black;
-    text-decoration: none;
+    color:black;
+    text-decoration:none;
     background-color: white;
     font-size: 13px;
     box-sizing: border-box;
 }
-
 .calendar-button-full {
     background-color: var(--colors-danger);
 }
 
 .calendar-button:hover,
 .calendar-button-full:hover,
-.past-calender-button-admin:hover {
+.past-calender-button-admin:hover{
     background-color: darkgray;
 }
-
-.calendar .calendar-button-unavailable {
+.calendar .calendar-button-unavailable{
     background-color: indianred;
     pointer-events: none;
     cursor: default;
 }
-
-.calendar .past-calender-button {
-    color: darkgray;
+.calendar .past-calender-button{
+    color:darkgray;
     background-color: whitesmoke;
-    text-decoration: none;
+    text-decoration:none;
     pointer-events: none;
     cursor: default;
 }
 
 .past-calender-button-admin {
-    color: darkgray;
+    color:darkgray;
     background-color: whitesmoke;
-    text-decoration: none;
+    text-decoration:none;
 }
 
 .past-calender-button-admin:hover {
     color: black;
 }
 
-div .dayOfWeek {
+div .dayOfWeek{
     text-align: center;
     border: solid black 1px;
     background-color: #F1C232;
     box-sizing: border-box;
     height: 40px;
 }
-
-div .currentDayOfWeek {
+div .currentDayOfWeek{
     text-align: center;
     border: solid black 1px;
     background-color: #F1C232;
     font-weight: bolder;
-    color: white;
+    color:white;
     box-sizing: border-box;
 }
+
 
 
 .previous-page {
@@ -296,14 +291,18 @@ div .currentDayOfWeek {
 }
 
 
-input {
+input{
     background-color: white;
-    color: black;
+    color:black;
 }
 
-.submitButton {
-    background-color: white;
-    color: black;
+.reservation-overzicht {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 10vh;
+    color: var(--colors-text);
+    font-size: var(--font-size-bigger);
 }
 
 footer {
