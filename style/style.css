@@ -37,6 +37,10 @@
     flex-direction: column;
 }
 
+.flex {
+    display: flex;
+}
+
 .justify-center {
     justify-content: center;
 }
@@ -149,7 +153,8 @@ header {
     color: var(--colors-text);
 }
 
-.main-section a {
+.main-section a,
+.reservation-button{
     color: var(--colors-text);
     text-decoration: none;
     padding: 10px;
@@ -160,7 +165,8 @@ header {
     border-radius: 1.5vh;
 }
 
-.main-section a:hover {
+.main-section a:hover,
+.reservation-button:hover{
     color: var(--colors-link);
     border-color: var(--colors-link);
 }
