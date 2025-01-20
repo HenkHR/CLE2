@@ -81,109 +81,111 @@ mysqli_close($db);
 <div class="update-cookie">
     <p class="cookie-text"><?= htmlspecialchars($updateSucces) ?></p>
 </div>
-<section>
-    <form action="" method="post">
-        <div class="column" style="width: 500px">
-            <p class="subtitle">Account van <br><?= $user['first_name'] . ' ' . $user['last_name']?></p>
-            <div class="form-column"> <!-- Voornaam -->
-                <div>
-                    <label class="label" for="firstName">Voornaam</label>
+<div class="row">
+    <section class="column overflow-hidden" style="width: 50vw">
+        <form action="" method="post">
+            <div class="column" style="width: 500px">
+                <p class="subtitle">Account van <br><?= $user['first_name'] . ' ' . $user['last_name']?></p>
+                <div class="form-column"> <!-- Voornaam -->
+                    <div>
+                        <label class="label" for="firstName">Voornaam</label>
+                    </div>
+                    <div>
+                        <input class="input" id="firstName" type="text" name="first_name" value="<?= htmlspecialchars($user['first_name']) ?>"/>
+                    </div>
                 </div>
-                <div>
-                    <input class="input" id="firstName" type="text" name="first_name" value="<?= htmlspecialchars($user['first_name']) ?>"/>
+                <div class="form-column"> <!-- Achternaam -->
+                    <div>
+                        <label class="label" for="lastName">Achternaam</label>
+                    </div>
+                    <div>
+                        <input class="input" id="lastName" type="text" name="last_name" value="<?= htmlspecialchars($user['last_name']) ?>"/>
+                    </div>
                 </div>
+                <div class="form-column"> <!-- Email -->
+                    <div>
+                        <label class="label" for="email">E-mailadres</label>
+                    </div>
+                    <div>
+                        <input class="input" id="email" type="email" name="email" value="<?= htmlspecialchars($user['email']) ?>"/>
+                    </div>
+                </div>
+                <div class="form-column"> <!-- Telefoonnummer -->
+                    <div>
+                        <label class="label" for="phoneNumber">Telefoonnummer <span style="color: var(--colors-text-footer); font-size: var(--font-size-small)">(optioneel)</span></label>
+                    </div>
+                    <div>
+                        <input class="input" id="phoneNumber" type="text" maxlength="10" name="phone_number" value="<?= htmlspecialchars($user['phone_number'] ?? '') ?>"/>
+                    </div>
+                    <p class="Danger" style="margin-top: 25px">
+                        <?= htmlspecialchars($updateError) ?>
+                    </p>
+                </div>
+                <!-- Submit -->
+                <button type="submit" name="submit">Wijzigen</button>
             </div>
-            <div class="form-column"> <!-- Achternaam -->
-                <div>
-                    <label class="label" for="lastName">Achternaam</label>
-                </div>
-                <div>
-                    <input class="input" id="lastName" type="text" name="last_name" value="<?= htmlspecialchars($user['last_name']) ?>"/>
-                </div>
-            </div>
-            <div class="form-column"> <!-- Email -->
-                <div>
-                    <label class="label" for="email">E-mailadres</label>
-                </div>
-                <div>
-                    <input class="input" id="email" type="email" name="email" value="<?= htmlspecialchars($user['email']) ?>"/>
-                </div>
-            </div>
-            <div class="form-column"> <!-- Telefoonnummer -->
-                <div>
-                    <label class="label" for="phoneNumber">Telefoonnummer <span style="color: var(--colors-text-footer); font-size: var(--font-size-small)">(optioneel)</span></label>
-                </div>
-                <div>
-                    <input class="input" id="phoneNumber" type="text" maxlength="10" name="phone_number" value="<?= htmlspecialchars($user['phone_number'] ?? '') ?>"/>
-                </div>
-                <p class="Danger" style="margin-top: 25px">
-                    <?= htmlspecialchars($updateError) ?>
-                </p>
-            </div>
-            <!-- Submit -->
-            <button type="submit" name="submit">Wijzigen</button>
-        </div>
-    </form>
-    <form action="admin-account-verwijderen.php" method="post">
-        <input type="hidden" name="userId" id="userId" value="<?=$id?>">
-        <input type="submit" class="delete-account" value="Account verwijderen" style="background-color: #0F0F0F">
-    </form>
-</section>
-<section class="userReservations">
-    <p style="font-size: var(--font-size-bigger); font-weight: bold; margin-top: 50px; margin-bottom: 15px">Gemaakte reserveringen</p>
-    <?php if(count($userReservations) > 0){?>
-        <p style="margin-bottom: 10px; font-size: var(--font-size-big); font-weight: bold">Komende reserveringen</p>
-        <div class="reservationsTable" style="font-size: var(--font-size-big)">
-            <table>
-                <thead>
-                <tr>
-                    <th>Datum</th>
-                    <th style="background-color: var(--colors-background-lighter)">Tijd</th>
-                    <th>Baan</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php foreach($userReservations as $reservation): ?>
+        </form>
+        <form action="admin-account-verwijderen.php" method="post">
+            <input type="hidden" name="userId" id="userId" value="<?=$id?>">
+            <input type="submit" class="delete-account" value="Account verwijderen" style="background-color: #0F0F0F">
+        </form>
+    </section>
+    <section class="userReservations overflow-hidden" style="border-left: 1px solid var(--colors-link)">
+        <p class="subtitle">Gemaakte reserveringen</p>
+        <?php if(count($userReservations) > 0){?>
+            <p style="margin-bottom: 10px; font-size: var(--font-size-big); font-weight: bold">Komende reserveringen</p>
+            <div class="reservationsTable" style="font-size: var(--font-size-big)">
+                <table>
+                    <thead>
                     <tr>
-                        <td><?= date('d-m-Y', strtotime($reservation['date_time'])) ?></td>
-                        <td style="background-color: var(--colors-background-lighter)"><?= date('H:i', strtotime($reservation['date_time'])) ?></td>
-                        <td><?= htmlspecialchars($reservation['course']) ?></td>
-                        <?php if ($today < strtotime($reservation['date_time'])): ?>
-                            <td class="dltButton">
-                                <a class='Danger' href='annuleren.php?reservation_id=<?= $reservation['reservation_id'] ?>'>Annuleer</a>
-                            </td>
-                        <?php endif; ?>
+                        <th>Datum</th>
+                        <th style="background-color: var(--colors-background-lighter)">Tijd</th>
+                        <th>Baan</th>
                     </tr>
-                <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
-    <?php } if(count($pastUserReservations) > 0){?>
-        <p style="margin-top: 50px; color: var(--colors-text-footer)">Voorgaande reserveringen</p>
-        <div class="reservationsTable">
-            <table>
-                <thead>
-                <tr>
-                    <th style="color: var(--colors-text-footer)">Datum</th>
-                    <th style="color: var(--colors-text-footer); background-color: var(--colors-background-lighter)">Tijd</th>
-                    <th style="color: var(--colors-text-footer)">Baan</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php  foreach($pastUserReservations as $index => $reservation){ ?>
+                    </thead>
+                    <tbody>
+                    <?php foreach($userReservations as $reservation): ?>
+                        <tr>
+                            <td><?= date('d-m-Y', strtotime($reservation['date_time'])) ?></td>
+                            <td style="background-color: var(--colors-background-lighter)"><?= date('H:i', strtotime($reservation['date_time'])) ?></td>
+                            <td><?= htmlspecialchars($reservation['course']) ?></td>
+                            <?php if ($today < strtotime($reservation['date_time'])): ?>
+                                <td class="dltButton">
+                                    <a class='Danger' href='annuleren.php?reservation_id=<?= $reservation['reservation_id'] ?>'>Annuleer</a>
+                                </td>
+                            <?php endif; ?>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php } if(count($pastUserReservations) > 0){?>
+            <p style="margin-top: 50px; color: var(--colors-text-footer)">Voorgaande reserveringen</p>
+            <div class="reservationsTable">
+                <table>
+                    <thead>
                     <tr>
-                        <td style="color: var(--colors-text-footer)"><?= date('d-m-Y',strtotime($reservation['date_time']))?></td>
-                        <td style="color: var(--colors-text-footer); background-color: var(--colors-background-lighter)"><?= date('H:i',strtotime($reservation['date_time'])) ?></td>
-                        <td style="color: var(--colors-text-footer)"><?= $reservation['course']?></td>
+                        <th style="color: var(--colors-text-footer)">Datum</th>
+                        <th style="color: var(--colors-text-footer); background-color: var(--colors-background-lighter)">Tijd</th>
+                        <th style="color: var(--colors-text-footer)">Baan</th>
                     </tr>
-                <?php }?>
-                </tbody>
-            </table>
-        </div>
-    <?php } else{ ?>
-        <p> Deze gebruiker heeft nog geen reserveringen gemaakt</p>
-    <?php } ?>
-</section>
+                    </thead>
+                    <tbody>
+                    <?php  foreach($pastUserReservations as $index => $reservation){ ?>
+                        <tr>
+                            <td style="color: var(--colors-text-footer)"><?= date('d-m-Y',strtotime($reservation['date_time']))?></td>
+                            <td style="color: var(--colors-text-footer); background-color: var(--colors-background-lighter)"><?= date('H:i',strtotime($reservation['date_time'])) ?></td>
+                            <td style="color: var(--colors-text-footer)"><?= $reservation['course']?></td>
+                        </tr>
+                    <?php }?>
+                    </tbody>
+                </table>
+            </div>
+        <?php } else{ ?>
+            <p> Deze gebruiker heeft nog geen reserveringen gemaakt</p>
+        <?php } ?>
+    </section>
+</div>
 <?php include('Includes/footer.php') ?>
 </body>
 </html>
