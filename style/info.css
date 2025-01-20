@@ -171,11 +171,12 @@ h2{
     flex-direction: column;
 }
 .center-item img {
-    max-width: 30vw;
+    width: 30vw;
     object-fit: cover;
     align-self: center;
     border-radius: 10px;
     border: solid 1px white;
+    height: 400px;
 }
 .center-item a{
     align-self: center;
