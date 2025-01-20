@@ -47,13 +47,6 @@ if (isset($_COOKIE['update_message'])) {
         Op deze website vind je alles over padellen bij Focus
     </p>
 </section>
-<section class="main-section">
-    <a href="info.php">Meer over padel</a>
-    <a href="about.php">Meer over Focus</a>
-    <?php if (!isset($_SESSION['user_id']) || (!empty(($userReservations)))) { ?>
-            <a href="calendar.php">Reserveren</a>
-    <?php } ?>
-</section>
 <?php if (isset($_SESSION['user_id'])) { ?>
     <section class="reservation-section flex justify-center">
         <div class="column justify-center text-center">
@@ -89,6 +82,13 @@ if (isset($_COOKIE['update_message'])) {
         </div>
     </section>
 <?php } ?>
+<section class="main-section">
+    <a href="info.php">Meer over padel</a>
+    <a href="about.php">Meer over Focus</a>
+    <?php if (!isset($_SESSION['user_id']) || (!empty(($userReservations)))) { ?>
+            <a href="calendar.php">Reserveren</a>
+    <?php } ?>
+</section>
 <?php include('includes/footer.php') ?>
 </body>
 </html>

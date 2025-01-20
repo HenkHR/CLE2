@@ -152,8 +152,13 @@ header {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    margin: 5vh 5vw;
+    padding: 5vh 5vw;
     color: var(--colors-text);
+}
+
+.reservation-section {
+    padding: 5vh 5vw;
+    border-bottom: 1px solid var(--colors-text);
 }
 
 .main-section a,
