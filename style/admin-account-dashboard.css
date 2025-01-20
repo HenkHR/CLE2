@@ -73,7 +73,6 @@ header {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    gap: 5vw;
     background-color: rgba(0,0,0,0.9);
     border-bottom: 0.25vh solid var(--colors-link);
 }
@@ -148,6 +147,7 @@ form {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 1vw;
     margin: 75px 0;
 }
 
@@ -170,11 +170,9 @@ form input {
 }
 
 form button {
-    margin-top: 25px;
     color: var(--colors-background);
     background-color: var(--colors-link);
     padding: 10px;
-    font-size: var(--font-size-medium);
     border: 0.5vh solid var(--colors-background);
     border-radius: 1.5vh;
 }
@@ -306,7 +304,6 @@ footer.row {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin-bottom: 2.5vh;
 }
 
 .search-bar button:hover {
@@ -329,32 +326,61 @@ footer.row {
 }
 
 .dashboard-section li {
+}
+
+.listButton {
+    display: flex;
     margin-bottom: 15px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #333;
+    background-color: rgba(51, 51, 51, 1);
 }
- a:link {
-     color: #cccccc;
-     background-color: transparent;
-     text-decoration: none;
- }
 
-a:visited {
+.listButton:link {
+    color: #cccccc;
+    text-decoration: none;
+}
+
+.listButton:visited {
     color: #808080;
     background-color: transparent;
     text-decoration: none;
 }
 
-a:hover {
-    color: #ffffff;
+.listButton:hover {
+    color: var(--colors-link);
+    background-color: rgba(51, 51, 51, 0.7);
+    text-decoration: underline;
+    border: 1px solid var(--colors-link);
+}
+
+.listButton:active {
+    color: #ff9900;
     background-color: transparent;
     text-decoration: underline;
 }
 
-a:active {
-    color: #ff9900;
-    background-color: transparent;
-    text-decoration: underline;
+.no-text-decoration {
+    text-decoration: none; !important;
+}
+
+.previous-page {
+    display: flex;
+}
+
+.previous-page-button {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--colors-text);
+    padding: 5px;
+}
+
+.previous-page-button:hover {
+    color: var(--colors-link);
+}
+
+.previous-page-button:hover svg {
+    fill: var(--colors-link); /* Zorgt ervoor dat de SVG de kleur aanneemt, Gedaan via ChatGPT omdat dit zwaar zat te kloten */
 }

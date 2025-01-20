@@ -38,10 +38,10 @@ while ($row = mysqli_fetch_assoc($result)) {
     <link rel="stylesheet" href="style/reservation.css">
     <title>Reserveringen beheren</title>
 </head>
-<body>
+<body style="background-color: var(--colors-background)">
 <?php include('includes/header.php') ?>
 <main>
-    <div class="title">
+    <div class="title" style="margin-top: 5vh">
         <a href="?week=<?= $selectedWeek - 1 ?>">Vorige week</a>
         <span><a href="?week=<?= 0 ?>"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">

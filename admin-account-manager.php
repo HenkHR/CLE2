@@ -1,5 +1,6 @@
 <?php
 /** @var $db */
+require_once "includes/admin-auth.php";
 require_once('includes/connection.php');
 
 $users = null;
@@ -121,10 +122,10 @@ if (isset($_POST['cancel'])) {
         <?php if ($users): ?>
             <h3>Gegevens gevonden:</h3>
             <ul>
-                <?php foreach ($users as $res): ?>
+                <?php foreach ($users as $user): ?>
                     <li>
-                        <a href="admin_user_profile.php?user_id=<?= htmlspecialchars($res['user_id']) ?>">
-                            <strong>Naam: </strong> <?= htmlspecialchars($res['first_name'] . ' ' . $res['last_name']) ?>
+                        <a class="listButton" href="admin_user_profile.php?id=<?= htmlspecialchars($user['user_id']) ?>">
+                            <strong class="no-text-decoration" style="margin-right: 5px">Naam:</strong> <?= htmlspecialchars($user['first_name'] . ' ' . $user['last_name']) ?>
                         </a>
                     </li>
                 <?php endforeach; ?>

@@ -46,6 +46,7 @@ if ($courseID === null) {
 }
 
 $user = null;
+$userId = null;
 if (isset($_SESSION['user_id'])) {
     $userId = $_SESSION['user_id'];
     $userQuery = "SELECT first_name, last_name, email, phone_number FROM users WHERE user_id = $userId";
@@ -81,8 +82,13 @@ if (isset($_POST['submit'])) {
     }
 
     if ($errors['firstName'] == '' && $errors['lastName'] == '' && $errors['email'] == '' && $errors['phoneNumber'] == '') {
-        $query = "INSERT INTO reservations (date_time, first_name, last_name, email, phone_number, course)
-                  VALUES('$date', '$firstName', '$lastName', '$email', '$phoneNumber', '$courseID')";
+        if ($userId !== null) {
+            $query = "INSERT INTO reservations (user_id, date_time, first_name, last_name, email, phone_number, course) 
+                      VALUES('$userId', '$date', '$firstName', '$lastName', '$email', '$phoneNumber', '$courseID')";
+        } else {
+            $query = "INSERT INTO reservations (date_time, first_name, last_name, email, phone_number, course)
+                      VALUES('$date', '$firstName', '$lastName', '$email', '$phoneNumber', '$courseID')";
+        }
         mysqli_query($db, $query);
 
         if ($user && !$user['phone_number']) {
@@ -110,7 +116,7 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="style/reservation.css">
     <title>Reserveren</title>
 </head>
-<body>
+<body style="background-color: var(--colors-background)">
 <?php include('includes/header.php') ?>
 <main>
     <div class="reservation-overzicht"> U reserveert voor <?= date('d F Y', strtotime($date)) ?>

@@ -37,7 +37,7 @@ session_start()
 <body style="background-color: var(--colors-background)">
 <?php include('includes/header.php') ?>
 <main>
-    <div class="title">
+    <div class="title" style="margin-top: 5vh">
         <a href="?week=<?= $selectedWeek - 1 ?>">Vorige week</a>
         <span>
             <a href="?week=<?= 0 ?>">

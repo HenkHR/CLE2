@@ -37,6 +37,10 @@
     flex-direction: column;
 }
 
+.flex {
+    display: flex;
+}
+
 .justify-center {
     justify-content: center;
 }
@@ -51,6 +55,10 @@
 
 .text-center {
     text-align: center;
+}
+
+.text-left {
+    text-align: left;
 }
 
 .element {
@@ -82,7 +90,6 @@ header {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    gap: 5vw;
     background-color: rgba(0,0,0,0.9);
     border-bottom: 0.25vh solid var(--colors-link);
 }
@@ -108,7 +115,6 @@ header {
     flex-direction: column;
     gap: 50px;
     text-align: center;
-    height: 50vh;
     min-height: 100px;
     background-color: var(--colors-background);
     background-image: url('/Images/FOCUS-MH-min.png');
@@ -129,7 +135,7 @@ header {
 .title {
     font-size: var(--font-size-very-large);
     text-shadow: 1px 1px 2px black;
-    padding-top: 3vh;
+    padding-top: 10vh;
 }
 
 .subtitle {
@@ -140,16 +146,23 @@ header {
     color: white;
     text-shadow: 1px 1px 3px black;
     font-size: 25px;
+    padding-bottom: 10vh;
 }
 .main-section {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    margin: 5vh 5vw;
+    padding: 5vh 5vw;
     color: var(--colors-text);
 }
 
-.main-section a {
+.reservation-section {
+    padding: 5vh 5vw;
+    border-bottom: 1px solid var(--colors-text);
+}
+
+.main-section a,
+.reservation-button{
     color: var(--colors-text);
     text-decoration: none;
     padding: 10px;
@@ -160,7 +173,8 @@ header {
     border-radius: 1.5vh;
 }
 
-.main-section a:hover {
+.main-section a:hover,
+.reservation-button:hover{
     color: var(--colors-link);
     border-color: var(--colors-link);
 }
@@ -193,7 +207,7 @@ form {
 }
 
 .form-column {
-    margin: 10px 0;
+    margin: 10px;
 }
 
 form label {
@@ -302,6 +316,27 @@ table th,td{
 }
 .dltButton a:hover {
     color: indianred;
+}
+
+/* terugknop */
+.previous-page {
+    display: flex;
+}
+
+.previous-page-button {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--colors-text);
+    padding: 5px;
+}
+
+.previous-page-button:hover span {
+    color: var(--colors-link); /* Verandert de tekstkleur */
+}
+
+.previous-page-button:hover svg {
+    fill: var(--colors-link); /* Verandert de kleur van de SVG */
 }
 
 /*Footer*/

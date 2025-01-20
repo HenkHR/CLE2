@@ -81,8 +81,7 @@ header {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    gap: 5vw;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0,0,0,0.9);
     border-bottom: 0.25vh solid var(--colors-link);
 }
 
@@ -102,7 +101,7 @@ header {
 }
 
 /*main */
-main h1 {
+main h1{
     text-align: center;
     padding-top: 30px;
     padding-bottom: 30px;
@@ -116,7 +115,7 @@ main h1 {
     height: 50vh;
     min-height: 100px;
     background-color: var(--colors-background);
-    background-image: url('/images/FOCUS-MH-min.png');
+    background-image: url('/Images/FOCUS-MH-min.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover, contain;
@@ -124,7 +123,7 @@ main h1 {
 }
 
 .title,
-.subtitle {
+.subtitle{
     padding: 1vh 2vw;
     color: var(--colors-text);
     font-weight: bolder;
@@ -141,42 +140,37 @@ main h1 {
     font-size: var(--font-size-large);
 }
 
-.titleInfo {
+.titleInfo{
     color: white;
     text-shadow: 1px 1px 3px black;
     font-size: 25px;
 }
 
-.info {
+.info{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     gap: 20px
 }
-
-.leftItem, .center-item, .rightItem {
+.leftItem, .center-item, .rightItem{
     display: flex;
     margin-bottom: 5vh;
     width: 30vw;
     gap: 3vh;
 }
-
-.leftItem, .rightItem {
+.leftItem, .rightItem{
     display: flex;
     flex-direction: column;
     text-align: center;
 }
-
-h2 {
+h2{
     text-align: center;
 }
-
-.center-item {
+.center-item{
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
-
 .center-item img {
     max-width: 30vw;
     object-fit: cover;
@@ -184,8 +178,7 @@ h2 {
     border-radius: 10px;
     border: solid 1px white;
 }
-
-.webButton {
+.webButton{
     background-color: var(--colors-link);
     color: black;
     margin-bottom: 5vh;
@@ -196,10 +189,14 @@ h2 {
     text-align: center;
     align-self: center;
 }
-
-.webButton:hover {
+.webButton:hover{
     background-color: #bd9a2a;
 }
+
+
+
+
+
 
 
 /* Footer */
