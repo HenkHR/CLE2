@@ -1,5 +1,6 @@
 <?php
 session_start();
+/** @var $db */
 require_once('Includes/connection.php');
 $today = date('Y-m-d'); // Huidige datum, zonder tijd
 if (isset($_SESSION['user_id'])) {

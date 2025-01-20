@@ -268,29 +268,6 @@ div .currentDayOfWeek{
     box-sizing: border-box;
 }
 
-
-
-.previous-page {
-    display: flex;
-}
-
-.previous-page-button {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: var(--colors-text);
-    padding: 5px;
-}
-
-.previous-page-button:hover {
-    color: var(--colors-link);
-}
-
-.previous-page-button:hover svg {
-    fill: var(--colors-link); /* Zorgt ervoor dat de SVG de kleur aanneemt, Gedaan via ChatGPT omdat dit zwaar zat te kloten */
-}
-
-
 input{
     background-color: white;
     color:black;

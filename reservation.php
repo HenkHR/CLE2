@@ -116,7 +116,7 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="style/reservation.css">
     <title>Reserveren</title>
 </head>
-<body>
+<body style="background-color: var(--colors-background)">
 <?php include('includes/header.php') ?>
 <main>
     <div class="reservation-overzicht"> U reserveert voor <?= date('d F Y', strtotime($date)) ?>

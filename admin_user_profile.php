@@ -69,13 +69,13 @@ mysqli_close($db);
     text-decoration: none;
     color: var(--colors-text);
     padding: 5px;" href="admin-account-manager.php">
-            <span style="display:block; width: 25px; height: 25px; margin-left: 5px;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                     class="bi bi-caret-left" viewBox="0 0 16 16">
-                    <path d="M10 12.796V3.204L4.519 8zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753"/>
-                </svg>
-            </span>
-        Terug
+        <span style="display:block; width: 25px; height: 25px; margin-left: 5px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                 class="bi bi-caret-left" viewBox="0 0 16 16">
+                <path d="M10 12.796V3.204L4.519 8zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753"/>
+            </svg>
+        </span>
+        <span>Terug</span>
     </a>
 </div>
 <div class="update-cookie">

@@ -57,6 +57,10 @@
     text-align: center;
 }
 
+.text-left {
+    text-align: left;
+}
+
 .element {
     max-width: fit-content;
     margin-left: auto;
@@ -86,7 +90,6 @@ header {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    gap: 5vw;
     background-color: rgba(0,0,0,0.9);
     border-bottom: 0.25vh solid var(--colors-link);
 }
@@ -308,6 +311,27 @@ table th,td{
 }
 .dltButton a:hover {
     color: indianred;
+}
+
+/* terugknop */
+.previous-page {
+    display: flex;
+}
+
+.previous-page-button {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--colors-text);
+    padding: 5px;
+}
+
+.previous-page-button:hover span {
+    color: var(--colors-link); /* Verandert de tekstkleur */
+}
+
+.previous-page-button:hover svg {
+    fill: var(--colors-link); /* Verandert de kleur van de SVG */
 }
 
 /*Footer*/

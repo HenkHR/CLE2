@@ -112,7 +112,7 @@ if (isset($_POST['submit'])) {
                 </p>
             </div>
             <!-- Submit -->
-            <button class="link-button" type="submit" name="submit">Registreer</button>
+            <button class="link-button" style="margin-bottom: 5vh" type="submit" name="submit">Registreer</button>
         </div>
     </form>
 </section>
