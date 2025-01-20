@@ -41,13 +41,17 @@ if (isset($_COOKIE['update_message'])) {
 <?php include('includes/header.php') ?>
 <section class="title-section">
     <p class="title">
+    <?php if (isset($_SESSION['user_id'])) { ?>
+        Welkom, <?= $_SESSION['first_name'] ?>
+    <?php } else { ?>
         Welkom bij Focus Padel!
+    <?php } ?>
     </p>
     <p class="titleInfo">
         Op deze website vind je alles over padellen bij Focus
     </p>
 </section>
-<?php if (isset($_SESSION['user_id'])) { ?>
+<?php if (isset($_SESSION['user_id']) && $_SESSION['is_admin'] != 1)  { ?>
     <section class="reservation-section flex justify-center">
         <div class="column justify-center text-center">
             <p class="text-center" style="margin-bottom: 10px; color: var(--colors-text); font-size: var(--font-size-big); font-weight: bold">Reserveringen voor vandaag</p>
@@ -56,7 +60,6 @@ if (isset($_COOKIE['update_message'])) {
                     <table>
                         <thead>
                         <tr>
-                            <th>Datum</th>
                             <th style="background-color: var(--colors-background-lighter)">Tijd</th>
                             <th>Baan</th>
                         </tr>
@@ -64,7 +67,6 @@ if (isset($_COOKIE['update_message'])) {
                         <tbody>
                         <?php foreach($userReservations as $reservation): ?>
                             <tr>
-                                <td><?= date('d-m-Y', strtotime($reservation['date_time'])) ?></td>
                                 <td style="background-color: var(--colors-background-lighter)"><?= date('H:i', strtotime($reservation['date_time'])) ?></td>
                                 <td><?= htmlspecialchars($reservation['course']) ?></td>
                                 <td class="dltButton">
@@ -85,7 +87,7 @@ if (isset($_COOKIE['update_message'])) {
 <section class="main-section">
     <a href="info.php">Meer over padel</a>
     <a href="about.php">Meer over Focus</a>
-    <?php if (!isset($_SESSION['user_id']) || (!empty(($userReservations)))) { ?>
+    <?php if (!isset($_SESSION['user_id']) && (empty(($userReservations)))) { ?>
             <a href="calendar.php">Reserveren</a>
     <?php } ?>
 </section>

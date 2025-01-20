@@ -115,7 +115,6 @@ header {
     flex-direction: column;
     gap: 50px;
     text-align: center;
-    height: 50vh;
     min-height: 100px;
     background-color: var(--colors-background);
     background-image: url('/Images/FOCUS-MH-min.png');
@@ -136,7 +135,7 @@ header {
 .title {
     font-size: var(--font-size-very-large);
     text-shadow: 1px 1px 2px black;
-    padding-top: 3vh;
+    padding-top: 10vh;
 }
 
 .subtitle {
@@ -147,6 +146,7 @@ header {
     color: white;
     text-shadow: 1px 1px 3px black;
     font-size: 25px;
+    padding-bottom: 10vh;
 }
 .main-section {
     display: flex;
@@ -207,7 +207,7 @@ form {
 }
 
 .form-column {
-    margin: 10px 0;
+    margin: 10px;
 }
 
 form label {

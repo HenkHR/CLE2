@@ -115,7 +115,7 @@ mysqli_close($db);
                 </div>
                 <!-- Submit -->
                 <button type="submit" name="submit">Wijzigen</button>
-                <a class="delete-account" href="delete-account.php">account verwijderen</a>
+                <a class="delete-account" style="margin-bottom: 5vh" href="delete-account.php">account verwijderen</a>
             </div>
         </form>
     </section>
@@ -149,7 +149,9 @@ mysqli_close($db);
                     </tbody>
                 </table>
             </div>
-        <?php } if(count($pastUserReservations) > 0){?>
+        <?php } else{ ?>
+        <p> U heeft nog geen nieuwe reserveringen</p>
+        <?php } if(count($pastUserReservations) > 0) { ?>
             <p style="margin-top: 50px; color: var(--colors-text-footer)">Voorgaande reserveringen</p>
             <div class="reservationsTable" style="font-size: var(--font-size-small)">
                 <table>
@@ -171,8 +173,6 @@ mysqli_close($db);
                     </tbody>
                 </table>
             </div>
-        <?php } else{ ?>
-            <p> U heeft nog geen reserveringen</p>
         <?php } ?>
     </section>
 </div>
