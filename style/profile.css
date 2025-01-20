@@ -335,26 +335,32 @@ footer.row {
     border-radius: 5px;
     background-color: #333;
 }
- a:link {
-     color: #cccccc;
-     background-color: transparent;
-     text-decoration: none;
- }
 
-a:visited {
-    color: #808080;
-    background-color: transparent;
-    text-decoration: none;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
 }
 
-a:hover {
-    color: #ffffff;
-    background-color: transparent;
-    text-decoration: underline;
+.profile-section {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-a:active {
-    color: #ff9900;
-    background-color: transparent;
-    text-decoration: underline;
+.profile-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+.profile-section p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 10px 0;
 }

@@ -1,6 +1,6 @@
 <?php
 /** @var $db */
-require_once "Includes/auth.php";
+require_once "includes/auth.php";
 require_once "includes/connection.php";
 $error = '';
 $success = '';
@@ -83,11 +83,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Afspraak Annuleren</title>
 </head>
 <body>
-<?php include('Includes/header.php') ?>
+<?php include('includes/header.php') ?>
 <div class="previous-page">
     <a class="previous-page-button" href="profile.php">
             <span style="display:block; width: 25px; height: 25px; margin-left: 5px;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-caret-left" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                     class="bi bi-caret-left" viewBox="0 0 16 16">
                     <path d="M10 12.796V3.204L4.519 8zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753"/>
                 </svg>
             </span>
@@ -101,7 +102,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php elseif ($success): ?>
     <p class="flex justify-center" style="color: var(--colors-text)"><?= htmlspecialchars($success) ?></p>
 <?php elseif ($appointment): ?>
-    <p class="flex justify-center"  style="color: var(--colors-text); font-size: var(--font-size-big)">Bent u zeker dat u uw afspraak op <?= htmlspecialchars(date('d-m-Y H:i', strtotime($appointment['date_time']))) ?> op baan <?= htmlspecialchars($appointment['course']) ?> wilt annuleren?</p>
+    <p class="flex justify-center" style="color: var(--colors-text); font-size: var(--font-size-big)">Bent u zeker dat u
+        uw afspraak op <?= htmlspecialchars(date('d-m-Y H:i', strtotime($appointment['date_time']))) ?> op
+        baan <?= htmlspecialchars($appointment['course']) ?> wilt annuleren?</p>
     <form class="column" method="post">
         <div class="row between" style="gap: 5px">
             <input required class="checkbox-small" type="checkbox" id="confirm_delete" name="confirm_delete">

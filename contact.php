@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
     //als er geen errors zijn kan je de mail verzenden
     if (empty($error)) {
         $to = '1101595@hr.nl';
-        $fullMessage = 'Van:' . $_POST['firstName'] . $_POST['lastName'] . "\n" . 'Email:' . $_POST['email'] . "\n" . $_POST['message'];
+        $fullMessage = 'Van: ' . $_POST['firstName'] . ' ' . $_POST['lastName'] . "\n" . 'Email:' . $_POST['email'] . "\n" . $_POST['message'];
 
         mail($to, $subject, $fullMessage);
     }

@@ -38,7 +38,6 @@ if (isset($_COOKIE['update_message'])) {
 } else {
     $updateSucces = '';
 }
-
 $userReservations = [];
 $userReservations_query = "SELECT * FROM reservations WHERE user_id = '$id' AND date_time >= '$date' ORDER BY date_time ASC";
 $userReservationsResult = mysqli_query($db, $userReservations_query);
