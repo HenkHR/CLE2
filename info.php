@@ -21,7 +21,7 @@
             <a class="webButton" href="https://www.nlpadel.nl/" target="_blank">Lees meer</a>
         </div>
         <div class="center-item">
-            <img src="images/Bouw_padel.jpg" alt="">
+            <img src="images/Constructie_padel.jpg" alt="">
         </div>
         <div class="rightItem">
             <h2>Padel bij Focus</h2>
