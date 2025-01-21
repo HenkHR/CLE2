@@ -37,6 +37,7 @@ session_start()
 <body style="background-color: var(--colors-background)">
 <?php include('includes/header.php') ?>
 <main>
+    <h1 class="subtitle" style="text-align: center; color: white; padding-top 50px;">Reserveren</h1>
     <div class="title" style="margin-top: 5vh">
         <a href="?week=<?= $selectedWeek - 1 ?>">Vorige week</a>
         <span>
@@ -79,9 +80,9 @@ session_start()
                     <div class="hiddenInfo">
                         <?php if(getReservationCount(strtotime(date('Y-m-d',$weekDays[$columnID]['timestamp']) .  ' ' . $timeslots[$rowID]), $reservations) < 3 && strtotime(date('Y-m-d',$weekDays[$columnID]['timestamp']) .  ' ' . $timeslots[$rowID]) > $today){?>
                         <div class="courses">
-                            <span <?php if(in_array( "1", getCourseNumbersArray(strtotime(date('Y-m-d',$weekDays[$columnID]['timestamp']) .  ' ' . $timeslots[$rowID]),$reservations))){ ?> class="takenCourse" <?php } ?>> 1 </span>
-                            <span <?php if(in_array( "2", getCourseNumbersArray(strtotime(date('Y-m-d',$weekDays[$columnID]['timestamp']) .  ' ' . $timeslots[$rowID]),$reservations))){ ?> class="takenCourse" <?php } ?>> 2 </span>
-                            <span <?php if(in_array( "3", getCourseNumbersArray(strtotime(date('Y-m-d',$weekDays[$columnID]['timestamp']) .  ' ' . $timeslots[$rowID]),$reservations))){ ?> class="takenCourse" <?php } ?>> 3 </span>
+                            <span <?php if(in_array( "1", getCourseNumbersArray(strtotime(date('Y-m-d',$weekDays[$columnID]['timestamp']) .  ' ' . $timeslots[$rowID]),$reservations))){ ?> class="takenCourse" <?php }else{ ?> class="course"<?php }?>> 1 </span>
+                            <span <?php if(in_array( "2", getCourseNumbersArray(strtotime(date('Y-m-d',$weekDays[$columnID]['timestamp']) .  ' ' . $timeslots[$rowID]),$reservations))){ ?> class="takenCourse" <?php }else{ ?> class="course"<?php }?>> 2 </span>
+                            <span <?php if(in_array( "3", getCourseNumbersArray(strtotime(date('Y-m-d',$weekDays[$columnID]['timestamp']) .  ' ' . $timeslots[$rowID]),$reservations))){ ?> class="takenCourse" <?php }else{ ?> class="course"<?php }?>> 3 </span>
                         </div>
                         <?php }?>
                     </div>
