@@ -255,6 +255,10 @@ form button:hover {
     text-align: center;
 }
 
+.profile-row {
+    flex-direction: row;
+}
+
 .logout {
     display: flex;
     justify-content: right;
@@ -299,6 +303,12 @@ form button:hover {
 
 .userData {
     width: 50vw;
+    border-right: 1px solid var(--colors-link);
+}
+
+.reservationsTable {
+    overflow: scroll;
+    max-height: 300px;
 }
 
 .userReservations{
@@ -308,6 +318,7 @@ form button:hover {
     text-align: center;
     width: 50vw;
     padding-bottom: 50px;
+    border-left: 1px solid var(--colors-link);
 }
 
 .userReservations p {
@@ -448,5 +459,25 @@ footer.row {
         display: flex;
         justify-content: center;
         flex-direction: column;
+    }
+}
+
+@media (max-width: 850px) {
+    .profile-row {
+        flex-direction: column;
+    }
+    .userData,
+    .userReservations {
+        width: 100vw;
+        border-right: none;
+        border-left: none;
+    }
+    .userData {
+        border-bottom: 1px solid var(--colors-link);
+    }
+
+    .reservationsTable {
+        overflow: scroll;
+        max-height: 450px;
     }
 }

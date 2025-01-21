@@ -125,7 +125,7 @@ mysqli_close($db);
                 <button type="submit" name="submit">Wijzigen</button>
             </div>
         </form>
-        <form action="admin-account-verwijderen.php" method="post">
+        <form action="admin-account-verwijderen.php" method="post" style="margin-bottom: 5vh">
             <input type="hidden" name="userId" id="userId" value="<?=$id?>">
             <input type="submit" class="delete-account" value="Account verwijderen" style="background-color: #0F0F0F">
         </form>

@@ -69,9 +69,10 @@ mysqli_close($db);
                     <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/></svg></span>
     </a>
 </section>
-<div class="row">
+<p class="flex justify-center" style="color: var(--colors-text); font-size: var(--font-size-very-large); font-weight: bold">Account</p>
+<div class="flex profile-row">
 
-    <section class="userData overflow-hidden" style="border-right: 0.125vw solid var(--colors-link)">
+    <section class="userData overflow-hidden">
         <form action="" method="post">
             <div class="column">
                 <div class="update-cookie">
@@ -120,7 +121,7 @@ mysqli_close($db);
         </form>
     </section>
 
-    <section class="userReservations overflow-hidden" style="border-left: 0.125vw solid var(--colors-link)">
+    <section class="userReservations overflow-hidden">
         <p class="title">Reserveringen</p>
         <?php if(count($userReservations) > 0){?>
             <p style="margin-bottom: 10px; font-size: var(--font-size-big); font-weight: bold">Komende reserveringen</p>

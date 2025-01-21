@@ -37,7 +37,7 @@ session_start()
 <body style="background-color: var(--colors-background)">
 <?php include('includes/header.php') ?>
 <main>
-    <h1 class="subtitle" style="text-align: center; color: white; padding-top 50px;">Reserveren</h1>
+    <p class="flex justify-center" style="color: var(--colors-text); font-size: var(--font-size-very-large); font-weight: bold">Reserveren</p>
     <div class="title" style="margin-top: 5vh">
         <a href="?week=<?= $selectedWeek - 1 ?>">Vorige week</a>
         <span>
