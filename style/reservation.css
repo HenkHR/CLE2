@@ -314,6 +314,9 @@ input{
 }
 
 footer {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
     border-top: 0.25vh solid var(--colors-link);
     padding: 2.5vh 5vh;
 }

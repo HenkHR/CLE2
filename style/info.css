@@ -196,6 +196,9 @@ h2{
 
 /*footer*/
 footer {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
     border-top: 0.25vh solid var(--colors-link);
     padding: 2.5vh 5vh;
 }
@@ -267,7 +270,6 @@ footer iframe {
 footer.row {
     justify-content: space-between;
     align-items: center;
-    border: none;
 }
 
 @media (max-width: 768px) {
