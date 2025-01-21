@@ -1,5 +1,5 @@
 <?php
-$code = 123456;
+$code = '123456';
 // db
 require_once('includes/connection.php');
 // zet de default voor de stap
@@ -44,34 +44,40 @@ if (isset($_POST['submit'])) {
     }
     // als step=1
     if ($step === '1') {
-        if ($_POST['code'] === $code) {
-            $errors['code'] = 'De code komt niet overeen';
-        } else {
-            $errors['code'] = 'eeeeehehhehehh goe guhdan';
-            $step = '2';
+        if (isset($_POST['code'])) {
+            if ($_POST['code'] === $code) {
+                $step = '2';
+            } else {
+                $errors['code'] = 'De code komt niet overeen';
+            }
         }
     }
     // als step=2
     if ($step === '2') {
-        $newPassword = $_POST['newPassword'];
-        $repeatPassword = $_POST['repeatPassword'];
-
-        if ($_POST['newPassword'] !== $_POST['repeatPassword']) {
-            $errors['password'] = 'Wachtwoord komt niet overeen';
-        }
-        if ($newPassword = '') {
-            $errors['password'] = 'Vul een wachtwoord in';
-        }
-        if (empty($errors)) {
-            $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-            $query = "UPDATE users SET password = ?";
-            $stmt = mysqli_prepare($db, $query);
-            mysqli_stmt_bind_param($stmt, 's', $hashedPassword);
-            $result = mysqli_stmt_execute($stmt);
-            //Zou goed zijn
-            mysqli_close($db);
-            header('Location: login.php?email=' . urlencode($email));
-
+        if (isset($_POST['password'])) {
+            $password = $_POST['password'];
+            $repeatPassword = $_POST['repeatPassword'];
+            print_r($password);
+            if ($password !== $repeatPassword) {
+                $errors['password'] = 'Wachtwoord komt niet overeen';
+            }
+            if ($password === '') {
+                $errors['password'] = 'Vul een wachtwoord in';
+            }
+            if (empty($errors)) {
+                $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+                $query = "UPDATE users SET password = ? WHERE email ='$email'";
+                $stmt = mysqli_prepare($db, $query);
+                mysqli_stmt_bind_param($stmt, 's', $hashedPassword);
+                $result = mysqli_stmt_execute($stmt);
+                //Zou goed zijn
+                if ($result) {
+                    mysqli_close($db);
+                    header('Location: login.php?email=' . urlencode($email));
+                } else {
+                    $errors['password'] = 'Fuck. Het is mislukt. ga naar contact in de footer. Zeg "connectie met de db of de query gaat fout"';
+                }
+            }
         }
     }
 }
@@ -115,11 +121,11 @@ if (isset($_POST['submit'])) {
                     <button type="submit" name="submit">Verder</button>
                 <?php }
                 if ($step === '2') { ?>
-                    <label class="label" for="newPassword">Nieuw wachtwoord</label>
-                    <input class="input" type="password" name="newPassword" id="newPassword">
+                    <label class="label" for="password">Nieuw wachtwoord</label>
+                    <input class="input" type="password" name="password" id="password">
                     <label class="label" for="repeatPassword">Herhaal wachtwoord</label>
                     <input class="input" type="password" name="repeatPassword" id="repeatPassword">
-                    <p>
+                    <p class="Danger">
                         <?= $errors['password'] ?? '' ?>
                     </p>
                     <input type="hidden" name="email" value="<?= $email ?>">
