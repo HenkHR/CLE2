@@ -89,7 +89,7 @@ if (isset($_COOKIE['update_message'])) {
         </div>
     </section>
 <?php }
-if (!isset($_SESSION['is_admin'])) { ?> ?>
+if (!isset($_SESSION['is_admin']) != 1) { ?>
     <section class="main-section">
         <a href="info.php">Meer over padel</a>
         <a href="about.php">Meer over Focus</a>
