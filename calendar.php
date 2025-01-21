@@ -24,7 +24,8 @@ $reservations = [];
 while ($row = mysqli_fetch_assoc($result)) {
     $reservations[] = $row;
 }
-session_start()
+session_start();
+print_r($today)
 ?>
 <!doctype html>
 <html lang="en">
