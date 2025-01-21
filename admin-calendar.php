@@ -72,9 +72,19 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <a <?php if (strtotime(date('Y-m-d', $weekDays[$columnID]['timestamp']) . ' ' . $timeslots[$rowID]) < $today) { ?> class="past-calender-button-admin"
                     <?php } elseif (getReservationCount(strtotime(date('Y-m-d', $weekDays[$columnID]['timestamp']) . ' ' . $timeslots[$rowID]), $reservations) < 3) { ?> class="calendar-button"
                     <?php } else { ?> class="calendar-button-full" <?php } ?>
-                            href="admin-reservation-manager.php?timeslot=<?= $rowID ?>&day=<?= date("d", $weekDays[$columnID]['timestamp']) ?>&year=<?= date("Y", $weekDays[$columnID]['timestamp']) ?>&month=<?= date('m', $weekDays[$columnID]['timestamp']) ?>
-                    ">Plekken
-                        beschikbaar: <?= getAvailableSpots(strtotime(date('Y-m-d', $weekDays[$columnID]['timestamp']) . ' ' . $timeslots[$rowID]), $reservations) ?></a>
+                            href="admin-reservation-manager.php?timeslot=<?= $rowID ?>&day=<?= date("d", $weekDays[$columnID]['timestamp']) ?>&year=<?= date("Y", $weekDays[$columnID]['timestamp']) ?>&month=<?= date('m', $weekDays[$columnID]['timestamp']) ?>">
+                        <strong><?=$timeslots[$rowID] . " - " . $timeslots[$rowID+1];?></strong>
+                        <br>Plekken beschikbaar: <strong><?= getAvailableSpots(strtotime(date('Y-m-d',$weekDays[$columnID]['timestamp']) .  ' ' . $timeslots[$rowID]), $reservations) ?></strong>
+                        <div class="hiddenInfo">
+                            <?php if(getReservationCount(strtotime(date('Y-m-d',$weekDays[$columnID]['timestamp']) .  ' ' . $timeslots[$rowID]), $reservations) < 3 && strtotime(date('Y-m-d',$weekDays[$columnID]['timestamp']) .  ' ' . $timeslots[$rowID]) > $today){?>
+                                <div class="courses">
+                                    <span <?php if(in_array( "1", getCourseNumbersArray(strtotime(date('Y-m-d',$weekDays[$columnID]['timestamp']) .  ' ' . $timeslots[$rowID]),$reservations))){ ?> class="takenCourse" <?php } ?>> 1 </span>
+                                    <span <?php if(in_array( "2", getCourseNumbersArray(strtotime(date('Y-m-d',$weekDays[$columnID]['timestamp']) .  ' ' . $timeslots[$rowID]),$reservations))){ ?> class="takenCourse" <?php } ?>> 2 </span>
+                                    <span <?php if(in_array( "3", getCourseNumbersArray(strtotime(date('Y-m-d',$weekDays[$columnID]['timestamp']) .  ' ' . $timeslots[$rowID]),$reservations))){ ?> class="takenCourse" <?php } ?>> 3 </span>
+                                </div>
+                            <?php }?>
+                        </div>
+                    </a>
                     <?php $rowID++;
                     if ($rowID > 7) {
                         $rowID = 0;
