@@ -102,7 +102,7 @@ if (isset($_POST['submit'])) {
         //De confirmation mail verzenden
         $to = $email;
         $subject = 'bevestiging padelbaan reservering';
-        $fullMessage = 'Beste' . $firstName . $lastName . "\n" . 'Bedankt voor uw reservering:' . "\n" . date('d F Y', strtotime($date)) . "\n" . date('H:i', strtotime($date)) . "\n" . 'Baan' . $courseID;
+        $fullMessage = 'Beste ' . $firstName . ' ' . $lastName . "\n" . 'Bedankt voor uw reservering:' . "\n" . date('d F Y', strtotime($date)) . "\n" . date('H:i', strtotime($date)) . "\n" . 'Baan ' . $courseID;
         mail($to, $subject, $fullMessage);
 
         header('Location: confirmation.php?date='.$date.'&course='.$courseID.'&firstName='.$firstName.'&lastName='.$lastName.'&email='.$email.'&phoneNumber='.$phoneNumber.'');
