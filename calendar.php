@@ -2,8 +2,8 @@
 require_once "includes/functions.php";
 /** @var mysqli $db */
 require_once "includes/connection.php";
-$today = time() + 3600;
-//echo date('d/m/y H:i', $today);
+$today = time();
+echo date('d/m/y H:i', $today);
 $timeslots = ['9:00', '10:30', '12:00', '13:30', '15:00', '16:30', '18:00', '19:30', '21:00'];
 $days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 $columnID = 0;
@@ -24,7 +24,7 @@ $reservations = [];
 while ($row = mysqli_fetch_assoc($result)) {
     $reservations[] = $row;
 }
-session_start()
+session_start();
 ?>
 <!doctype html>
 <html lang="en">
@@ -37,7 +37,8 @@ session_start()
 <body style="background-color: var(--colors-background)">
 <?php include('includes/header.php') ?>
 <main>
-    <p class="flex justify-center" style="color: var(--colors-text); font-size: var(--font-size-very-large); font-weight: bold">Reserveren</p>
+    <p class="flex justify-center"
+       style="color: var(--colors-text); font-size: var(--font-size-very-large); font-weight: bold">Reserveren</p>
     <div class="title" style="margin-top: 5vh">
         <a href="?week=<?= $selectedWeek - 1 ?>">Vorige week</a>
         <span>
