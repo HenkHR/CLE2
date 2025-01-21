@@ -266,6 +266,16 @@ form button:hover {
     visibility: hidden;
 }
 
+.past-calender-button:hover {
+    color:darkgray;
+    background-color: whitesmoke;
+    text-decoration:none;
+    pointer-events: none;
+    cursor: default;
+}
+
+.past-calender-button:hover .hiddenInfo
+
 .past-calender-button-admin {
     color: darkgray;
     background-color: whitesmoke;

@@ -5,7 +5,6 @@ require_once('includes/connection.php');
 $today = date('Y-m-d'); // Huidige datum, zonder tijd
 if (isset($_SESSION['user_id'])) {
     $id = $_SESSION['user_id'];
-
     $userReservations = [];
 // Selecteer alleen reserveringen van vandaag
     $userReservations_query = "SELECT * FROM reservations WHERE user_id = '$id' AND DATE(date_time) = '$today' ORDER BY date_time ASC";
@@ -52,7 +51,7 @@ if (isset($_COOKIE['update_message'])) {
         Op deze website vind je alles over padellen bij Focus
     </p>
 </section>
-<?php if (isset($_SESSION['user_id']) && isset($_SESSION['is_admin']) != 1) { ?>
+<?php if (isset($_SESSION['user_id']) && isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 0) { ?>
     <section class="reservation-section flex justify-center">
         <div class="column justify-center text-center">
             <p class="text-center"
@@ -88,8 +87,7 @@ if (isset($_COOKIE['update_message'])) {
             <?php } ?>
         </div>
     </section>
-<?php }
-if (isset($_SESSION['is_admin']) == 0) { ?>
+<?php } if (!(isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1)) { ?>
     <section class="main-section">
         <a href="info.php">Meer over padel</a>
         <a href="about.php">Meer over Focus</a>
