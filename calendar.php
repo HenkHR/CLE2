@@ -37,6 +37,7 @@ session_start()
 <body style="background-color: var(--colors-background)">
 <?php include('includes/header.php') ?>
 <main>
+    <h1 class="subtitle" style="text-align: center; color: white; padding-top 50px;">Reserveren</h1>
     <div class="title" style="margin-top: 5vh">
         <a href="?week=<?= $selectedWeek - 1 ?>">Vorige week</a>
         <span>
@@ -73,9 +74,18 @@ session_start()
                     <?php } elseif(getReservationCount(strtotime(date('Y-m-d',$weekDays[$columnID]['timestamp']) .  ' ' . $timeslots[$rowID]), $reservations) < 3
                     ){?> class="calendar-button"
                     <?php } else {?> class="calendar-button-unavailable" <?php } ?>
-                   href="reservation.php?timeslot=<?=$rowID?>&day=<?=date("d", $weekDays[$columnID]['timestamp'])?>&year=<?=date("Y", $weekDays[$columnID]['timestamp'])?>&month=<?= date('m', $weekDays[$columnID]['timestamp'])?>
-                    ">
-                     Plekken beschikbaar: <?= getAvailableSpots(strtotime(date('Y-m-d',$weekDays[$columnID]['timestamp']) .  ' ' . $timeslots[$rowID]), $reservations) ?>
+                   href="reservation.php?timeslot=<?=$rowID?>&day=<?=date("d", $weekDays[$columnID]['timestamp'])?>&year=<?=date("Y", $weekDays[$columnID]['timestamp'])?>&month=<?= date('m', $weekDays[$columnID]['timestamp'])?>">
+                    <strong><?=$timeslots[$rowID] . " - " . $timeslots[$rowID+1];?></strong>
+                    <br>Plekken beschikbaar: <?= getAvailableSpots(strtotime(date('Y-m-d',$weekDays[$columnID]['timestamp']) .  ' ' . $timeslots[$rowID]), $reservations) ?>
+                    <div class="hiddenInfo">
+                        <?php if(getReservationCount(strtotime(date('Y-m-d',$weekDays[$columnID]['timestamp']) .  ' ' . $timeslots[$rowID]), $reservations) < 3 && strtotime(date('Y-m-d',$weekDays[$columnID]['timestamp']) .  ' ' . $timeslots[$rowID]) > $today){?>
+                        <div class="courses">
+                            <span <?php if(in_array( "1", getCourseNumbersArray(strtotime(date('Y-m-d',$weekDays[$columnID]['timestamp']) .  ' ' . $timeslots[$rowID]),$reservations))){ ?> class="takenCourse" <?php }else{ ?> class="course"<?php }?>> 1 </span>
+                            <span <?php if(in_array( "2", getCourseNumbersArray(strtotime(date('Y-m-d',$weekDays[$columnID]['timestamp']) .  ' ' . $timeslots[$rowID]),$reservations))){ ?> class="takenCourse" <?php }else{ ?> class="course"<?php }?>> 2 </span>
+                            <span <?php if(in_array( "3", getCourseNumbersArray(strtotime(date('Y-m-d',$weekDays[$columnID]['timestamp']) .  ' ' . $timeslots[$rowID]),$reservations))){ ?> class="takenCourse" <?php }else{ ?> class="course"<?php }?>> 3 </span>
+                        </div>
+                        <?php }?>
+                    </div>
                 </a>
             <?php
             $rowID++;
