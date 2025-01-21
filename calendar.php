@@ -2,6 +2,8 @@
 require_once "includes/functions.php";
 /** @var mysqli $db */
 require_once "includes/connection.php";
+$timezoneId = 'Europe/Amsterdam';
+date_default_timezone_set($timezoneId);
 $today = time();
 $timeslots = ['9:00', '10:30', '12:00', '13:30', '15:00', '16:30', '18:00', '19:30', '21:00'];
 $days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
@@ -75,7 +77,7 @@ session_start();
                         <?php } elseif (getReservationCount(strtotime(date('Y-m-d', $weekDays[$columnID]['timestamp']) . ' ' . $timeslots[$rowID]), $reservations) < 3
                         ) { ?> class="calendar-button"
                         <?php } else { ?> class="calendar-button-unavailable" <?php } ?>
-                       href="reservation.php?timeslot=<?= $rowID ?>&day=<?= date("d", $weekDays[$columnID]['timestamp']) ?>&year=<?= date("Y", $weekDays[$columnID]['timestamp']) ?>&month=<?= date('m', $weekDays[$columnID]['timestamp']) ?>">
+                       href="reservation.php?timeslot=<?= $rowID ?>&day=<?= date("d", $weekDays[$columnID]['timestamp']) ?>&year=<?= date("Y", $weekDays[$columnID]['timestamp']) ?>&month=<?= date('m', $weekDays[$columnID]['timestamp']) ?>&week=<?= $selectedWeek ?>">
                         <strong><?= $timeslots[$rowID] . " - " . $timeslots[$rowID + 1]; ?></strong>
                         <br>
                         <?php if(strtotime(date('Y-m-d', $weekDays[$columnID]['timestamp']) . ' ' . $timeslots[$rowID]) >= strtotime('+1 month', $today)) {?>

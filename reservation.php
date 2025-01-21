@@ -8,6 +8,7 @@ date_default_timezone_set($timezoneId);
 $year = $_GET['year'];
 $month = $_GET['month'];
 $day = $_GET['day'];
+$selectedWeek = $_GET['week'];
 $timeslot = $_GET['timeslot'];
 $timeslots = ['9:00', '10:30', '12:00', '13:30', '15:00', '16:30', '18:00', '19:30', '21:00'];
 $date = "$year-$month-$day $timeslots[$timeslot]";
@@ -21,14 +22,12 @@ while ($row = mysqli_fetch_assoc($result)) {
 $today = time();
 if (strtotime($date) > strtotime('+1 month', $today))
 {
-    header('Location: calendar.php');
+    header('Location: calendar.php?week='. $selectedWeek);
 }
 if (strtotime($date) < $today) {
-    header('Location: calendar.php');
-}
+    header('Location: calendar.php?week='. $selectedWeek);}
 if ($timeslot > 7) {
-    header('Location: calendar.php');
-}
+    header('Location: calendar.php?week='. $selectedWeek);}
 
 // Zoek de eerste beschikbare baan
 $totalCourses = 3; // Aantal banen, pas aan als er meer of minder banen zijn
