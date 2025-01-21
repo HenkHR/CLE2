@@ -1,4 +1,4 @@
-<footer class="row">
+<footer style="gap: 3vw">
     <div class="footer-contact">
         <div class="row">
             <div class="footer-social-links">
@@ -27,18 +27,15 @@
         </p>
     </div>
     <div class="footer-copyright">
-        <center>
         <iframe
                 id="map"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2469.399670948453!2d4.1867589!3d51.7623003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c4458075fa6945%3A0x834cc661a90aacee!2sFOCUS%20health%20%26%20fitness%20MH!5e0!3m2!1snl!2snl!4v1737380795312!5m2!1snl!2snl"
                 allowfullscreen
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
-                style="width: 100%; height: 300px; border: 0;">
+                style="height: 300px; margin: auto 5vw; border: 0;">
         </iframe>
-       Copyright 2023 © Focus Health & Fitness | <a href="https://www.focushealthfitness.nl/privacyverklaring/">Privacyverklaring</a>
-        | <a href="contact.php">Contact</a>
-        </center>
+        <p style="border-top: 1px solid var(--colors-text);">Copyright 2023 © Focus Health & Fitness | <a href="https://www.focushealthfitness.nl/privacyverklaring/">Privacyverklaring</a> | <a href="contact.php">Contact</a></p>
     </div>
     <div class="footer-location-contact">
         <div class="footer-info">

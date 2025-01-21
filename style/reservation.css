@@ -353,6 +353,16 @@ footer p {
 .footer-copyright {
     color: var(--colors-text-footer);
     font-size: var(--font-size-small);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+footer iframe {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .footer-copyright a {

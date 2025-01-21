@@ -150,7 +150,6 @@ main h1{
     display: flex;
     justify-content: space-evenly;
     flex-direction: row;
-    border-bottom: #F1C232 solid 2px;
 }
 .leftItem, .center-item, .rightItem{
     margin-bottom: 5vh;
@@ -236,6 +235,16 @@ footer p {
 .footer-copyright {
     color: var(--colors-text-footer);
     font-size: var(--font-size-small);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+footer iframe {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .footer-copyright a {
@@ -259,4 +268,12 @@ footer.row {
     justify-content: space-between;
     align-items: center;
     border: none;
+}
+
+@media (max-width: 768px) {
+    footer {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
 }
