@@ -8,7 +8,7 @@
         <?php else: ?>
             <a href="about.php">Over Focus</a>
             <a href="info.php">Info Padel</a>
-            <a class="logo" href="../home.php">
+            <a class="logo" href="index.php">
                 <img class="navbar-logo" src="/images/focus_1.png" alt="">
             </a>
             <a href="calendar.php">Reserveren</a>

@@ -40,9 +40,9 @@ if (isset($_POST['submit'])) {
 
                 $login = true;
 
-                // Verkrijg de redirect URL uit de querystring (standaard naar home.php als niet ingesteld)
+                // Verkrijg de redirect URL uit de querystring (standaard naar index.php als niet ingesteld)
 
-                $redirect = $_GET['redirect'] ?? 'home.php';
+                $redirect = $_GET['redirect'] ?? 'index.php';
                 header("Location: $redirect");
                 exit();
             } else {
