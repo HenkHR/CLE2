@@ -309,6 +309,9 @@ form button:hover {
 
 .reservationsTable {
     overflow: scroll;
+    scrollbar-color: gray transparent;
+    scrollbar-width: thin;
+    overflow-x: hidden;
     max-height: 300px;
 }
 
@@ -484,6 +487,7 @@ footer.row {
 
     .reservationsTable {
         overflow: scroll;
+
         max-height: 450px;
     }
 }
