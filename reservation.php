@@ -11,7 +11,6 @@ $day = $_GET['day'];
 $timeslot = $_GET['timeslot'];
 $timeslots = ['9:00', '10:30', '12:00', '13:30', '15:00', '16:30', '18:00', '19:30', '21:00'];
 $date = "$year-$month-$day $timeslots[$timeslot]";
-
 // Haal alle reserveringen op voor het specifieke tijdslot
 $query = "SELECT course FROM reservations WHERE date_time = '$date'";
 $result = mysqli_query($db, $query);
@@ -20,7 +19,10 @@ while ($row = mysqli_fetch_assoc($result)) {
     $occupiedCourses[] = $row['course'];
 }
 $today = time();
-
+if (strtotime($date) > strtotime('+1 month', $today))
+{
+    header('Location: calendar.php');
+}
 if (strtotime($date) < $today) {
     header('Location: calendar.php');
 }
@@ -104,7 +106,7 @@ if (isset($_POST['submit'])) {
         $fullMessage = 'Beste' . $firstName . $lastName . "\n" . 'Bedankt voor uw reservering:' . "\n" . date('d F Y', strtotime($date)) . "\n" . date('H:i', strtotime($date)) . "\n" . 'Baan' . $courseID;
         mail($to, $subject, $fullMessage);
 
-        header('Location: confirmation.php?date=' . $date . '&course=' . $courseID . '&firstName=' . $firstName . '&lastName=' . $lastName . '&email=' . $email . '&phoneNumber=' . $phoneNumber . '');
+        header('Location: confirmation.php?date='.$date.'&course='.$courseID.'&firstName='.$firstName.'&lastName='.$lastName.'&email='.$email.'&phoneNumber='.$phoneNumber.'');
     }
 }
 ?>
