@@ -3,7 +3,7 @@ require_once "includes/functions.php";
 /** @var mysqli $db */
 require_once "includes/connection.php";
 $today = time();
-//echo date('d/m/y H:i', $today);
+echo date('d/m/y H:i', $today);
 $timeslots = ['9:00', '10:30', '12:00', '13:30', '15:00', '16:30', '18:00', '19:30', '21:00'];
 $days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 $columnID = 0;
@@ -25,7 +25,6 @@ while ($row = mysqli_fetch_assoc($result)) {
     $reservations[] = $row;
 }
 session_start();
-print_r($today)
 ?>
 <!doctype html>
 <html lang="en">
