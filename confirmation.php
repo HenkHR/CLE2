@@ -2,10 +2,10 @@
 session_start();
 $date = $_GET['date'];
 $course = $_GET['course'];
-$phoneNumber = $_GET['phone_number'];
-$firstname = $_SESSION['first_name'];
-$lastname = $_SESSION['last_name'];
-$email = $_SESSION['email'];
+$firstname = $_GET['firstName'];
+$lastname = $_GET['lastName'];
+$email = $_GET['email'];
+$phoneNumber = $_GET['phoneNumber'];
 ?>
 <!DOCTYPE html>
 <html lang="en">

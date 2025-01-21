@@ -59,6 +59,7 @@ if (isset($_POST['submit'])) {
     $lastName = $_POST['lastName'];
     $email = $_POST['email'];
     $phoneNumber = $_POST['phoneNumber'];
+    $userData = "$firstName $lastName $email $phoneNumber";
 
     $errors = [
         'firstName' => '',
@@ -104,7 +105,7 @@ if (isset($_POST['submit'])) {
         $fullMessage = 'Beste' . $firstName . $lastName . "\n" . 'Bedankt voor uw reservering:' . "\n" . date('d F Y', strtotime($date)) . "\n" . date('H:i', strtotime($date)) . "\n" . 'Baan' . $courseID;
         mail($to, $subject, $fullMessage);
 
-        header('Location: confirmation.php?date='.$date.'&course='.$courseID.'&phone_number='.$phoneNumber.'');
+        header('Location: confirmation.php?date='.$date.'&course='.$courseID.'&firstName='.$firstName.'&lastName='.$lastName.'&email='.$email.'&phoneNumber='.$phoneNumber.'');
     }
 }
 ?>
