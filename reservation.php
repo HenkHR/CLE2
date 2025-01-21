@@ -130,19 +130,19 @@ if (isset($_POST['submit'])) {
                     <input class="input" id="firstName" type="text" maxlength="30" name="firstName"
                            value="<?= htmlspecialchars($user['first_name'] ?? '') ?>"/>
                 </div>
-                <p><?= $errors['firstName'] ?? '' ?></p>
+                <p style="color: var(--colors-text)"><?= $errors['firstName'] ?? '' ?></p>
                 <div class="formInput column">
                     <label for="lastName">Achternaam</label>
                     <input class="input" id="lastName" type="text" maxlength="30" name="lastName"
                            value="<?= htmlspecialchars($user['last_name'] ?? '') ?>"/>
                 </div>
-                <p><?= $errors['lastName'] ?? '' ?></p>
+                <p style="color: var(--colors-text)"><?= $errors['lastName'] ?? '' ?></p>
                 <div class="formInput column">
                     <label for="email">Email-adres</label>
                     <input class="input" id="email" type="email" maxlength="30" name="email"
                            value="<?= htmlspecialchars($user['email'] ?? '') ?>"/>
                 </div>
-                <p><?= $errors['email'] ?? '' ?></p>
+                <p style="color: var(--colors-text)"><?= $errors['email'] ?? '' ?></p>
             <?php } else { ?>
                 <input type="hidden" id="firstName" name="firstName" value="<?= $_SESSION['first_name'] ?>">
                 <input type="hidden" id="lastName" name="lastName" value="<?= $_SESSION['last_name'] ?>">
@@ -154,7 +154,7 @@ if (isset($_POST['submit'])) {
                     <input class="input" id="phoneNumber" type="tel" maxlength="10" name="phoneNumber"
                            value="<?= htmlspecialchars($user['phone_number'] ?? '') ?>"/>
                 </div>
-                <p><?= $errors['phoneNumber'] ?? '' ?></p>
+                <p style="color: var(--colors-text)"><?= $errors['phoneNumber'] ?? '' ?></p>
                 <button class="submitButton" type="submit" name="submit">Reserveer</button>
             <?php } else { ?>
                 <input type="hidden" id="phoneNumber" name="phoneNumber" value="<?= $_SESSION['phone_number'] ?>">
