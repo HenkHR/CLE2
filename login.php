@@ -99,6 +99,9 @@ mysqli_close($db);
             <button type="submit" name="submit">Inloggen</button>
         </div>
     </form>
+    <div>
+        <a href="wachtwoord-vergeten.php">wachtwoord vergeten?</a>
+    </div>
 </section>
 <?php include('includes/footer.php') ?>
 </body>
