@@ -3,7 +3,6 @@ session_start();
 /** @var $db */
 require_once('includes/connection.php');
 require_once('includes/functions.php');
-
 $timezoneId = 'Europe/Amsterdam';
 date_default_timezone_set($timezoneId);
 $year = $_GET['year'];
@@ -148,17 +147,17 @@ if (isset($_POST['submit'])) {
                 <input type="hidden" id="lastName" name="lastName" value="<?= $_SESSION['last_name'] ?>">
                 <input type="hidden" id="email" name="email" value="<?= $_SESSION['email'] ?>">
             <?php } ?>
-            <?php if (!isset($_SESSION['phone_number'])) { ?>
+            <?php if (!isset($user['phone_number'])) { ?>
                 <div class="formInput column">
                     <label for="phoneNumber">Telefoonnummer</label>
                     <input class="input" id="phoneNumber" type="tel" maxlength="10" name="phoneNumber"
                            value="<?= htmlspecialchars($user['phone_number'] ?? '') ?>"/>
                 </div>
                 <p style="color: var(--colors-text)"><?= $errors['phoneNumber'] ?? '' ?></p>
-                <button class="submitButton" type="submit" name="submit">Reserveer</button>
             <?php } else { ?>
-                <input type="hidden" id="phoneNumber" name="phoneNumber" value="<?= $_SESSION['phone_number'] ?>">
+                <input type="hidden" id="phoneNumber" name="phoneNumber" value="<?= $user['phone_number'] ?>">
             <?php } ?>
+                <button class="submitButton" type="submit" name="submit">Reserveer</button>
         </form>
     </section>
 </main>
