@@ -3,7 +3,6 @@ require_once "includes/functions.php";
 /** @var mysqli $db */
 require_once "includes/connection.php";
 $today = time();
-echo date('d/m/y H:i', $today);
 $timeslots = ['9:00', '10:30', '12:00', '13:30', '15:00', '16:30', '18:00', '19:30', '21:00'];
 $days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 $columnID = 0;
@@ -71,15 +70,21 @@ session_start();
             <div class="column">
                 <?php for ($i = 0; $i < count($timeslots) - 1; $i++) {
                     ?>
-                    <a <?php if (strtotime(date('Y-m-d', $weekDays[$columnID]['timestamp']) . ' ' . $timeslots[$rowID]) < $today
+                    <a <?php if (strtotime(date('Y-m-d', $weekDays[$columnID]['timestamp']) . ' ' . $timeslots[$rowID]) < $today || strtotime(date('Y-m-d', $weekDays[$columnID]['timestamp']) . ' ' . $timeslots[$rowID]) >= strtotime('+1 month', $today)
                        ) { ?>class="past-calender-button"
                         <?php } elseif (getReservationCount(strtotime(date('Y-m-d', $weekDays[$columnID]['timestamp']) . ' ' . $timeslots[$rowID]), $reservations) < 3
                         ) { ?> class="calendar-button"
                         <?php } else { ?> class="calendar-button-unavailable" <?php } ?>
                        href="reservation.php?timeslot=<?= $rowID ?>&day=<?= date("d", $weekDays[$columnID]['timestamp']) ?>&year=<?= date("Y", $weekDays[$columnID]['timestamp']) ?>&month=<?= date('m', $weekDays[$columnID]['timestamp']) ?>">
                         <strong><?= $timeslots[$rowID] . " - " . $timeslots[$rowID + 1]; ?></strong>
-                        <br>Plekken
-                        beschikbaar: <?= getAvailableSpots(strtotime(date('Y-m-d', $weekDays[$columnID]['timestamp']) . ' ' . $timeslots[$rowID]), $reservations) ?>
+                        <br>
+                        <?php if(strtotime(date('Y-m-d', $weekDays[$columnID]['timestamp']) . ' ' . $timeslots[$rowID]) >= strtotime('+1 month', $today)) {?>
+                            <p>Nog niet beschikbaar</p>
+                        <?php } elseif(strtotime(date('Y-m-d', $weekDays[$columnID]['timestamp']) . ' ' . $timeslots[$rowID]) < $today) {?>
+                            <p>Niet meer beschikbaar</p>
+                        <?php } else { ?>
+                        <p> Plekken beschikbaar: <?= getAvailableSpots(strtotime(date('Y-m-d', $weekDays[$columnID]['timestamp']) . ' ' . $timeslots[$rowID]), $reservations) ?> </p>
+                        <?php } ?>
                         <div class="hiddenInfo">
                             <?php if (getReservationCount(strtotime(date('Y-m-d', $weekDays[$columnID]['timestamp']) . ' ' . $timeslots[$rowID]), $reservations) < 3 && strtotime(date('Y-m-d', $weekDays[$columnID]['timestamp']) . ' ' . $timeslots[$rowID]) > $today) { ?>
                                 <div class="courses">
