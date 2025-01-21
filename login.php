@@ -1,8 +1,8 @@
 <?php
-
+session_start();
 /**  @var $db */
 
-session_start();
+
 require_once('includes/connection.php');
 $login = false;
 $errors = [];
