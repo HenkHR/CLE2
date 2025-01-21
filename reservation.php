@@ -20,7 +20,7 @@ $occupiedCourses = [];
 while ($row = mysqli_fetch_assoc($result)) {
     $occupiedCourses[] = $row['course'];
 }
-$today = time() + 3600;
+$today = time();
 
 if (strtotime($date) < $today) {
     header('Location: calendar.php');
@@ -105,7 +105,7 @@ if (isset($_POST['submit'])) {
         $fullMessage = 'Beste' . $firstName . $lastName . "\n" . 'Bedankt voor uw reservering:' . "\n" . date('d F Y', strtotime($date)) . "\n" . date('H:i', strtotime($date)) . "\n" . 'Baan' . $courseID;
         mail($to, $subject, $fullMessage);
 
-        header('Location: confirmation.php?date='.$date.'&course='.$courseID.'&firstName='.$firstName.'&lastName='.$lastName.'&email='.$email.'&phoneNumber='.$phoneNumber.'');
+        header('Location: confirmation.php?date=' . $date . '&course=' . $courseID . '&firstName=' . $firstName . '&lastName=' . $lastName . '&email=' . $email . '&phoneNumber=' . $phoneNumber . '');
     }
 }
 ?>

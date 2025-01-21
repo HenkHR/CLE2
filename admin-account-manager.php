@@ -124,8 +124,10 @@ if (isset($_POST['cancel'])) {
             <ul>
                 <?php foreach ($users as $user): ?>
                     <li>
-                        <a class="listButton" href="admin_user_profile.php?id=<?= htmlspecialchars($user['user_id']) ?>">
-                            <strong class="no-text-decoration" style="margin-right: 5px">Naam:</strong> <?= htmlspecialchars($user['first_name'] . ' ' . $user['last_name']) ?>
+                        <a class="listButton"
+                           href="admin-user-profile.php?id=<?= htmlspecialchars($user['user_id']) ?>">
+                            <strong class="no-text-decoration"
+                                    style="margin-right: 5px">Naam:</strong> <?= htmlspecialchars($user['first_name'] . ' ' . $user['last_name']) ?>
                         </a>
                     </li>
                 <?php endforeach; ?>
