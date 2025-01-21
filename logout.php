@@ -5,7 +5,7 @@ session_start();
 session_unset();
 session_destroy();
 // Terug naar de landingspagina
-header("Location: index.php");
+header("Location: home.php");
 // Stop met die code.
 exit();
 ?>

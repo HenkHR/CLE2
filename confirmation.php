@@ -56,7 +56,7 @@ $phoneNumber = $_GET['phoneNumber'];
         </table>
     </div>
     <div class="row justify-center" style="margin-bottom: 5vh; gap: 3vw">
-        <a class="redirect-button" href="index.php">Terug naar de thuispagina</a>
+        <a class="redirect-button" href="home.php">Terug naar de thuispagina</a>
         <?php if (isset($_SESSION['user_id'])) { ?>
         <a class="redirect-button" href="profile.php">Bekijk uw afspraken</a>
         <?php } ?>
