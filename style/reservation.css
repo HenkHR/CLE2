@@ -81,7 +81,7 @@ header {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    background-color: rgba(0,0,0,0.9);
+    background-color: rgba(0, 0, 0, 0.9);
     border-bottom: 0.25vh solid var(--colors-link);
 }
 
@@ -100,26 +100,30 @@ header {
     color: var(--colors-link);
 }
 
-.column{
+.column {
     display: flex;
     flex-direction: column;
 }
-.title{
+
+.title {
     display: flex;
     flex-direction: row;
     justify-content: center;
     padding: 0px 0px 20px 70px;
     color: white;
 }
-.title span{
+
+.title span {
     padding: 0px 60px 0px 60px;
     text-align: center;
 }
-.title a{
+
+.title a {
     color: white;
     text-decoration: none;
 }
-.title a:hover{
+
+.title a:hover {
     color: #F1C232;
 }
 
@@ -166,40 +170,45 @@ form button:hover {
     background-color: #bd9a2a;
 }
 
-.calendar{
+.calendar {
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
-.calendar-item{
+
+.calendar-item {
     width: 150px;
     height: 75px;
 }
-.days{
+
+.days {
     display: flex;
     flex-direction: row;
     justify-content: center;
     padding-left: 60px;
 }
+
 .days div {
     width: 145px;
     height: 40px;
     color: black;
 }
 
-.time-column{
+.time-column {
     display: flex;
     flex-direction: column;
     text-align: center;
     color: white;
 }
-.time-column span{
+
+.time-column span {
     height: 75px;
     width: 60px;
     border-top: solid 1px white;
     box-sizing: border-box;
 }
-.calendar-button-unavailable, .calendar-button-full, .calendar-button, .past-calender-button, .past-calender-button-admin{
+
+.calendar-button-unavailable, .calendar-button-full, .calendar-button, .past-calender-button, .past-calender-button-admin {
     width: 145px;
     height: 75px;
     border-color: black;
@@ -213,61 +222,81 @@ form button:hover {
     border-right-width: 2px;
     border-left-width: 2px;
     align-items: normal;
-    color:black;
-    text-decoration:none;
+    color: black;
+    text-decoration: none;
     background-color: white;
     font-size: 12px;
     box-sizing: border-box;
     padding: 5px
 }
+
 .calendar-button-full {
     background-color: var(--colors-danger);
 }
 
 .calendar-button:hover,
 .calendar-button-full:hover,
-.past-calender-button-admin:hover{
+.past-calender-button-admin:hover {
     background-color: darkgray;
 }
-.calendar .calendar-button-unavailable{
+
+.calendar .calendar-button-unavailable {
     background-color: indianred;
     pointer-events: none;
     cursor: default;
 }
-.calendar .past-calender-button{
-    color:darkgray;
+
+.calendar .past-calender-button {
+    color: darkgray;
     background-color: whitesmoke;
-    text-decoration:none;
+    text-decoration: none;
     pointer-events: none;
     cursor: default;
 }
 
-.past-calender-button-admin {
-    color:darkgray;
+.past-calender-button:hover {
+    color: darkgray;
     background-color: whitesmoke;
-    text-decoration:none;
+    text-decoration: none;
+    pointer-events: none;
+    cursor: default;
+}
+
+.past-calender-button:hover .hiddenInfo {
+    visibility: hidden;
+}
+
+.past-calender-button-admin {
+    color: darkgray;
+    background-color: whitesmoke;
+    text-decoration: none;
 }
 
 .past-calender-button-admin:hover {
     color: black;
 }
-.hiddenInfo{
+
+.hiddenInfo {
     padding-top: 7px;
     visibility: collapse;
 }
+
 .past-calender-button-admin:hover .hiddenInfo {
     visibility: visible;
 }
-.calendar-button:hover .hiddenInfo{
+
+.calendar-button:hover .hiddenInfo {
     visibility: visible;
 }
-.courses{
+
+.courses {
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 25px
 }
-.courses span{
+
+.courses span {
     font-size: 12px;
     border: solid 1px black;
     height: 17px;
@@ -275,33 +304,36 @@ form button:hover {
     text-align: center;
     border-radius: 50%;
 }
+
 .course {
     background-color: lightblue;
 }
-.takenCourse{
+
+.takenCourse {
     background-color: indianred;
     color: white;
 }
 
-div .dayOfWeek{
+div .dayOfWeek {
     text-align: center;
     border: solid black 1px;
     background-color: #F1C232;
     box-sizing: border-box;
     height: 40px;
 }
-div .currentDayOfWeek{
+
+div .currentDayOfWeek {
     text-align: center;
     border: solid black 1px;
     background-color: #F1C232;
     font-weight: bolder;
-    color:white;
+    color: white;
     box-sizing: border-box;
 }
 
-input{
+input {
     background-color: white;
-    color:black;
+    color: black;
 }
 
 .reservation-overzicht {
@@ -314,6 +346,9 @@ input{
 }
 
 footer {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
     border-top: 0.25vh solid var(--colors-link);
     padding: 2.5vh 5vh;
 }

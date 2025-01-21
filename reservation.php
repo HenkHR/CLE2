@@ -3,7 +3,6 @@ session_start();
 /** @var $db */
 require_once('includes/connection.php');
 require_once('includes/functions.php');
-
 $timezoneId = 'Europe/Amsterdam';
 date_default_timezone_set($timezoneId);
 $year = $_GET['year'];
@@ -12,7 +11,6 @@ $day = $_GET['day'];
 $timeslot = $_GET['timeslot'];
 $timeslots = ['9:00', '10:30', '12:00', '13:30', '15:00', '16:30', '18:00', '19:30', '21:00'];
 $date = "$year-$month-$day $timeslots[$timeslot]";
-
 // Haal alle reserveringen op voor het specifieke tijdslot
 $query = "SELECT course FROM reservations WHERE date_time = '$date'";
 $result = mysqli_query($db, $query);
@@ -20,8 +18,11 @@ $occupiedCourses = [];
 while ($row = mysqli_fetch_assoc($result)) {
     $occupiedCourses[] = $row['course'];
 }
-$today = time() + 3600;
-
+$today = time();
+if (strtotime($date) > strtotime('+1 month', $today))
+{
+    header('Location: calendar.php');
+}
 if (strtotime($date) < $today) {
     header('Location: calendar.php');
 }
@@ -148,17 +149,17 @@ if (isset($_POST['submit'])) {
                 <input type="hidden" id="lastName" name="lastName" value="<?= $_SESSION['last_name'] ?>">
                 <input type="hidden" id="email" name="email" value="<?= $_SESSION['email'] ?>">
             <?php } ?>
-            <?php if (!isset($_SESSION['phone_number'])) { ?>
+            <?php if (!isset($user['phone_number'])) { ?>
                 <div class="formInput column">
                     <label for="phoneNumber">Telefoonnummer</label>
                     <input class="input" id="phoneNumber" type="tel" maxlength="10" name="phoneNumber"
                            value="<?= htmlspecialchars($user['phone_number'] ?? '') ?>"/>
                 </div>
                 <p style="color: var(--colors-text)"><?= $errors['phoneNumber'] ?? '' ?></p>
-                <button class="submitButton" type="submit" name="submit">Reserveer</button>
             <?php } else { ?>
-                <input type="hidden" id="phoneNumber" name="phoneNumber" value="<?= $_SESSION['phone_number'] ?>">
+                <input type="hidden" id="phoneNumber" name="phoneNumber" value="<?= $user['phone_number'] ?>">
             <?php } ?>
+                <button class="submitButton" type="submit" name="submit">Reserveer</button>
         </form>
     </section>
 </main>

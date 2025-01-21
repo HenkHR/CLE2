@@ -9,7 +9,7 @@
             <a href="about.php">Over Focus</a>
             <a href="info.php">Info Padel</a>
             <a class="logo" href="index.php">
-                <img class="navbar-logo" src="/images/focus_1.png" alt="">
+                <img class="navbar-logo" src="images/focus_1.png" alt="">
             </a>
             <a href="calendar.php">Reserveren</a>
             <?php if (isset($_SESSION['user_id'])): ?>

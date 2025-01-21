@@ -90,7 +90,7 @@ header {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    background-color: rgba(0,0,0,0.9);
+    background-color: rgba(0, 0, 0, 0.9);
     border-bottom: 0.25vh solid var(--colors-link);
 }
 
@@ -117,7 +117,7 @@ header {
     text-align: center;
     min-height: 100px;
     background-color: var(--colors-background);
-    background-image: url('/Images/FOCUS-MH-min.png');
+    background-image: url('../images/FOCUS-MH-min.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover, contain;
@@ -125,7 +125,7 @@ header {
 }
 
 .title,
-.subtitle{
+.subtitle {
     padding: 1vh 2vw;
     color: var(--colors-text);
     font-weight: bolder;
@@ -142,12 +142,13 @@ header {
     font-size: var(--font-size-large);
 }
 
-.titleInfo{
+.titleInfo {
     color: white;
     text-shadow: 1px 1px 3px black;
     font-size: 25px;
     padding-bottom: 10vh;
 }
+
 .main-section {
     display: flex;
     justify-content: space-evenly;
@@ -162,7 +163,7 @@ header {
 }
 
 .main-section a,
-.reservation-button{
+.reservation-button {
     color: var(--colors-text);
     text-decoration: none;
     padding: 10px;
@@ -174,7 +175,7 @@ header {
 }
 
 .main-section a:hover,
-.reservation-button:hover{
+.reservation-button:hover {
     color: var(--colors-link);
     border-color: var(--colors-link);
 }
@@ -311,7 +312,7 @@ form button:hover {
     max-height: 300px;
 }
 
-.userReservations{
+.userReservations {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -325,24 +326,29 @@ form button:hover {
     color: var(--colors-text);
 }
 
-table{
+table {
     border-collapse: collapse;
 }
-table tr{
+
+table tr {
     border-bottom: solid white 2px;
 }
-table th,td{
+
+table th, td {
     padding: 10px;
-    color:white;
+    color: white;
     text-align: center;
 }
-.dltButton{
+
+.dltButton {
     border: none;
 }
+
 .dltButton a {
     color: var(--colors-link);
     text-decoration: none;
 }
+
 .dltButton a:hover {
     color: indianred;
 }
