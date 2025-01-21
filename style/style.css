@@ -234,6 +234,20 @@ form button:hover {
     background-color: var(--colors-link-hover);
 }
 
+.info-button {
+    margin-bottom: 75px;
+}
+
+.info-button a{
+    text-decoration: none;
+    color: var(--colors-link);
+}
+
+.info-button a:hover {
+    color: var(--colors-link-hover);
+    text-decoration: underline;
+}
+
 .cookie-text {
     color: var(--colors-text);
     font-size: var(--font-size-big);
@@ -273,6 +287,10 @@ form button:hover {
 
 .danger-button {
     background-color: var(--colors-danger);
+}
+
+.danger-button:hover {
+    background-color: #b00;
 }
 
 .Danger {

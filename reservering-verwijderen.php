@@ -90,15 +90,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php elseif ($appointment): ?>
     <p class="flex justify-center" style="color: var(--colors-text); font-size: var(--font-size-big)">Bent u zeker dat u
         de volgende afspraak wilt verwijderen?</p>
-    <ul>
-        <li style="color: var(--colors-text); font-size: var(--font-size-big); margin: 0 10vw">
-            Naam: <?= htmlspecialchars($appointment['first_name']) ?> <?= htmlspecialchars($appointment['last_name']) ?></li>
-        <li style="color: var(--colors-text); font-size: var(--font-size-big); margin: 0 10vw">Datum en
-            tijd: <?= htmlspecialchars(date('d-m-Y H:i', strtotime($appointment['date_time']))) ?></li>
-        <li style="color: var(--colors-text); font-size: var(--font-size-big); margin: 0 10vw">
-            Baan: <?= htmlspecialchars($appointment['course']) ?></li>
-    </ul>
-    <form class="column" method="post">
+    <div class="reservationsTable flex justify-center" style="margin-top: 20px;">
+        <table style="color: var(--colors-text) font-size: var(--font-size-medium)">
+            <thead>
+            <tr>
+                <th>Naam</th>
+                <th style="background-color: var(--colors-background-lighter)">Datum</th>
+                <th>Tijd</th>
+                <th style="background-color: var(--colors-background-lighter)">Baannummer</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><?= htmlspecialchars($appointment['first_name']) ?> <?= htmlspecialchars($appointment['last_name']) ?></td>
+                <td style="background-color: var(--colors-background-lighter)"><?= htmlspecialchars(date('d F Y', strtotime($appointment['date_time']))) ?></td>
+                <td><?= htmlspecialchars(date('H:i', strtotime($appointment['date_time']))) ?></td>
+                <td style="background-color: var(--colors-background-lighter)">Baan <?= htmlspecialchars($appointment['course']) ?></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <form class="column" method="post" style="margin-top: 20px;">
         <div class="row between" style="gap: 5px">
             <input required class="checkbox-small" type="checkbox" id="confirm_delete" name="confirm_delete">
             <label for="confirm_delete">Ja, ik wil deze afspraak verwijderen</label>

@@ -22,7 +22,7 @@ if (!$reservation_id) {
         $appointment = mysqli_fetch_assoc($result);
         mysqli_stmt_close($stmt);
 
-        if (!$appointment) {
+        if ((!$appointment) && (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != 1)) {
             $error = "U heeft geen toestemming om deze afspraak te bekijken.";
         }
     }
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             mysqli_stmt_execute($stmt);
 
             if (mysqli_stmt_affected_rows($stmt) > 0) {
-                $success = "De afspraak is succesvol verwijderd.";
+                $success = "De afspraak is succesvol geannuleerd.";
                 $appointment = null; // Leegmaken van appointment om duplicaatbericht te voorkomen
             } else {
                 $error = "Er is een fout opgetreden bij het verwijderen van de afspraak.";
@@ -98,20 +98,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <p class="flex justify-center Danger" style="margin:5vh 5vw; font-size: var(--font-size-large)">Afspraak Annuleren</p>
 
 <?php if ($error): ?>
-    <p class="flex justify-center" style="color: var(--colors-text)"><?= htmlspecialchars($error) ?></p>
+    <p class="flex justify-center" style="color: var(--colors-text); margin-bottom: 8vh"><?= htmlspecialchars($error) ?></p>
 <?php elseif ($success): ?>
-    <p class="flex justify-center" style="color: var(--colors-text)"><?= htmlspecialchars($success) ?></p>
+    <p class="flex justify-center" style="color: var(--colors-text); margin-bottom: 8vh"><?= htmlspecialchars($success) ?></p>
 <?php elseif ($appointment): ?>
-    <p class="flex justify-center" style="color: var(--colors-text); font-size: var(--font-size-big)">Bent u zeker dat u
-        uw afspraak op <?= htmlspecialchars(date('d-m-Y H:i', strtotime($appointment['date_time']))) ?> op
-        baan <?= htmlspecialchars($appointment['course']) ?> wilt annuleren?</p>
-    <form class="column" method="post">
+    <p class="flex justify-center" style="color: var(--colors-text); font-size: var(--font-size-big)">Weet u zeker dat u deze afspraak wilt annuleren?</p>
+    <div class="reservationsTable flex justify-center" style="margin-top: 20px;">
+        <table style="color: var(--colors-text) font-size: var(--font-size-medium)">
+            <thead>
+            <tr>
+                <th>Datum</th>
+                <th style="background-color: var(--colors-background-lighter)">Tijd</th>
+                <th>Baannummer</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><?= htmlspecialchars(date('d F Y', strtotime($appointment['date_time']))) ?></td>
+                <td style="background-color: var(--colors-background-lighter)"><?= htmlspecialchars(date('H:i', strtotime($appointment['date_time']))) ?></td>
+                <td >Baan <?= htmlspecialchars($appointment['course']) ?></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <form class="column" method="post" style="margin-top: 20px">
         <div class="row between" style="gap: 5px">
             <input required class="checkbox-small" type="checkbox" id="confirm_delete" name="confirm_delete">
-            <label for="confirm_delete">Ja, ik wil deze afspraak verwijderen</label>
+            <label for="confirm_delete">Ja, ik wil deze afspraak annuleren</label>
         </div>
-        <button class="danger-button" type="submit">Afspraak Verwijderen</button>
+        <button class="danger-button" type="submit">Afspraak annuleren</button>
     </form>
 <?php endif; ?>
 </body>
+<?php include('includes/footer.php') ?>
 </html>

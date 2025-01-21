@@ -55,7 +55,7 @@ mysqli_close($db);
 <section>
     <form action="" method="post">
         <div class="column" style="width: 500px">
-            <p class="subtitle Danger">Account verwijderen</p>
+            <p class="title Danger">Account verwijderen</p>
             <p class="Danger" style="margin: 10px 0 40px 0">Vul je wachtwoord opnieuw in om je account te kunnen
                 verwijderen.</p>
             <div class="form-column"> <!-- Wachtwoord invullen voordat je kan verwijderen -->
@@ -74,7 +74,7 @@ mysqli_close($db);
                 <input required class="checkbox-small" type="checkbox" id="checkbox" name="checkbox"/>
             </div>
             <!-- Verwijderen -->
-            <button class="danger-button" type="submit" name="submit">Account verwijderen</button>
+            <button class="danger-button" style="margin-bottom: 5vh" type="submit" name="submit">Account verwijderen</button>
         </div>
     </form>
 </section>

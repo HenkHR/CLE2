@@ -69,7 +69,7 @@ mysqli_close($db);
     <div class="register">
         <a class="register-button" href="register.php">Nog geen account? Registreer hier!</a>
     </div>
-    <form class="column" style="margin: 25px 0 75px 0" action="" method="post">
+    <form class="column" style="margin: 0 0 15px 0" action="" method="post">
         <div class="column" style="width: 500px">
             <p class="title">Log in</p>
             <div class="form-column">
@@ -99,7 +99,7 @@ mysqli_close($db);
             <button type="submit" name="submit">Inloggen</button>
         </div>
     </form>
-    <div>
+    <div class="info-button justify-center text-center">
         <a href="wachtwoord-vergeten.php">wachtwoord vergeten?</a>
     </div>
 </section>

@@ -188,6 +188,18 @@ form button {
     text-align: center;
 }
 
+table{
+    border-collapse: collapse;
+}
+table tr{
+    border-bottom: solid white 2px;
+}
+table th,td{
+    padding: 10px;
+    color:white;
+    text-align: center;
+}
+
 .danger-button {
     background-color: var(--colors-danger);
 }

@@ -104,7 +104,7 @@ if (isset($_POST['submit'])) {
         $fullMessage = 'Beste' . $firstName . $lastName . "\n" . 'Bedankt voor uw reservering:' . "\n" . date('d F Y', strtotime($date)) . "\n" . date('H:i', strtotime($date)) . "\n" . 'Baan' . $courseID;
         mail($to, $subject, $fullMessage);
 
-        header('Location: confirmation.php');
+        header('Location: confirmation.php?date='.$date.'&course='.$courseID.'&phone_number='.$phoneNumber.'');
     }
 }
 ?>
