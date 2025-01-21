@@ -93,7 +93,7 @@ if (!isset($_SESSION['is_admin']) != 1) { ?>
     <section class="main-section">
         <a href="info.php">Meer over padel</a>
         <a href="about.php">Meer over Focus</a>
-        <?php if (!isset($_SESSION['user_id']) && (empty(($userReservations)))) { ?>
+        <?php if (isset($_SESSION['user_id']) && (empty($userReservations)) || (!isset($_SESSION['user_id']))) { ?>
             <a href="calendar.php">Reserveren</a>
         <?php } ?>
     </section>
