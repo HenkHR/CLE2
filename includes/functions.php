@@ -22,6 +22,17 @@ function getWeekDays(int $timestamp): array
     return $dates;
 }
 
+function getCourseNumbersArray(int $timestamp, array $reservations): array
+{
+    $result = [];
+    foreach($reservations as $reservation){
+        if(strtotime($reservation['date_time']) == $timestamp){
+            $result[] = $reservation['course'];
+        }
+    }
+    return $result;
+}
+
 function getReservationCount(int $timestamp, array $reservations): int
 {
     $result = 0;
