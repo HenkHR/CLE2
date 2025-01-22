@@ -84,6 +84,8 @@ session_start();
                             <p>Nog niet beschikbaar</p>
                         <?php } elseif(strtotime(date('Y-m-d', $weekDays[$columnID]['timestamp']) . ' ' . $timeslots[$rowID]) < $today) {?>
                             <p>Niet meer beschikbaar</p>
+                        <?php } elseif(getReservationCount(strtotime(date('Y-m-d', $weekDays[$columnID]['timestamp']) . ' ' . $timeslots[$rowID]), $reservations) > 2) { ?>
+                            <p>Vol</p>
                         <?php } else { ?>
                         <p> Plekken beschikbaar: <?= getAvailableSpots(strtotime(date('Y-m-d', $weekDays[$columnID]['timestamp']) . ' ' . $timeslots[$rowID]), $reservations) ?> </p>
                         <?php } ?>
