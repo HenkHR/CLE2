@@ -231,13 +231,13 @@ form button:hover {
 }
 
 .calendar-button-full {
-    background-color: var(--colors-danger);
+    background-color: indianred;
 }
 
 .calendar-button:hover,
 .calendar-button-full:hover,
 .past-calender-button-admin:hover {
-    background-color: darkgray;
+    background-color: #bdbdbd;
 }
 
 .calendar .calendar-button-unavailable {
@@ -303,10 +303,11 @@ form button:hover {
     width: 17px;
     text-align: center;
     border-radius: 50%;
+    box-shadow: #0F0F0F 1px 1px 0 0;
 }
 
 .course {
-    background-color: lightblue;
+    background-color: #e3e3e3;
 }
 
 .takenCourse {
