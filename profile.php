@@ -25,6 +25,7 @@ if (isset($_POST['submit'])) {
         $update_query = "UPDATE users SET first_name = '$firstName' WHERE user_id = $id"; // Zet gelijk de nieuw ingevoerde voornaam in de database, ookal zijn er op andere plekken fouten gemaakt.
         mysqli_query($db, $update_query);
         $user['first_name'] = $firstName;
+        $_SESSION['first_name'] = $firstName;
     }
 
     if (empty($lastName)) {
@@ -34,6 +35,7 @@ if (isset($_POST['submit'])) {
         $update_query = "UPDATE users SET last_name = '$lastName' WHERE user_id = $id"; // Zelfde hier
         mysqli_query($db, $update_query);
         $user['last_name'] = $lastName;
+        $_SESSION['last_name'] = $lastName;
     }
 
     if (empty($email)) {
@@ -58,13 +60,14 @@ if (isset($_POST['submit'])) {
             $update_query = "UPDATE users SET email = '$email' WHERE user_id = $id";
             mysqli_query($db, $update_query);
             $user['email'] = $email;
+            $_SESSION['email'] = $email;
         }
     }
 
     if (!empty($phoneNumber) && !preg_match('/^\+?[0-9]{9,15}$/', $phoneNumber)) {
         $updateError['phone_number'] = "Het telefoonnummer is ongeldig. Vul een geldig telefoonnummer in of laat het invulveld leeg.";
         $hasError = true;
-    } elseif (!empty($phoneNumber)) {
+    } else{
         $update_query = "UPDATE users SET phone_number = '$phoneNumber' WHERE user_id = $id";
         mysqli_query($db, $update_query);
         $user['phone_number'] = $phoneNumber;
