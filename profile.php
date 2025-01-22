@@ -2,7 +2,7 @@
 /** @var $db */
 require_once('includes/auth.php');
 require_once('includes/connection.php');
-$today = time() + 3600;
+$today = time();
 $date = date('Y-m-d H:i', $today);
 $updateSucces = $updateError = "";
 $id = $_SESSION['user_id'];
