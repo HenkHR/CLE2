@@ -1,24 +1,20 @@
 <?php
-$code = '123456';
-// db
-require_once('includes/connection.php');
-// zet de default voor de stap
-$step = '0';
-// als gepost
+/** @var $db */
+session_start(); // Start een sessie om gegevens tijdelijk op te slaan
+
+require_once('includes/connection.php'); // Verbind met de database
+
+$step = '0'; // Standaard stap
+$errors = []; // Array voor fouten
+
 if (isset($_POST['submit'])) {
     $step = $_POST['step'];
     $email = $_POST['email'];
 
-    // als step=0 (mail en code maken)
-    if ($step === '0') {
-        // klopt de mail en staat die in de db
-        if ($email === '') {
+    if ($step === '0') { // Stap 0: Controleer e-mail en genereer code
+        if (empty($email)) {
             $errors['email'] = 'Vul een e-mailadres in.';
         } else {
-            //db openen
-            //query maken
-            //query uitvoeren
-            //staat email in query: verder
             $query = "SELECT * FROM users WHERE email = ?";
             $stmt = mysqli_prepare($db, $query);
             mysqli_stmt_bind_param($stmt, 's', $email);
@@ -30,58 +26,72 @@ if (isset($_POST['submit'])) {
             }
 
             if (empty($errors)) {
-                // code aanmaken als stap 0 en email klopt
+                // Genereer een willekeurige code van 10 cijfers
+                $code = '';
+                for ($i = 0; $i < 10; $i++) {
+                    $code .= random_int(0, 9);
+                }
+                // Sla de code op in de sessie
+                $_SESSION['reset_code'] = $code;
+                $_SESSION['reset_email'] = $email;
+
+                // Verstuur de code per e-mail
                 $to = $email;
-                $subject = 'wachtwoord reset code';
-                $message = 'Uw code is' . "\n" . $code;
+                $subject = 'Wachtwoord reset code';
+                $message = 'Uw code is: ' . $code;
                 mail($to, $subject, $message);
 
-                // naar de volgende stap als alles is gelukt
-                $step = '1';
-
+                $step = '1'; // Ga naar de volgende stap
             }
         }
     }
-    // als step=1
-    if ($step === '1') {
+
+    if ($step === '1') { // Stap 1: Controleer de ingevoerde code
         if (isset($_POST['code'])) {
-            if ($_POST['code'] === $code) {
+            $entered_code = $_POST['code'];
+            if ($entered_code === $_SESSION['reset_code']) {
                 $step = '2';
             } else {
-                $errors['code'] = 'De code komt niet overeen';
+                $errors['code'] = 'De code komt niet overeen.';
             }
         }
     }
-    // als step=2
-    if ($step === '2') {
-        if (isset($_POST['password'])) {
+
+    if ($step === '2') { // Stap 2: Reset het wachtwoord
+        if (isset($_POST['password'], $_POST['repeatPassword'])) {
             $password = $_POST['password'];
             $repeatPassword = $_POST['repeatPassword'];
-            print_r($password);
+
             if ($password !== $repeatPassword) {
-                $errors['password'] = 'Wachtwoord komt niet overeen';
+                $errors['password'] = 'Wachtwoorden komen niet overeen.';
             }
-            if ($password === '') {
-                $errors['password'] = 'Vul een wachtwoord in';
+
+            if (empty($password)) {
+                $errors['password'] = 'Vul een wachtwoord in.';
             }
+
             if (empty($errors)) {
                 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-                $query = "UPDATE users SET password = ? WHERE email ='$email'";
+                $query = "UPDATE users SET password = ? WHERE email = ?";
                 $stmt = mysqli_prepare($db, $query);
-                mysqli_stmt_bind_param($stmt, 's', $hashedPassword);
+                mysqli_stmt_bind_param($stmt, 'ss', $hashedPassword, $_SESSION['reset_email']);
                 $result = mysqli_stmt_execute($stmt);
-                //Zou goed zijn
+
                 if ($result) {
+                    session_unset(); // Wis de sessiegegevens
+                    session_destroy(); // Vernietig de sessie
                     mysqli_close($db);
                     header('Location: login.php?email=' . urlencode($email));
+                    exit;
                 } else {
-                    $errors['password'] = 'Fuck. Het is mislukt. ga naar contact in de footer. Zeg "connectie met de db of de query gaat fout"';
+                    $errors['password'] = 'Het resetten van het wachtwoord is mislukt. Neem contact op.';
                 }
             }
         }
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
