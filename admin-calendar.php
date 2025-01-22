@@ -3,7 +3,7 @@
 require_once "includes/functions.php";
 require_once "includes/admin-auth.php";
 require_once "includes/connection.php";
-$today = time() + 3600;
+$today = time();
 //echo date('d/m/y H:i', $today);
 $timeslots = ['9:00', '10:30', '12:00', '13:30', '15:00', '16:30', '18:00', '19:30', '21:00'];
 $days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
