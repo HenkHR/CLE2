@@ -9,37 +9,66 @@ $id = $_SESSION['user_id'];
 $query = "SELECT user_id, first_name, last_name, email, phone_number, is_admin FROM users WHERE user_id = $id";
 $result = mysqli_query($db, $query);
 $user = mysqli_fetch_assoc($result);
+$updateError = ['firstName' => '', 'lastName' => '', 'email' => '', 'phone_number' => ''];
 if (isset($_POST['submit'])) {
     $firstName = mysqli_real_escape_string($db, $_POST['first_name']);
     $lastName = mysqli_real_escape_string($db, $_POST['last_name']);
     $email = mysqli_real_escape_string($db, $_POST['email']);
     $phoneNumber = mysqli_real_escape_string($db, $_POST['phone_number']) ?? '';
-    if (empty($firstName) || empty($lastName) || empty($email)) {
-        $updateError = 'Voornaam, Achternaam en E-mailadres moeten ingevuld zijn.';
+
+    $hasError = false; // Controleer of er fouten zijn
+
+    if (empty($firstName)) {
+        $updateError['firstName'] = "Vul a.u.b uw voornaam in.";
+        $hasError = true;
+    } else {
+        $update_query = "UPDATE users SET first_name = '$firstName' WHERE user_id = $id"; // Zet gelijk de nieuw ingevoerde voornaam in de database, ookal zijn er op andere plekken fouten gemaakt.
+        mysqli_query($db, $update_query);
+        $user['first_name'] = $firstName;
     }
-    if (!empty($_POST['phone_number']) && !preg_match('/^\+?[0-9]{9,15}$/', $_POST['phone_number'])) {
-        $updateError = 'Het telefoonnummer is ongeldig. Vul een geldig telefoonnummer in of laat het invulveld leeg.';
+
+    if (empty($lastName)) {
+        $updateError['lastName'] = "Vul a.u.b. uw achternaam in.";
+        $hasError = true;
+    } else {
+        $update_query = "UPDATE users SET last_name = '$lastName' WHERE user_id = $id"; // Zelfde hier
+        mysqli_query($db, $update_query);
+        $user['last_name'] = $lastName;
     }
-    if (empty($updateError)) {
-        $update_query = "UPDATE users
-                         SET first_name = '$firstName', last_name = '$lastName', email = '$email', phone_number = '$phoneNumber'
-                         WHERE user_id = $id";
-        $_SESSION['first_name'] = $firstName;
-        $_SESSION['last_name'] = $lastName;
-        $_SESSION['email'] = $email;
-        if (mysqli_query($db, $update_query)) {
-            setcookie('update_message', 'Gebruikersgegevens bijgewerkt.', time() + 1, "/");
-            header("Location: profile.php");
-            exit;
+
+    if (empty($email)) {
+        $updateError['email'] = "Vul a.u.b. uw email in.";
+        $hasError = true;
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) { // https://www.w3schools.com/php/func_filter_var.asp
+        $updateError['email'] = "Vul een geldig e-mailadres in.";
+        $hasError = true;
+
+    } else {
+
+        // We gaan controleren of het e-mailadres al bestaat in de database
+        $email_check_query = "SELECT user_id FROM users WHERE email = '$email' AND user_id != $id";
+        $email_check_result = mysqli_query($db, $email_check_query);
+
+        // Als er meer dan 0 resultaten komen
+        if (mysqli_num_rows($email_check_result) > 0) {
+            $updateError['email'] = "Dit e-mailadres is al in gebruik.";
+            $hasError = true;
         } else {
-            $updateError = "Fout bij het bijwerken van gebruikersgegevens.";
+            // Update het e-mailadres als het uniek is
+            $update_query = "UPDATE users SET email = '$email' WHERE user_id = $id";
+            mysqli_query($db, $update_query);
+            $user['email'] = $email;
         }
     }
-}
-if (isset($_COOKIE['update_message'])) {
-    $updateSucces = $_COOKIE['update_message'];
-} else {
-    $updateSucces = '';
+
+    if (!empty($phoneNumber) && !preg_match('/^\+?[0-9]{9,15}$/', $phoneNumber)) {
+        $updateError['phone_number'] = "Het telefoonnummer is ongeldig. Vul een geldig telefoonnummer in of laat het invulveld leeg.";
+        $hasError = true;
+    } elseif (!empty($phoneNumber)) {
+        $update_query = "UPDATE users SET phone_number = '$phoneNumber' WHERE user_id = $id";
+        mysqli_query($db, $update_query);
+        $user['phone_number'] = $phoneNumber;
+    }
 }
 $userReservations = [];
 $userReservations_query = "SELECT * FROM reservations WHERE user_id = '$id' AND date_time >= '$date' ORDER BY date_time ASC";
@@ -95,6 +124,9 @@ mysqli_close($db);
                                value="<?= htmlspecialchars($user['first_name']) ?>"/>
                     </div>
                 </div>
+                <p class="Danger">
+                    <?= htmlspecialchars($updateError['firstName']) ?>
+                </p>
                 <div class="form-column"> <!-- Achternaam -->
                     <div>
                         <label class="label" for="lastName">Achternaam</label>
@@ -104,6 +136,9 @@ mysqli_close($db);
                                value="<?= htmlspecialchars($user['last_name']) ?>"/>
                     </div>
                 </div>
+                <p class="Danger">
+                    <?= htmlspecialchars($updateError['lastName']) ?>
+                </p>
                 <div class="form-column"> <!-- Email -->
                     <div>
                         <label class="label" for="email">E-mailadres</label>
@@ -113,6 +148,9 @@ mysqli_close($db);
                                value="<?= htmlspecialchars($user['email']) ?>"/>
                     </div>
                 </div>
+                <p class="Danger">
+                    <?= htmlspecialchars($updateError['email']) ?>
+                </p>
                 <div class="form-column"> <!-- Telefoonnummer -->
                     <div>
                         <label class="label" for="phoneNumber">Telefoonnummer <span
@@ -122,8 +160,8 @@ mysqli_close($db);
                         <input class="input" id="phoneNumber" type="text" maxlength="10" name="phone_number"
                                value="<?php if(empty($user['phone_number'])){ ?><?php }else{ echo  $user['phone_number'];}?>"/>
                     </div>
-                    <p class="Danger" style="margin-top: 25px">
-                        <?= htmlspecialchars($updateError) ?>
+                    <p class="Danger">
+                        <?= htmlspecialchars($updateError['phone_number']) ?>
                     </p>
                 </div>
                 <!-- Submit -->
