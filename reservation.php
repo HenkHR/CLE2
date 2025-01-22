@@ -77,12 +77,11 @@ if (isset($_POST['submit'])) {
     if ($email == '') {
         $errors['email'] = "Voer hier uw email-adres in";
     }
-
-    if ($phoneNumber == '') {
-        $errors['phoneNumber'] = "Voer hier uw telefoonnummer in";
+    if (empty($phoneNumber) || !preg_match('/^\+?[0-9]{9,15}$/', $phoneNumber)) {
+        $errors['phone_number'] = "Vul een geldig telefoonnummer in.";
     }
 
-    if ($errors['firstName'] == '' && $errors['lastName'] == '' && $errors['email'] == '' && $errors['phoneNumber'] == '') {
+    if ($errors['firstName'] == '' && $errors['lastName'] == '' && $errors['email'] == '' && $errors['phone_number'] == '') {
         if ($userId !== null) {
             $query = "INSERT INTO reservations (user_id, date_time, first_name, last_name, email, phone_number, course) 
                       VALUES('$userId', '$date', '$firstName', '$lastName', '$email', '$phoneNumber', '$courseID')";
@@ -128,19 +127,19 @@ if (isset($_POST['submit'])) {
                 <div class="formInput column">
                     <label for="firstName">Voornaam</label>
                     <input class="input" id="firstName" type="text" maxlength="30" name="firstName"
-                           value="<?= htmlspecialchars($user['first_name'] ?? '') ?>"/>
+                           value="<?= htmlspecialchars($_POST['firstName'] ?? $user['first_name'] ?? '') ?>"/>
                 </div>
                 <p style="color: var(--colors-text)"><?= $errors['firstName'] ?? '' ?></p>
                 <div class="formInput column">
                     <label for="lastName">Achternaam</label>
                     <input class="input" id="lastName" type="text" maxlength="30" name="lastName"
-                           value="<?= htmlspecialchars($user['last_name'] ?? '') ?>"/>
+                           value="<?= htmlspecialchars($_POST['lastName'] ?? $user['last_name'] ?? '') ?>"/>
                 </div>
                 <p style="color: var(--colors-text)"><?= $errors['lastName'] ?? '' ?></p>
                 <div class="formInput column">
                     <label for="email">E-mailadres</label>
                     <input class="input" id="email" type="email" maxlength="30" name="email"
-                           value="<?= htmlspecialchars($user['email'] ?? '') ?>"/>
+                           value="<?= htmlspecialchars($_POST['email'] ?? $user['email'] ?? '') ?>"/>
                 </div>
                 <p style="color: var(--colors-text)"><?= $errors['email'] ?? '' ?></p>
             <?php } else { ?>
@@ -148,18 +147,19 @@ if (isset($_POST['submit'])) {
                 <input type="hidden" id="lastName" name="lastName" value="<?= $_SESSION['last_name'] ?>">
                 <input type="hidden" id="email" name="email" value="<?= $_SESSION['email'] ?>">
             <?php } ?>
-            <?php if (empty($user['phone_number'])) { ?>
+            <?php if (empty($user['phone_number']) || isset($_POST['phoneNumber'])) { ?>
                 <div class="formInput column">
                     <label for="phoneNumber">Telefoonnummer</label>
-                    <input class="input" id="phoneNumber" type="tel" maxlength="10" name="phoneNumber"
-                           value="<?= htmlspecialchars($user['phone_number'] ?? '') ?>"/>
+                    <input class="input" id="phoneNumber" type="tel" maxlength="15" name="phoneNumber"
+                           value="<?= htmlspecialchars($_POST['phoneNumber'] ?? $user['phone_number'] ?? '') ?>"/>
                 </div>
-                <p style="color: var(--colors-text)"><?= $errors['phoneNumber'] ?? '' ?></p>
+                <p style="color: var(--colors-text)"><?= $errors['phone_number'] ?? '' ?></p>
             <?php } else { ?>
                 <input type="hidden" id="phoneNumber" name="phoneNumber" value="<?= $user['phone_number'] ?>">
             <?php } ?>
-                <button class="submitButton" type="submit" name="submit">Reserveer</button>
+            <button class="submitButton" type="submit" name="submit">Reserveer</button>
         </form>
+
     </section>
 </main>
 <?php include('includes/footer.php') ?>
