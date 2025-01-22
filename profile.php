@@ -13,7 +13,7 @@ if (isset($_POST['submit'])) {
     $firstName = mysqli_real_escape_string($db, $_POST['first_name']);
     $lastName = mysqli_real_escape_string($db, $_POST['last_name']);
     $email = mysqli_real_escape_string($db, $_POST['email']);
-    $phoneNumber = !empty($_POST['phone_number']) ? mysqli_real_escape_string($db, $_POST['phone_number']) : "NULL";
+    $phoneNumber = mysqli_real_escape_string($db, $_POST['phone_number']) ?? '';
     if (empty($firstName) || empty($lastName) || empty($email)) {
         $updateError = 'Voornaam, Achternaam en E-mailadres moeten ingevuld zijn.';
     }
@@ -24,6 +24,9 @@ if (isset($_POST['submit'])) {
         $update_query = "UPDATE users
                          SET first_name = '$firstName', last_name = '$lastName', email = '$email', phone_number = '$phoneNumber'
                          WHERE user_id = $id";
+        $_SESSION['first_name'] = $firstName;
+        $_SESSION['last_name'] = $lastName;
+        $_SESSION['email'] = $email;
         if (mysqli_query($db, $update_query)) {
             setcookie('update_message', 'Gebruikersgegevens bijgewerkt.', time() + 1, "/");
             header("Location: profile.php");
@@ -117,7 +120,7 @@ mysqli_close($db);
                     </div>
                     <div>
                         <input class="input" id="phoneNumber" type="text" maxlength="10" name="phone_number"
-                               value="<?= htmlspecialchars($user['phone_number'] ?? '') ?>"/>
+                               value="<?php if(empty($user['phone_number'])){ ?><?php }else{ echo  $user['phone_number'];}?>"/>
                     </div>
                     <p class="Danger" style="margin-top: 25px">
                         <?= htmlspecialchars($updateError) ?>
@@ -125,7 +128,7 @@ mysqli_close($db);
                 </div>
                 <!-- Submit -->
                 <button type="submit" name="submit">Wijzigen</button>
-                <a class="delete-account" style="margin-bottom: 5vh" href="delete-account.php">account verwijderen</a>
+                <a class="delete-account" style="margin-bottom: 5vh" href="delete-account.php">Account verwijderen</a>
             </div>
         </form>
     </section>

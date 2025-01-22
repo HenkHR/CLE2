@@ -7,7 +7,7 @@
             <a href="logout.php">Uitloggen</a>
         <?php else: ?>
             <a href="about.php">Over Focus</a>
-            <a href="info.php">Info Padel</a>
+            <a href="info.php">Info padel</a>
             <a class="logo" href="index.php">
                 <img class="navbar-logo" src="images/focus_1.png" alt="">
             </a>

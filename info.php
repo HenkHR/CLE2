@@ -10,7 +10,7 @@
 <body>
 <?php include('includes/header.php') ?>
 <main>
-    <p class="title" style="margin-bottom: 5vh">Focus Padel</p>
+    <p class="title" style="margin-bottom: 5vh">Focus padel</p>
     <div class="info" style="color: var(--colors-text)">
         <div class="leftItem">
             <h2>Wat is padel</h2>
@@ -27,7 +27,7 @@
             <h2>Padel bij Focus</h2>
             <p>Daar is het dan eindelijk, je had misschien al het een en ander gehoord over het bouwen van een padelbaan
                 maar we hebben nu eindeijk de vergunningen binnen!
-                Sinds December is de bouw in volle gang, de planning is dat in eind februari/begin maart de eerste
+                Sinds December is de bouw in volle gang, de planning is dat in eind Februari/begin Maart de eerste
                 balletjes geslagen kunnen worden.
             </p>
             <a class="webButton" href="calendar.php">Reserveer nu</a>

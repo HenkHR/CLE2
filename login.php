@@ -100,7 +100,7 @@ mysqli_close($db);
         </div>
     </form>
     <div class="info-button justify-center text-center">
-        <a href="wachtwoord-vergeten.php">wachtwoord vergeten?</a>
+        <a href="wachtwoord-vergeten.php">Wachtwoord vergeten?</a>
     </div>
 </section>
 <?php include('includes/footer.php') ?>

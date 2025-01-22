@@ -138,7 +138,7 @@ if (isset($_POST['submit'])) {
                 </div>
                 <p style="color: var(--colors-text)"><?= $errors['lastName'] ?? '' ?></p>
                 <div class="formInput column">
-                    <label for="email">Email-adres</label>
+                    <label for="email">E-mailadres</label>
                     <input class="input" id="email" type="email" maxlength="30" name="email"
                            value="<?= htmlspecialchars($user['email'] ?? '') ?>"/>
                 </div>
@@ -148,7 +148,7 @@ if (isset($_POST['submit'])) {
                 <input type="hidden" id="lastName" name="lastName" value="<?= $_SESSION['last_name'] ?>">
                 <input type="hidden" id="email" name="email" value="<?= $_SESSION['email'] ?>">
             <?php } ?>
-            <?php if (!isset($user['phone_number'])) { ?>
+            <?php if (empty($user['phone_number'])) { ?>
                 <div class="formInput column">
                     <label for="phoneNumber">Telefoonnummer</label>
                     <input class="input" id="phoneNumber" type="tel" maxlength="10" name="phoneNumber"
